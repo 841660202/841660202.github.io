@@ -380,31 +380,6 @@
     
     
     <entry>
-      <title>批量删除目录</title>
-      <link href="//post/2019-10-30shell.html"/>
-      <url>//post/2019-10-30shell.html</url>
-      
-        <content type="html"><![CDATA[<h2 id="删除某个目录下所有子目录的node-modules"><a href="#删除某个目录下所有子目录的node-modules" class="headerlink" title="删除某个目录下所有子目录的node_modules"></a>删除某个目录下所有子目录的node_modules</h2><pre class="line-numbers language-none"><code class="language-none"># 查找 &#x2F;tmp&#x2F;test&#x2F; 子目录下所有 modu 执行删除find &#x2F;tmp&#x2F;test&#x2F; -type d -name modu |xargs rm -rf</code></pre><pre class="line-numbers language-none"><code class="language-none"># 查找 &#x2F;tmp&#x2F;test&#x2F; 子目录下所有 node_modules 执行删除find &#x2F;tmp&#x2F;test&#x2F; -type d -name node_modules |xargs rm -rf</code></pre>]]></content>
-      
-      
-      <categories>
-          
-          <category> Shell </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Shell </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Iterm2美化终端</title>
       <link href="//post/2017-07-09item2.html"/>
       <url>//post/2017-07-09item2.html</url>
@@ -422,6 +397,31 @@
         <tags>
             
             <tag> 工具 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>批量删除目录</title>
+      <link href="//post/2019-10-30shell.html"/>
+      <url>//post/2019-10-30shell.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="删除某个目录下所有子目录的node-modules"><a href="#删除某个目录下所有子目录的node-modules" class="headerlink" title="删除某个目录下所有子目录的node_modules"></a>删除某个目录下所有子目录的node_modules</h2><pre class="line-numbers language-none"><code class="language-none"># 查找 &#x2F;tmp&#x2F;test&#x2F; 子目录下所有 modu 执行删除find &#x2F;tmp&#x2F;test&#x2F; -type d -name modu |xargs rm -rf</code></pre><pre class="line-numbers language-none"><code class="language-none"># 查找 &#x2F;tmp&#x2F;test&#x2F; 子目录下所有 node_modules 执行删除find &#x2F;tmp&#x2F;test&#x2F; -type d -name node_modules |xargs rm -rf</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Shell </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Shell </tag>
             
         </tags>
       
