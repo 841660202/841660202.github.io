@@ -1,0 +1,3 @@
+![image.png](https://upload-images.jianshu.io/upload_images/11460713-13685d46ead24558.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/240)
+sed -i "s/image.png/996 /g" ./image.txt
+https://upload-images.jianshu.io/upload_images/11460713-13685d46ead24558.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/240)
