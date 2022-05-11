@@ -4,6 +4,85 @@
   
     
     <entry>
+      <title>vscode插件 paste code to snippets</title>
+      <link href="//post/2022-05-11vscode.html"/>
+      <url>//post/2022-05-11vscode.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="粘贴代码，生成用户代码片段"><a href="#粘贴代码，生成用户代码片段" class="headerlink" title="粘贴代码，生成用户代码片段"></a>粘贴代码，生成用户代码片段</h2><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><ol><li>其他插件具有<code>共性</code>，而<code>不具特性 </code></li></ol><ul><li>每次写代码，要么用第三方插件，现成的代码片段，时常不能满足日常开发需要</li></ul><ol start="2"><li>自定义代码片段，手写 <code>费时费力</code></li></ol><ul><li>一般步骤，粘贴、修改、格式化</li></ul><ol start="3"><li>其他插件类似vscode宏变量的使用少之又少</li></ol><ul><li>要么将开源插件定制化，要么重新开发</li></ul><ol start="4"><li>快捷变量记不住</li></ol><h2 id="paste-code-to-snippets-优点："><a href="#paste-code-to-snippets-优点：" class="headerlink" title="paste code to snippets 优点："></a>paste code to snippets 优点：</h2><ol><li>高度定制化</li><li>跨语言（任何vscode支持的语言，都可在对应类型片段文件中进行增加）</li><li>使用简单 （复制、唤起命令、挖孔）</li><li>快捷变量完全自定义（想怎么写就怎么写）</li></ol><h2 id="操作GIF"><a href="#操作GIF" class="headerlink" title="操作GIF"></a>操作GIF</h2><p><img src="http://t-blog-images.aijs.top/img/Kapture%202022-05-11%20at%2009.39.01.gif"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> vscode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> vscode </tag>
+            
+            <tag> 插件 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>HTTP3</title>
+      <link href="//post/2022-05-11http.html"/>
+      <url>//post/2022-05-11http.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="现状"><a href="#现状" class="headerlink" title="现状"></a>现状</h2><blockquote><span class="custom-blockquote-svg"><svg width="24" height="24" viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg" data-reactroot=""><path fill="" d="M22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C13.8 22 15.5 21.5 17 20.6L22 22L20.7 17C21.5 15.5 22 13.8 22 12Z" undefined="1"></path><path fill="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z" undefined="1"></path><path fill="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z" undefined="1"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M17 8.5C15.23 8.97 14.07 10.84 14.01 13.27C14 13.33 14 13.4 14 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M9 8.5C7.23 8.97 6.07 10.84 6.01 13.27C6 13.33 6 13.4 6 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z"></path></svg></span><img src="https://www.upyun.com/static/img/title@3x.5597f51.png" />HTTP/3 的基础即谷歌多年探索的基于 UDP 的 QUIC 协议。与 TCP 相比，使用 UDP 可以提供更大的灵活性，并且可以使 QUIC 完全于用户空间中实现——对协议实现的更新不像 TCP 那样需要绑定到操作系统更新。使用 QUIC，可以简单地将 HTTP 级别的流映射到 QUIC 流的顶部，从而继承 HTTP/2 的所有优点，而不会产生队头阻塞。HTTP/3 虽仍处于草案状态，但很多用户已经跃跃欲试。</blockquote><h2 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h2><ol><li>HTTP&#x2F;3 利用 QUIC 加速 HTTP 请求，QUIC 提供比 TCP 和 TLS 更高的加密和性能</li><li>QUIC 是一种默认加密的新传输协议，旨在加快 HTTP 传输速度以及使其更加安全</li><li>HTTP&#x2F;3 基于 UDP，如果数据包丢失，只会中断一个流，而不会中断所有流，提高了同时获取多个对象的性能</li><li>支持 0-RTT，消除服务器的 TLS 确认，使后续连接的启动速度更快</li></ol><h2 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h2><p>下图表示 HTTP&#x2F;2 和 HTTP&#x2F;3 多路复用两个请求时，数据包丢失及其影响（请求及其相关的响应分别为深蓝和浅蓝色）</p><p>HTTP&#x2F;2 多路复用 2 个请求。响应被分解为多个数据包，一旦一个数据包丢失了，两个请求都被阻止。<br><img src="https://www.upyun.com/static/img/http_3%20&%20QUIC.d73f941.gif" /><br>HTTP&#x2F;3 复用 2 个请求。虽然浅色的数据包丢失了，但是深色的数据包传输得很好。<br><img src="https://www.upyun.com/static/img/http2.27d52a1.gif" /><br>在相同丢包率的条件下，HTTP&#x2F;3 和 HTTP&#x2F;2 性能测试对比如下<br>测试环境：服务端（HTTP&#x2F;3 with cubic &amp; HTTP&#x2F;2 with bbr）、客户端（cubic）<br><img src="https://www.upyun.com/static/img/%E5%BB%BA%E8%BF%9E%E6%97%B6%E9%97%B4.35656db.png" /><br><img src="https://www.upyun.com/static/img/%E8%AF%B7%E6%B1%82%E6%97%B6%E9%97%B41x.7069918.png" /></p><h2 id="更多"><a href="#更多" class="headerlink" title="更多"></a>更多</h2><p><a href="https://www.upyun.com/tech/tags/HTTP3" target="_blank" >查看更多</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 工具 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 工具 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>跨域问题</title>
+      <link href="//post/2022-05-09cors.html"/>
+      <url>//post/2022-05-09cors.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>浏览器安全策略限制跨域访问</p><p>内容安全策略是一个额外的安全层，用于检测并削弱某些特定类型的攻击，包括跨站脚本 (XSS) 和数据注入攻击等。无论是数据盗取、网站内容污染还是散发恶意软件，这些攻击都是主要的手段。</p><ol><li>使用方式<br>为使 CSP 可用, 你需要配置你的网络服务器返回 Content-Security-Policy，或者在 HTML <meta> 元素种也可配置该策略, 例如：</li></ol><pre class="line-numbers language-html" data-language="html"><code class="language-html">&lt;meta  http-equiv&#x3D;&quot;Content-Security-Policy&quot;  content&#x3D;&quot;default-src &#39;self&#39;; img-src https:&#x2F;&#x2F;*; child-src &#39;none&#39;;&quot;&#x2F;&gt;</code></pre><ol start="2"><li>配置示例<br>（1）一个网站管理者想要所有内容均来自站点的同一个源 (不包括其子域名)</li></ol><pre class="line-numbers language-html" data-language="html"><code class="language-html">Content-Security-Policy: default-src &#39;self&#39;</code></pre><p>（2）一个网站管理者允许内容来自信任的域名及其子域名 (域名不必须与 CSP 设置所在的域名相同)</p><pre class="line-numbers language-none"><code class="language-none">Content-Security-Policy: default-src &#39;self&#39; *.trusted.com</code></pre><p>（3）一个网站管理者允许网页应用的用户在他们自己的内容中包含来自任何源的图片, 但是限制音频或视频需从信任的资源提供者(获得)，所有脚本必须从特定主机服务器获取可信的代码。</p><pre class="line-numbers language-none"><code class="language-none">Content-Security-Policy: default-src &#39;self&#39;;img-src *;media-src media1.com media2.com; script-src userscripts.example.com</code></pre><p>在这里，各种内容默认仅允许从文档所在的源获取, 但存在如下例外:</p><p>图片可以从任何地方加载(注意 “*“ 通配符)。<br>多媒体文件仅允许从 media1.com 和 media2.com 加载(不允许从这些站点的子域名)。<br>可运行脚本仅允许来自于 userscripts.example.com。</p><p>作者：菜鸡前端<br>链接：<a href="https://www.jianshu.com/p/a45924e99a6d">https://www.jianshu.com/p/a45924e99a6d</a><br>来源：简书<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p><h2 id="处理方式"><a href="#处理方式" class="headerlink" title="处理方式"></a>处理方式</h2><h3 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h3><ul><li>脚本</li></ul><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">listen 80; # 监听的端⼝   add_header &#39;Access-Control-Allow-Origin&#39; &#39;$http_origin&#39; ;   add_header &#39;Access-Control-Allow-Credentials&#39; &#39;true&#39; ;   add_header &#39;Access-Control-Allow-Methods&#39; &#39;PUT,POST,GET,DELETE,OPTIONS&#39; ;   add_header &#39;Access-Control-Allow-Headers&#39; &#39;Content-Type,Content-Length,Authorization,Accept,X-Requested-With&#39; ;</code></pre><ul><li>实际操作</li></ul><p><img src="http://t-blog-images.aijs.top/img/20220509181853.webp"></p><h3 id="jsonp-方式-lt-动态-script-gt"><a href="#jsonp-方式-lt-动态-script-gt" class="headerlink" title="jsonp 方式 &lt;动态 script&gt;"></a>jsonp 方式 &lt;动态 script&gt;</h3><h3 id="服务端设置，类似-nginx"><a href="#服务端设置，类似-nginx" class="headerlink" title="服务端设置，类似 nginx"></a>服务端设置，类似 nginx</h3><h3 id="其他（不常用）"><a href="#其他（不常用）" class="headerlink" title="其他（不常用）"></a>其他（不常用）</h3>]]></content>
+      
+      
+      <categories>
+          
+          <category> cors </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> cors </tag>
+            
+            <tag> nginx </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>面试题汇总</title>
       <link href="//post/2022-05-08interview.html"/>
       <url>//post/2022-05-08interview.html</url>
@@ -532,7 +611,7 @@
       <link href="//post/2022-03-25Layoffs.html"/>
       <url>//post/2022-03-25Layoffs.html</url>
       
-        <content type="html"><![CDATA[<h2 id="一家上市公司近期「B业」人数变化"><a href="#一家上市公司近期「B业」人数变化" class="headerlink" title="一家上市公司近期「B业」人数变化"></a>一家上市公司近期「B业」人数变化</h2><p><img src="http://t-blog-images.aijs.top/img/11460713-98eaa0e7b6e68c6f.png" alt="2022-03-30"><br><img src="http://t-blog-images.aijs.top/img/11460713-f2c5edfe1032663d.png" alt="2022-03-31"><br><img src="http://t-blog-images.aijs.top/img/11460713-0d1febc4e52867bd.png" alt="2022-04-01"><br><img src="http://t-blog-images.aijs.top/img/11460713-3c855f37997fca9d.png" alt="2022-04-02"><br><img src="http://t-blog-images.aijs.top/img/11460713-33ab1685e98181c5.png" alt="2022-04-07"><br><img src="http://t-blog-images.aijs.top/img/11460713-f6178de2c725ba0d.png" alt="2022-04-08"><br><img src="http://t-blog-images.aijs.top/img/11460713-1c49e477ebebdb04.png" alt="2022-04-11"><br><img src="http://t-blog-images.aijs.top/img/11460713-ff83505b93a40211.png" alt="2022-04-12"><br><img src="http://t-blog-images.aijs.top/img/11460713-6e26dc81d1bc1bb5.png" alt="2022-04-13"><br><img src="http://t-blog-images.aijs.top/img/11460713-6f19d0ccbc1470d1.png" alt="2022-04-14"><br><img src="http://t-blog-images.aijs.top/img/11460713-5fa4eb0d60075e10.png" alt="2022-04-15"><br><img src="http://t-blog-images.aijs.top/img/11460713-a75f3fa3bc0cc9ad.png" alt="2022-04-20"><br><img src="http://t-blog-images.aijs.top/img/11460713-2cb92c5f9a24df72.png" alt="2022-04-21"><br><img src="http://t-blog-images.aijs.top/img/11460713-ea85739148839bd2.png" alt="image.png"><br><img src="http://t-blog-images.aijs.top/img/11460713-cc82a2680e69dccd.png" alt="2022-04-26"><br><img src="http://t-blog-images.aijs.top/img/11460713-fdd722c44a598a88.png" alt="2022-04-27"><br><img src="http://t-blog-images.aijs.top/img/11460713-35395fd4c9b459ea.png" alt="2022-04-28"><br><img src="http://t-blog-images.aijs.top/img/20220505093216.webp" alt="2022-05-05"><br><img src="http://t-blog-images.aijs.top/img/20220509134022.webp" alt="2022-05-09"></p>]]></content>
+        <content type="html"><![CDATA[<h2 id="一家上市公司近期「B业」人数变化"><a href="#一家上市公司近期「B业」人数变化" class="headerlink" title="一家上市公司近期「B业」人数变化"></a>一家上市公司近期「B业」人数变化</h2><p><img src="http://t-blog-images.aijs.top/img/11460713-98eaa0e7b6e68c6f.png" alt="2022-03-30"><br><img src="http://t-blog-images.aijs.top/img/11460713-f2c5edfe1032663d.png" alt="2022-03-31"><br><img src="http://t-blog-images.aijs.top/img/11460713-0d1febc4e52867bd.png" alt="2022-04-01"><br><img src="http://t-blog-images.aijs.top/img/11460713-3c855f37997fca9d.png" alt="2022-04-02"><br><img src="http://t-blog-images.aijs.top/img/11460713-33ab1685e98181c5.png" alt="2022-04-07"><br><img src="http://t-blog-images.aijs.top/img/11460713-f6178de2c725ba0d.png" alt="2022-04-08"><br><img src="http://t-blog-images.aijs.top/img/11460713-1c49e477ebebdb04.png" alt="2022-04-11"><br><img src="http://t-blog-images.aijs.top/img/11460713-ff83505b93a40211.png" alt="2022-04-12"><br><img src="http://t-blog-images.aijs.top/img/11460713-6e26dc81d1bc1bb5.png" alt="2022-04-13"><br><img src="http://t-blog-images.aijs.top/img/11460713-6f19d0ccbc1470d1.png" alt="2022-04-14"><br><img src="http://t-blog-images.aijs.top/img/11460713-5fa4eb0d60075e10.png" alt="2022-04-15"><br><img src="http://t-blog-images.aijs.top/img/11460713-a75f3fa3bc0cc9ad.png" alt="2022-04-20"><br><img src="http://t-blog-images.aijs.top/img/11460713-2cb92c5f9a24df72.png" alt="2022-04-21"><br><img src="http://t-blog-images.aijs.top/img/11460713-ea85739148839bd2.png" alt="image.png"><br><img src="http://t-blog-images.aijs.top/img/11460713-cc82a2680e69dccd.png" alt="2022-04-26"><br><img src="http://t-blog-images.aijs.top/img/11460713-fdd722c44a598a88.png" alt="2022-04-27"><br><img src="http://t-blog-images.aijs.top/img/11460713-35395fd4c9b459ea.png" alt="2022-04-28"><br><img src="http://t-blog-images.aijs.top/img/20220505093216.webp" alt="2022-05-05"><br><img src="http://t-blog-images.aijs.top/img/20220509134022.webp" alt="2022-05-09"><br><img src="http://t-blog-images.aijs.top/img/20220510180811.webp" alt="2022-05-10"></p>]]></content>
       
       
       <categories>
