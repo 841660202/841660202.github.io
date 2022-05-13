@@ -33,7 +33,7 @@
       <link href="//post/2022-05-13react.html"/>
       <url>//post/2022-05-13react.html</url>
       
-        <content type="html"><![CDATA[<h2 id="有意思的事"><a href="#有意思的事" class="headerlink" title="有意思的事"></a>有意思的事</h2><ul><li>今天维护项目遇到一个有意思的事，直观感受，设置值，再取出来，貌似没毛病<pre class="line-numbers language-tsx" data-language="tsx"><code class="language-tsx">  &#x2F;&#x2F; ...  const [values, setValues] &#x3D; useState&lt;Record&lt;string, any&gt;&gt;()  const &#123; applyStartTime, applyEndTime, attendanceType, staffId &#125; &#x3D; values || &#123;&#125;  const getDetail &#x3D; usePersistFn(async () &#x3D;&gt; &#123;    &#x2F;&#x2F; ...略    const obj: Record&lt;string, any&gt; &#x3D; &#123;      staffId: applyStaff.staffId,      attendanceType: res.result.attendanceType,      applyStartTime: &#123;        value: moment(res.result.applyStartTime),        half: res.result.startDayType,      &#125;,      applyEndTime: &#123;        value: moment(res.result.applyEndTime),        half: res.result.endDayType,      &#125;,      applyReason,      applyAttachments,    &#125;    &#x2F;&#x2F; ...略    form.setFieldsValue(obj)    setValues(form.getFieldsValue())  &#125;)  &#x2F;&#x2F; ...略  const &#123; total, loading: totalLoading &#125; &#x3D; useCaculateDays(    &#123;      start: applyStartTime,      end: applyEndTime,    &#125;,    staffId,    attendanceType,  )  &#x2F;&#x2F; ...略  &#x2F;&#x2F; AnualForm组件  &lt;Form.Item name&#x3D;&quot;applyStartTime&quot; label&#x3D;&quot;起始日期&quot; rules&#x3D;&#123;[&#123; required: true &#125;]&#125;&gt;      &lt;HalftDatePicker predict&#x3D;&#123;&#123; lessThan: end?.value &#125;&#125; &#x2F;&gt;    &lt;&#x2F;Form.Item&gt;  &lt;Form.Item name&#x3D;&quot;applyEndTime&quot; label&#x3D;&quot;结束日期&quot; rules&#x3D;&#123;[&#123; required: true &#125;]&#125;&gt;    &lt;HalftDatePicker predict&#x3D;&#123;&#123; moreThan: start?.value &#125;&#125; &#x2F;&gt;  &lt;&#x2F;Form.Item&gt;  type IValue &#x3D; &#123;    value?: moment.Moment    half: 1 | 2  &#125; &#x2F;&#x2F; HalftDatePicker组件const HalftDatePicker: React.ForwardRefRenderFunction&lt;any, PickerProps&lt;moment.Moment&gt; &amp; &#123;  value?: IValue  onChange?: (v?: IValue) &#x3D;&gt; void  predict?: &#123;    lessThan?: moment.Moment    moreThan?: moment.Moment    holiday?: boolean  &#125;&#125;&gt; &#x3D; (props, ref) &#x3D;&gt; &#123;  &#x2F;&#x2F; ...略&#125;</code></pre></li></ul><p>代码的目的是： </p><ol><li>请求详情</li><li>装配数据，更新values</li><li>useCaculateDays 通过后台动态计算有效工作日，返回total请假天数，</li><li>渲染total到表单对应位置</li></ol><h3 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h3><p>经过一点一点回溯调试，发现 useCaculateDays 没请求，被判断拦截掉了，往上找找，</p><pre class="line-numbers language-tsx" data-language="tsx"><code class="language-tsx">form.setFieldsValue(obj)setValues(form.getFieldsValue())</code></pre><h3 id="打上日志"><a href="#打上日志" class="headerlink" title="打上日志"></a>打上日志</h3><pre class="line-numbers language-tsx" data-language="tsx"><code class="language-tsx">&#x2F;&#x2F; ...略console.log(&quot;obj&quot;,obj);form.setFieldsValue(obj)console.log(&quot;obj1&quot;,form.getFieldsValue());setValues(obj)</code></pre><p>发现<code>obj</code>键值内容不等于<code>obj1</code></p><ul><li>obj</li></ul><pre class="line-numbers language-json" data-language="json"><code class="language-json">&#123;    &quot;staffId&quot;: &quot;02333&quot;,    &quot;attendanceType&quot;: 11,    &quot;applyStartTime&quot;: &#123;        &quot;value&quot;: &quot;2022-03-23T16:00:00.000Z&quot;,        &quot;half&quot;: 1    &#125;,    &quot;applyEndTime&quot;: &#123;        &quot;value&quot;: &quot;2022-03-23T16:00:00.000Z&quot;,        &quot;half&quot;: 2    &#125;,    &quot;applyReason&quot;: &quot;&quot;,    &quot;applyAttachments&quot;: []&#125;</code></pre><ul><li>obj1<pre class="line-numbers language-json" data-language="json"><code class="language-json">&#123;    &quot;staffId&quot;: &quot;02333&quot;,    &quot;attendanceType&quot;: 11,    &quot;applyReason&quot;: &quot;&quot;,    &quot;applyAttachments&quot;: []&#125;</code></pre></li></ul><p><em>猜测</em></p><ul><li>会不会<code>form.setFieldsValue</code>异步？查了下api是同步的<em>排除这种可能</em></li><li>断点调试过程中，也会遇到表单渲染一半的情况，<code>AnualForm组件</code>是条件渲染，如果这块表单没有渲染出来，通过<code>form.getFieldsValue</code>就拿不到</li></ul><h3 id="修改代码验证下猜测"><a href="#修改代码验证下猜测" class="headerlink" title="修改代码验证下猜测"></a>修改代码验证下猜测</h3><pre class="line-numbers language-tsx" data-language="tsx"><code class="language-tsx">console.log(&quot;obj&quot;,obj);form.setFieldsValue(obj)console.log(&quot;obj1&quot;,form.getFieldsValue());setTimeout(() &#x3D;&gt; &#123;  setValues(form.getFieldsValue())  &#125;, 5000);&#125;</code></pre><img src="http://t-blog-images.aijs.top/img/Kapture%202022-05-13%20at%2016.01.46.gif" width=300 /><h3 id="最终修改"><a href="#最终修改" class="headerlink" title="最终修改"></a>最终修改</h3><pre class="line-numbers language-tsx" data-language="tsx"><code class="language-tsx">form.setFieldsValue(obj)setValues(obj)</code></pre>]]></content>
+        <content type="html"><![CDATA[<h2 id="有意思的事"><a href="#有意思的事" class="headerlink" title="有意思的事"></a>有意思的事</h2><ul><li>今天维护项目遇到一个有意思的事，直观感受，设置值，再取出来，貌似没毛病<pre class="line-numbers language-tsx" data-language="tsx"><code class="language-tsx">  &#x2F;&#x2F; ...  const [values, setValues] &#x3D; useState&lt;Record&lt;string, any&gt;&gt;()  const &#123; applyStartTime, applyEndTime, attendanceType, staffId &#125; &#x3D; values || &#123;&#125;  const getDetail &#x3D; usePersistFn(async () &#x3D;&gt; &#123;    &#x2F;&#x2F; ...略    const obj: Record&lt;string, any&gt; &#x3D; &#123;      staffId: applyStaff.staffId,      attendanceType: res.result.attendanceType,      applyStartTime: &#123;        value: moment(res.result.applyStartTime),        half: res.result.startDayType,      &#125;,      applyEndTime: &#123;        value: moment(res.result.applyEndTime),        half: res.result.endDayType,      &#125;,      applyReason,      applyAttachments,    &#125;    &#x2F;&#x2F; ...略    form.setFieldsValue(obj)    setValues(form.getFieldsValue())  &#125;)  &#x2F;&#x2F; ...略  const &#123; total, loading: totalLoading &#125; &#x3D; useCaculateDays(    &#123;      start: applyStartTime,      end: applyEndTime,    &#125;,    staffId,    attendanceType,  )  &#x2F;&#x2F; ...略  &#x2F;&#x2F; AnualForm组件  &lt;Form.Item name&#x3D;&quot;applyStartTime&quot; label&#x3D;&quot;起始日期&quot; rules&#x3D;&#123;[&#123; required: true &#125;]&#125;&gt;      &lt;HalftDatePicker predict&#x3D;&#123;&#123; lessThan: end?.value &#125;&#125; &#x2F;&gt;    &lt;&#x2F;Form.Item&gt;  &lt;Form.Item name&#x3D;&quot;applyEndTime&quot; label&#x3D;&quot;结束日期&quot; rules&#x3D;&#123;[&#123; required: true &#125;]&#125;&gt;    &lt;HalftDatePicker predict&#x3D;&#123;&#123; moreThan: start?.value &#125;&#125; &#x2F;&gt;  &lt;&#x2F;Form.Item&gt;  type IValue &#x3D; &#123;    value?: moment.Moment    half: 1 | 2  &#125; &#x2F;&#x2F; HalftDatePicker组件const HalftDatePicker: React.ForwardRefRenderFunction&lt;any, PickerProps&lt;moment.Moment&gt; &amp; &#123;  value?: IValue  onChange?: (v?: IValue) &#x3D;&gt; void  predict?: &#123;    lessThan?: moment.Moment    moreThan?: moment.Moment    holiday?: boolean  &#125;&#125;&gt; &#x3D; (props, ref) &#x3D;&gt; &#123;  &#x2F;&#x2F; ...略&#125;</code></pre></li></ul><p>代码的目的是： </p><ol><li>请求详情</li><li>装配数据，更新values</li><li>useCaculateDays 通过后台动态计算有效工作日，返回total请假天数，</li><li>渲染total到表单对应位置</li></ol><h3 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h3><p>经过一点一点回溯调试，发现 useCaculateDays 没请求，被判断拦截掉了，往上找找，</p><pre class="line-numbers language-tsx" data-language="tsx"><code class="language-tsx">form.setFieldsValue(obj)setValues(form.getFieldsValue())</code></pre><h3 id="打上日志"><a href="#打上日志" class="headerlink" title="打上日志"></a>打上日志</h3><pre class="line-numbers language-tsx" data-language="tsx"><code class="language-tsx">&#x2F;&#x2F; ...略console.log(&quot;obj&quot;,obj);form.setFieldsValue(obj)console.log(&quot;obj1&quot;,form.getFieldsValue());setValues(obj)</code></pre><p>发现<code>obj</code>键值内容不等于<code>obj1</code></p><ul><li>obj</li></ul><pre class="line-numbers language-json" data-language="json"><code class="language-json">&#123;    &quot;staffId&quot;: &quot;02333&quot;,    &quot;attendanceType&quot;: 11,    &quot;applyStartTime&quot;: &#123;        &quot;value&quot;: &quot;2022-03-23T16:00:00.000Z&quot;,        &quot;half&quot;: 1    &#125;,    &quot;applyEndTime&quot;: &#123;        &quot;value&quot;: &quot;2022-03-23T16:00:00.000Z&quot;,        &quot;half&quot;: 2    &#125;,    &quot;applyReason&quot;: &quot;&quot;,    &quot;applyAttachments&quot;: []&#125;</code></pre><ul><li>obj1<pre class="line-numbers language-json" data-language="json"><code class="language-json">&#123;    &quot;staffId&quot;: &quot;02333&quot;,    &quot;attendanceType&quot;: 11,    &quot;applyReason&quot;: &quot;&quot;,    &quot;applyAttachments&quot;: []&#125;</code></pre></li></ul><p><em>猜想</em></p><ul><li>会不会<code>form.setFieldsValue</code>异步？查了下api是同步的<em>排除这种可能</em></li><li>断点调试过程中，也会遇到表单渲染一半的情况，<code>AnualForm组件</code>是条件渲染，如果这块表单没有渲染出来，通过<code>form.getFieldsValue</code>就拿不到</li></ul><h3 id="修改代码验证下猜想"><a href="#修改代码验证下猜想" class="headerlink" title="修改代码验证下猜想"></a>修改代码验证下猜想</h3><pre class="line-numbers language-tsx" data-language="tsx"><code class="language-tsx">console.log(&quot;obj&quot;,obj);form.setFieldsValue(obj)console.log(&quot;obj1&quot;,form.getFieldsValue());setTimeout(() &#x3D;&gt; &#123;  setValues(form.getFieldsValue())  &#125;, 5000);&#125;</code></pre><img src="http://t-blog-images.aijs.top/img/Kapture%202022-05-13%20at%2016.01.46.gif" width=300 /><h3 id="最终修改"><a href="#最终修改" class="headerlink" title="最终修改"></a>最终修改</h3><pre class="line-numbers language-tsx" data-language="tsx"><code class="language-tsx">form.setFieldsValue(obj)setValues(obj)</code></pre>]]></content>
       
       
       <categories>
@@ -676,31 +676,6 @@
     
     
     <entry>
-      <title>批量删除目录</title>
-      <link href="//post/2019-10-30shell.html"/>
-      <url>//post/2019-10-30shell.html</url>
-      
-        <content type="html"><![CDATA[<h2 id="删除某个目录下所有子目录的node-modules"><a href="#删除某个目录下所有子目录的node-modules" class="headerlink" title="删除某个目录下所有子目录的node_modules"></a>删除某个目录下所有子目录的node_modules</h2><pre class="line-numbers language-none"><code class="language-none"># 查找 &#x2F;tmp&#x2F;test&#x2F; 子目录下所有 modu 执行删除find &#x2F;tmp&#x2F;test&#x2F; -type d -name modu |xargs rm -rf</code></pre><pre class="line-numbers language-none"><code class="language-none"># 查找 &#x2F;tmp&#x2F;test&#x2F; 子目录下所有 node_modules 执行删除find &#x2F;tmp&#x2F;test&#x2F; -type d -name node_modules |xargs rm -rf</code></pre>]]></content>
-      
-      
-      <categories>
-          
-          <category> Shell </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Shell </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Iterm2美化终端</title>
       <link href="//post/2017-07-09item2.html"/>
       <url>//post/2017-07-09item2.html</url>
@@ -718,6 +693,31 @@
         <tags>
             
             <tag> 工具 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>批量删除目录</title>
+      <link href="//post/2019-10-30shell.html"/>
+      <url>//post/2019-10-30shell.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="删除某个目录下所有子目录的node-modules"><a href="#删除某个目录下所有子目录的node-modules" class="headerlink" title="删除某个目录下所有子目录的node_modules"></a>删除某个目录下所有子目录的node_modules</h2><pre class="line-numbers language-none"><code class="language-none"># 查找 &#x2F;tmp&#x2F;test&#x2F; 子目录下所有 modu 执行删除find &#x2F;tmp&#x2F;test&#x2F; -type d -name modu |xargs rm -rf</code></pre><pre class="line-numbers language-none"><code class="language-none"># 查找 &#x2F;tmp&#x2F;test&#x2F; 子目录下所有 node_modules 执行删除find &#x2F;tmp&#x2F;test&#x2F; -type d -name node_modules |xargs rm -rf</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Shell </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Shell </tag>
             
         </tags>
       
