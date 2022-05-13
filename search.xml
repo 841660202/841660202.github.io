@@ -8,7 +8,7 @@
       <link href="//post/2022-12-12Todo.html"/>
       <url>//post/2022-12-12Todo.html</url>
       
-        <content type="html"><![CDATA[<pre class="line-numbers language-js" data-language="js"><code class="language-js">&#x2F;&#x2F; 1. headless-recorder&#x2F;&#x2F; 2. lightHouse&#x2F;&#x2F; 3. 博客封面生成</code></pre>]]></content>
+        <content type="html"><![CDATA[<pre class="line-numbers language-js" data-language="js"><code class="language-js">&#x2F;&#x2F; 1. headless-recorder&#x2F;&#x2F; 2. lightHouse https:&#x2F;&#x2F;blog.csdn.net&#x2F;tangdou369098655&#x2F;article&#x2F;details&#x2F;122531766&#x2F;&#x2F; 3. 博客封面生成</code></pre>]]></content>
       
       
       <categories>
@@ -29,11 +29,65 @@
     
     
     <entry>
+      <title>ant design form设置值 !== 获取值</title>
+      <link href="//post/2022-05-13react.html"/>
+      <url>//post/2022-05-13react.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="有意思的事"><a href="#有意思的事" class="headerlink" title="有意思的事"></a>有意思的事</h2><ul><li>今天维护项目遇到一个有意思的事，直观感受，设置值，再取出来，貌似没毛病<pre class="line-numbers language-tsx" data-language="tsx"><code class="language-tsx">  &#x2F;&#x2F; ...  const [values, setValues] &#x3D; useState&lt;Record&lt;string, any&gt;&gt;()  const &#123; applyStartTime, applyEndTime, attendanceType, staffId &#125; &#x3D; values || &#123;&#125;  const getDetail &#x3D; usePersistFn(async () &#x3D;&gt; &#123;    &#x2F;&#x2F; ...略    const obj: Record&lt;string, any&gt; &#x3D; &#123;      staffId: applyStaff.staffId,      attendanceType: res.result.attendanceType,      applyStartTime: &#123;        value: moment(res.result.applyStartTime),        half: res.result.startDayType,      &#125;,      applyEndTime: &#123;        value: moment(res.result.applyEndTime),        half: res.result.endDayType,      &#125;,      applyReason,      applyAttachments,    &#125;    &#x2F;&#x2F; ...略    form.setFieldsValue(obj)    setValues(form.getFieldsValue())  &#125;)  &#x2F;&#x2F; ...略  const &#123; total, loading: totalLoading &#125; &#x3D; useCaculateDays(    &#123;      start: applyStartTime,      end: applyEndTime,    &#125;,    staffId,    attendanceType,  )  &#x2F;&#x2F; ...略  &#x2F;&#x2F; AnualForm组件  &lt;Form.Item name&#x3D;&quot;applyStartTime&quot; label&#x3D;&quot;起始日期&quot; rules&#x3D;&#123;[&#123; required: true &#125;]&#125;&gt;      &lt;HalftDatePicker predict&#x3D;&#123;&#123; lessThan: end?.value &#125;&#125; &#x2F;&gt;    &lt;&#x2F;Form.Item&gt;  &lt;Form.Item name&#x3D;&quot;applyEndTime&quot; label&#x3D;&quot;结束日期&quot; rules&#x3D;&#123;[&#123; required: true &#125;]&#125;&gt;    &lt;HalftDatePicker predict&#x3D;&#123;&#123; moreThan: start?.value &#125;&#125; &#x2F;&gt;  &lt;&#x2F;Form.Item&gt;  type IValue &#x3D; &#123;    value?: moment.Moment    half: 1 | 2  &#125; &#x2F;&#x2F; HalftDatePicker组件const HalftDatePicker: React.ForwardRefRenderFunction&lt;any, PickerProps&lt;moment.Moment&gt; &amp; &#123;  value?: IValue  onChange?: (v?: IValue) &#x3D;&gt; void  predict?: &#123;    lessThan?: moment.Moment    moreThan?: moment.Moment    holiday?: boolean  &#125;&#125;&gt; &#x3D; (props, ref) &#x3D;&gt; &#123;  &#x2F;&#x2F; ...略&#125;</code></pre></li></ul><p>代码的目的是： </p><ol><li>请求详情</li><li>装配数据，更新values</li><li>useCaculateDays 通过后台动态计算有效工作日，返回total请假天数，</li><li>渲染total到表单对应位置</li></ol><h3 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h3><p>经过一点一点回溯调试，发现 useCaculateDays 没请求，被判断拦截掉了，往上找找，</p><pre class="line-numbers language-tsx" data-language="tsx"><code class="language-tsx">form.setFieldsValue(obj)setValues(form.getFieldsValue())</code></pre><h3 id="打上日志"><a href="#打上日志" class="headerlink" title="打上日志"></a>打上日志</h3><pre class="line-numbers language-tsx" data-language="tsx"><code class="language-tsx">&#x2F;&#x2F; ...略console.log(&quot;obj&quot;,obj);form.setFieldsValue(obj)console.log(&quot;obj1&quot;,form.getFieldsValue());setValues(obj)</code></pre><p>发现<code>obj</code>键值内容不等于<code>obj1</code></p><ul><li>obj</li></ul><pre class="line-numbers language-json" data-language="json"><code class="language-json">&#123;    &quot;staffId&quot;: &quot;02333&quot;,    &quot;attendanceType&quot;: 11,    &quot;applyStartTime&quot;: &#123;        &quot;value&quot;: &quot;2022-03-23T16:00:00.000Z&quot;,        &quot;half&quot;: 1    &#125;,    &quot;applyEndTime&quot;: &#123;        &quot;value&quot;: &quot;2022-03-23T16:00:00.000Z&quot;,        &quot;half&quot;: 2    &#125;,    &quot;applyReason&quot;: &quot;&quot;,    &quot;applyAttachments&quot;: []&#125;</code></pre><ul><li>obj1<pre class="line-numbers language-json" data-language="json"><code class="language-json">&#123;    &quot;staffId&quot;: &quot;02333&quot;,    &quot;attendanceType&quot;: 11,    &quot;applyReason&quot;: &quot;&quot;,    &quot;applyAttachments&quot;: []&#125;</code></pre></li></ul><p><em>猜测</em></p><ul><li>会不会<code>form.setFieldsValue</code>异步？查了下api是同步的<em>排除这种可能</em></li><li>断点调试过程中，也会遇到表单渲染一半的情况，<code>AnualForm组件</code>是条件渲染，如果这块表单没有渲染出来，通过<code>form.getFieldsValue</code>就拿不到</li></ul><h3 id="修改代码验证下猜测"><a href="#修改代码验证下猜测" class="headerlink" title="修改代码验证下猜测"></a>修改代码验证下猜测</h3><pre class="line-numbers language-tsx" data-language="tsx"><code class="language-tsx">console.log(&quot;obj&quot;,obj);form.setFieldsValue(obj)console.log(&quot;obj1&quot;,form.getFieldsValue());setTimeout(() &#x3D;&gt; &#123;  setValues(form.getFieldsValue())  &#125;, 5000);&#125;</code></pre><img src="http://t-blog-images.aijs.top/img/Kapture%202022-05-13%20at%2016.01.46.gif" width=300 /><h3 id="最终修改"><a href="#最终修改" class="headerlink" title="最终修改"></a>最终修改</h3><pre class="line-numbers language-tsx" data-language="tsx"><code class="language-tsx">form.setFieldsValue(obj)setValues(obj)</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> React </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> React </tag>
+            
+            <tag> bug </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>ModHeader</title>
+      <link href="//post/2022-05-13modeheader.html"/>
+      <url>//post/2022-05-13modeheader.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="通过不同请求头字段标识请求不同的环境"><a href="#通过不同请求头字段标识请求不同的环境" class="headerlink" title="通过不同请求头字段标识请求不同的环境"></a>通过不同请求头字段标识请求不同的环境</h2><img src="http://t-blog-images.aijs.top/img/20220513145839.webp" width=400 /><h3 id="Requesr-Headers"><a href="#Requesr-Headers" class="headerlink" title="Requesr Headers"></a>Requesr Headers</h3><pre class="line-numbers language-txt" data-language="txt"><code class="language-txt">Accept: *&#x2F;*Accept-Encoding: gzip, deflate, brAccept-Language: zh-CN,zh;q&#x3D;0.9,en;q&#x3D;0.8,zh-TW;q&#x3D;0.7Cache-Control: no-cacheConnection: keep-alivecontent-type: application&#x2F;json; charset&#x3D;utf-8Cookie: perfLang&#x3D;zh; envtag: ladon-1        Host: localhost:3119Pragma: no-cacheReferer: http:&#x2F;&#x2F;localhost:3119&#x2F;sec-ch-ua: &quot; Not A;Brand&quot;;v&#x3D;&quot;99&quot;, &quot;Chromium&quot;;v&#x3D;&quot;101&quot;, &quot;Google Chrome&quot;;v&#x3D;&quot;101&quot;sec-ch-ua-mobile: ?0sec-ch-ua-platform: &quot;macOS&quot;</code></pre><h3 id="不生效了"><a href="#不生效了" class="headerlink" title="不生效了"></a>不生效了</h3><p>理论上是没问题，应该是由于某些原因导致这个插件内部运行出了问题，具体什么问题不知<br><em>处理：</em>将浏览器重启动后,请求头<code>envtag: ladon-1</code>增加成功</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Chrome </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 工具 </tag>
+            
+            <tag> Chrome </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>浏览器首屏优化-首屏时间获取</title>
       <link href="//post/2022-05-12performance.html"/>
       <url>//post/2022-05-12performance.html</url>
       
-        <content type="html"><![CDATA[<p><img src="http://t-blog-images.aijs.top/img/20220512182633.webp"></p><pre class="line-numbers language-json" data-language="json"><code class="language-json">&#123;    &quot;timeOrigin&quot;: 1652338539312.5,    &quot;timing&quot;: &#123;        &quot;connectStart&quot;: 1652338539353,        &quot;navigationStart&quot;: 1652338539312,        &quot;loadEventEnd&quot;: 1652338542492,        &quot;domLoading&quot;: 1652338539823,        &quot;secureConnectionStart&quot;: 1652338539401,        &quot;fetchStart&quot;: 1652338539316,        &quot;domContentLoadedEventStart&quot;: 1652338540574,        &quot;responseStart&quot;: 1652338539807,        &quot;responseEnd&quot;: 1652338539828,        &quot;domInteractive&quot;: 1652338540574,        &quot;domainLookupEnd&quot;: 1652338539353,        &quot;redirectStart&quot;: 0,        &quot;requestStart&quot;: 1652338539505,        &quot;unloadEventEnd&quot;: 0,        &quot;unloadEventStart&quot;: 0,        &quot;domComplete&quot;: 1652338542489,        &quot;domainLookupStart&quot;: 1652338539353,        &quot;loadEventStart&quot;: 1652338542489,        &quot;domContentLoadedEventEnd&quot;: 1652338540575,        &quot;redirectEnd&quot;: 0,        &quot;connectEnd&quot;: 1652338539504    &#125;,    &quot;navigation&quot;: &#123;        &quot;type&quot;: 0,        &quot;redirectCount&quot;: 0    &#125;&#125;</code></pre><p><a href="https://www.cnblogs.com/zerofan/p/15916506.html">参考</a></p>]]></content>
+        <content type="html"><![CDATA[<p>白屏时间 &#x3D; 地址栏输入网址后回车 - 浏览器出现第一个元素<br>首屏时间 &#x3D; 地址栏输入网址后回车 - 浏览器第一屏渲染完成</p><p>影响白屏时间的因素：网络，服务端性能，前端页面结构设计。<br>影响首屏时间的因素：白屏时间，资源下载执行时间。</p><p>通常在head解析完，body开始渲染此时是白屏结束<br>白屏时间 &#x3D; firstPaint - performance.timing.navigationStart || pageStartTime</p><p>常用方法</p><ol><li>首屏模块标签标记， 你觉得首屏完成的地方插入脚本</li><li>同级首屏内加载最慢的图片&#x2F;iframe</li></ol><p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9sejV6LmNvbS9hc3NldHMvaW1nL3BlcmZvcm1hbmNlLnBuZw?x-oss-process=image/format,png"></p><p>左边红线代表的是网络传输层面的过程，右边红线代表了服务器传输回字节后浏览器的各种事件状态，这个阶段包含了浏览器对文档的解析，DOM 树构建，布局，绘制等等。<br><em>1. prompt for unload</em></p><ul><li>navigationStart: 表示从上一个文档卸载结束时的 unix 时间戳，如果没有上一个文档，这个值将和 fetchStart 相等。</li></ul><p><em>2. 前一个网页卸载</em></p><ul><li>unloadEventStart: 表示前一个网页（与当前页面同域）unload 的时间戳，如果无前一个网页 unload 或者前一个网页与当前页面不同域，则值为 0。</li><li>unloadEventEnd: 返回前一个页面 unload 时间绑定的回掉函数执行完毕的时间戳。</li></ul><p><em>3. 重定向</em></p><ul><li>redirectStart: 第一个 HTTP 重定向发生时的时间。有跳转且是同域名内的重定向才算，否则值为 0。</li><li>redirectEnd: 最后一个 HTTP 重定向完成时的时间。有跳转且是同域名内部的重定向才算，否则值为 0。</li></ul><p><em>4. 使用 HTTP 请求</em></p><ul><li>fetchStart: 浏览器准备好使用 HTTP 请求抓取文档的时间，这发生在检查本地缓存之前。</li></ul><p><em>5. 域名解析</em></p><ul><li>domainLookupStart&#x2F;domainLookupEnd: DNS 域名查询开始&#x2F;结束的时间，如果使用了本地缓存（即无 DNS 查询）或持久连接，则与 fetchStart 值相等</li></ul><p><em>6. tcp链接</em></p><ul><li>connectStart: HTTP（TCP）开始&#x2F;重新 建立连接的时间，如果是持久连接，则与 fetchStart 值相等。</li><li>connectEnd: HTTP（TCP） 完成建立连接的时间（完成握手），如果是持久连接，则与 fetchStart 值相等。</li></ul><p><em>7. ssl建立</em></p><ul><li>secureConnectionStart: HTTPS 连接开始的时间，如果不是安全连接，则值为 0。</li></ul><p><em>8. 读取文档</em></p><ul><li>requestStart: HTTP 请求读取真实文档开始的时间（完成建立连接），包括从本地读取缓存。</li></ul><p><em>9. 响应</em></p><ul><li>responseStart: HTTP 开始接收响应的时间（获取到第一个字节），包括从本地读取缓存。</li><li>responseEnd: HTTP 响应全部接收完成的时间（获取到最后一个字节），包括从本地读取缓存。</li></ul><p><em>10. 解析dom</em></p><ul><li>domLoading: 开始解析渲染 DOM 树的时间，此时 Document.readyState 变为 loading，并将抛出 readystatechange 相关事件。</li></ul><p><em>11. dom可交互</em></p><ul><li>domInteractive: 完成解析 DOM 树的时间，Document.readyState 变为 interactive，并将抛出 readystatechange 相关事件，注意只是 DOM 树解析完成，这时候并没有开始加载网页内的资源。</li></ul><p><em>12. 页面内资源加载</em></p><ul><li>domContentLoadedEventStart: DOM 解析完成后，网页内资源加载开始的时间，在 DOMContentLoaded 事件抛出前发生。</li><li>domContentLoadedEventEnd: DOM 解析完成后，网页内资源加载完成的时间（如 JS 脚本加载执行完毕）。</li></ul><p><em>13. dom树解析完成</em></p><ul><li>domComplete: DOM 树解析完成，且资源也准备就绪的时间，Document.readyState 变为 complete，并将抛出 readystatechange 相关事件。</li></ul><p><em>14. load事件</em></p><ul><li>loadEventStart: load 事件发送给文档，也即 load 回调函数开始执行的时间。</li><li>loadEventEnd: load 事件的回调函数执行完毕的时间。</li></ul><p>Performance 接口可以获取到当前页面与性能相关的信息。</p><pre class="line-numbers language-json" data-language="json"><code class="language-json">&#123;    &quot;timeOrigin&quot;: 1652338539312.5,    &quot;timing&quot;: &#123;        &quot;connectStart&quot;: 1652338539353,        &quot;navigationStart&quot;: 1652338539312,        &quot;loadEventEnd&quot;: 1652338542492,        &quot;domLoading&quot;: 1652338539823,        &quot;secureConnectionStart&quot;: 1652338539401,        &quot;fetchStart&quot;: 1652338539316,        &quot;domContentLoadedEventStart&quot;: 1652338540574,        &quot;responseStart&quot;: 1652338539807,        &quot;responseEnd&quot;: 1652338539828,        &quot;domInteractive&quot;: 1652338540574,        &quot;domainLookupEnd&quot;: 1652338539353,        &quot;redirectStart&quot;: 0,        &quot;requestStart&quot;: 1652338539505,        &quot;unloadEventEnd&quot;: 0,        &quot;unloadEventStart&quot;: 0,        &quot;domComplete&quot;: 1652338542489,        &quot;domainLookupStart&quot;: 1652338539353,        &quot;loadEventStart&quot;: 1652338542489,        &quot;domContentLoadedEventEnd&quot;: 1652338540575,        &quot;redirectEnd&quot;: 0,        &quot;connectEnd&quot;: 1652338539504    &#125;,    &quot;navigation&quot;: &#123;        &quot;type&quot;: 0,        &quot;redirectCount&quot;: 0    &#125;&#125;</code></pre><pre class="line-numbers language-js" data-language="js"><code class="language-js">function getPerfermanceTiming() &#123;  let t &#x3D; performance.timing  &#x2F;&#x2F; 重定向结束时间 - 重定向开始时间  let redirect &#x3D; t.redirectEnd - t.redirectStart  &#x2F;&#x2F; DNS 查询开始时间 - fetech start 时间  let appCache &#x3D; t.domainLookupStart - t.fetchStart  &#x2F;&#x2F; DNS 查询结束时间 - DNS 查询开始时间  let dns &#x3D; t.domainLookupEnd - t.domainLookupStart  &#x2F;&#x2F; 完成 TCP 连接握手时间 - TCP 连接开始时间   let tcp &#x3D; t.connectEnd - t.connectStart  &#x2F;&#x2F; 从请求开始到接收到第一个响应字符的时间   let ttfb &#x3D; t.responseStart - t.requestStart  &#x2F;&#x2F; 资源下载时间，响应结束时间 - 响应开始时间  let contentDL &#x3D; t.responseEnd - t.responseStart  &#x2F;&#x2F; 从请求开始到响应结束的时间  let httpTotal &#x3D; t.responseEnd - t.requestStart  &#x2F;&#x2F; 从页面开始到 domContentLoadedEventEnd  let domContentloaded &#x3D; t.domContentLoadedEventEnd - t.navigationStart  &#x2F;&#x2F; 从页面开始到 loadEventEnd  let loaded &#x3D; t.loadEventEnd - t.navigationStart  let result &#x3D; [    &#123; key: &quot;Redirect&quot;, desc: &quot;网页重定向的耗时&quot;, value: redirect &#125;,     &#123; key: &quot;AppCache&quot;, desc: &quot;检查本地缓存的耗时&quot;, value: appCache &#125;,    &#123; key: &quot;DNS&quot;, desc: &quot;DNS查询的耗时&quot;, value: dns &#125;,    &#123; key: &quot;TCP&quot;, desc: &quot;TCP连接的耗时&quot;, value: tcp &#125;,    &#123; key: &quot;Waiting(TTFB)&quot;, desc: &quot;从客户端发起请求到接收到响应的时间 &#x2F; Time To First Byte&quot;, value: ttfb &#125;,    &#123; key: &quot;Content Download&quot;, desc: &quot;下载服务端返回数据的时间&quot;, value: contentDL &#125;,    &#123; key: &quot;HTTP Total Time&quot;, desc: &quot;http请求总耗时&quot;, value: httpTotal &#125;,    &#123; key: &quot;DOMContentLoaded&quot;, desc: &quot;dom加载完成的时间&quot;, value: domContentloaded &#125;,    &#123; key: &quot;Loaded&quot;, desc: &quot;页面load的总耗时&quot;, value: loaded &#125;  ]  return result&#125;getPerfermanceTiming()</code></pre><p><a href="https://blog.csdn.net/z9061/article/details/101454438">Web 性能优化-首屏和白屏时间</a></p>]]></content>
       
       
       <categories>
@@ -622,31 +676,6 @@
     
     
     <entry>
-      <title>Iterm2美化终端</title>
-      <link href="//post/2017-07-09item2.html"/>
-      <url>//post/2017-07-09item2.html</url>
-      
-        <content type="html"><![CDATA[<h2 id="oh-my-zsh-插件推荐"><a href="#oh-my-zsh-插件推荐" class="headerlink" title="oh-my-zsh 插件推荐 :"></a>oh-my-zsh 插件推荐 :</h2><h3 id="autojump、zsh-autosuggestion-以及-zsh-syntax-highlighting"><a href="#autojump、zsh-autosuggestion-以及-zsh-syntax-highlighting" class="headerlink" title="autojump、zsh-autosuggestion 以及 zsh-syntax-highlighting"></a>autojump、zsh-autosuggestion 以及 zsh-syntax-highlighting</h3><h3 id="推荐博客左岸博客"><a href="#推荐博客左岸博客" class="headerlink" title="推荐博客左岸博客"></a>推荐博客<a href="https://www.zrahh.com/archives/167.html">左岸博客</a></h3><h3 id="使用效果"><a href="#使用效果" class="headerlink" title="使用效果"></a>使用效果</h3><p><img src="http://t-blog-images.aijs.top/img/11460713-14c8ef376aabe04a.png"><br><img src="http://t-blog-images.aijs.top/img/11460713-ef2da0af46da7712.png"><br><img src="http://t-blog-images.aijs.top/img/11460713-e49ed15245409774.png"></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 工具 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 工具 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>批量删除目录</title>
       <link href="//post/2019-10-30shell.html"/>
       <url>//post/2019-10-30shell.html</url>
@@ -664,6 +693,31 @@
         <tags>
             
             <tag> Shell </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Iterm2美化终端</title>
+      <link href="//post/2017-07-09item2.html"/>
+      <url>//post/2017-07-09item2.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="oh-my-zsh-插件推荐"><a href="#oh-my-zsh-插件推荐" class="headerlink" title="oh-my-zsh 插件推荐 :"></a>oh-my-zsh 插件推荐 :</h2><h3 id="autojump、zsh-autosuggestion-以及-zsh-syntax-highlighting"><a href="#autojump、zsh-autosuggestion-以及-zsh-syntax-highlighting" class="headerlink" title="autojump、zsh-autosuggestion 以及 zsh-syntax-highlighting"></a>autojump、zsh-autosuggestion 以及 zsh-syntax-highlighting</h3><h3 id="推荐博客左岸博客"><a href="#推荐博客左岸博客" class="headerlink" title="推荐博客左岸博客"></a>推荐博客<a href="https://www.zrahh.com/archives/167.html">左岸博客</a></h3><h3 id="使用效果"><a href="#使用效果" class="headerlink" title="使用效果"></a>使用效果</h3><p><img src="http://t-blog-images.aijs.top/img/11460713-14c8ef376aabe04a.png"><br><img src="http://t-blog-images.aijs.top/img/11460713-ef2da0af46da7712.png"><br><img src="http://t-blog-images.aijs.top/img/11460713-e49ed15245409774.png"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 工具 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 工具 </tag>
             
         </tags>
       
