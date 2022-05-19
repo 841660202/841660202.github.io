@@ -4,6 +4,9 @@ cover: https://img2.baidu.com/it/u=2057256038,1983468493&fm=253&fmt=auto&app=138
 categories: 前端
 tags: [前端]
 ---
+## 文档
+[slate 中文文档](https://doodlewind.github.io/slate-doc-cn/)
+[slate 英文文档](https://docs.slatejs.org/)
 ## 是什么
 >[Slate](https://doodlewind.github.io/slate-doc-cn/) 是一个 完全 可定制的富文本编辑框架。
 >通过 Slate，你可以构建出类似 Medium、Dropbox Paper 或者 Canvas 这样使用直观、富交互、体验业已成为 Web 应用标杆的编辑器。同时，你也无需担心在代码实现上陷入复杂度的泥潭之中。
@@ -62,5 +65,6 @@ tags: [前端]
  - 按键监听处理
  - 数据格式编码、反编码
  - 数据存储
+
 ## 就这点东西😱
-竟然有些同学凭借slate的使用拿了3.75,我不服，大写的不服
+竟然有些同学凭借slate的使用拿了3.75,赶紧学～
