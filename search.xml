@@ -108,6 +108,31 @@
     
     
     <entry>
+      <title>TypeScript noEmit</title>
+      <link href="//post/2022-05-18ts.html"/>
+      <url>//post/2022-05-18ts.html</url>
+      
+        <content type="html"><![CDATA[<h1 id=""><a href="#" class="headerlink" title=""></a></h1><p>No Emit -<br>noEmit<br>Do not emit compiler output files like JavaScript source code, source-maps or declarations.<br>不要发出编译器输出文件，如JavaScript源代码、源映射或声明。</p><p>This makes room for another tool like Babel, or swc to handle converting the TypeScript file to a file which can run inside a JavaScript environment.</p><p>You can then use TypeScript as a tool for providing editor integration, and as a source code type-checker.</p><p><code>导致outDir不输出</code></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> TypeScript </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> TypeScript </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>设计模式</title>
       <link href="//post/2022-05-13design_mode.html"/>
       <url>//post/2022-05-13design_mode.html</url>
@@ -782,31 +807,6 @@
     
     
     <entry>
-      <title>Iterm2美化终端</title>
-      <link href="//post/2017-07-09item2.html"/>
-      <url>//post/2017-07-09item2.html</url>
-      
-        <content type="html"><![CDATA[<h2 id="oh-my-zsh-插件推荐"><a href="#oh-my-zsh-插件推荐" class="headerlink" title="oh-my-zsh 插件推荐 :"></a>oh-my-zsh 插件推荐 :</h2><h3 id="autojump、zsh-autosuggestion-以及-zsh-syntax-highlighting"><a href="#autojump、zsh-autosuggestion-以及-zsh-syntax-highlighting" class="headerlink" title="autojump、zsh-autosuggestion 以及 zsh-syntax-highlighting"></a>autojump、zsh-autosuggestion 以及 zsh-syntax-highlighting</h3><h3 id="推荐博客左岸博客"><a href="#推荐博客左岸博客" class="headerlink" title="推荐博客左岸博客"></a>推荐博客<a href="https://www.zrahh.com/archives/167.html">左岸博客</a></h3><h3 id="使用效果"><a href="#使用效果" class="headerlink" title="使用效果"></a>使用效果</h3><p><img src="http://t-blog-images.aijs.top/img/11460713-14c8ef376aabe04a.png"><br><img src="http://t-blog-images.aijs.top/img/11460713-ef2da0af46da7712.png"><br><img src="http://t-blog-images.aijs.top/img/11460713-e49ed15245409774.png"></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 工具 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 工具 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>批量删除目录</title>
       <link href="//post/2019-10-30shell.html"/>
       <url>//post/2019-10-30shell.html</url>
@@ -824,6 +824,31 @@
         <tags>
             
             <tag> Shell </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Iterm2美化终端</title>
+      <link href="//post/2017-07-09item2.html"/>
+      <url>//post/2017-07-09item2.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="oh-my-zsh-插件推荐"><a href="#oh-my-zsh-插件推荐" class="headerlink" title="oh-my-zsh 插件推荐 :"></a>oh-my-zsh 插件推荐 :</h2><h3 id="autojump、zsh-autosuggestion-以及-zsh-syntax-highlighting"><a href="#autojump、zsh-autosuggestion-以及-zsh-syntax-highlighting" class="headerlink" title="autojump、zsh-autosuggestion 以及 zsh-syntax-highlighting"></a>autojump、zsh-autosuggestion 以及 zsh-syntax-highlighting</h3><h3 id="推荐博客左岸博客"><a href="#推荐博客左岸博客" class="headerlink" title="推荐博客左岸博客"></a>推荐博客<a href="https://www.zrahh.com/archives/167.html">左岸博客</a></h3><h3 id="使用效果"><a href="#使用效果" class="headerlink" title="使用效果"></a>使用效果</h3><p><img src="http://t-blog-images.aijs.top/img/11460713-14c8ef376aabe04a.png"><br><img src="http://t-blog-images.aijs.top/img/11460713-ef2da0af46da7712.png"><br><img src="http://t-blog-images.aijs.top/img/11460713-e49ed15245409774.png"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 工具 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 工具 </tag>
             
         </tags>
       
