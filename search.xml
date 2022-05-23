@@ -29,11 +29,38 @@
     
     
     <entry>
+      <title>flex width:0</title>
+      <link href="//post/2022-05-23width0.html"/>
+      <url>//post/2022-05-23width0.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="flex嵌套"><a href="#flex嵌套" class="headerlink" title="flex嵌套"></a>flex嵌套</h2><p>内部元素宽度默认100%，撑开父元素，父元素的根元素限制最大宽度，子元素并不受flex控制</p><p>遇到多次了，这次是维护其他同事的代码，又撞见了，说明这个问题很常见，一个不留神，就踩到了</p><pre class="line-numbers language-none"><code class="language-none">根元素  ……  - 父元素flex  …… flex   - 子元素flex(默认宽度100%)</code></pre><pre class="line-numbers language-css" data-language="css"><code class="language-css">.doc-tree-base-title-node .doc-tree-base-title-text &gt; a &#123;    display: flex;    align-items: center;    color: #777;    white-space: nowrap;    overflow: hidden;    text-overflow: ellipsis;    flex: 1;&#125;</code></pre><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p><img src="http://t-blog-images.aijs.top/img/20220523171556.webp"></p><p> 观察下发现，flex是嵌套的，最外层的还是flex，一层一层，最外层的宽度，却是由最内层的宽度决定（这个调试可以看到）</p><h2 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h2><ul><li>图1</li></ul><p> <img src="http://t-blog-images.aijs.top/img/20220523171802.webp"></p><ul><li>图2</li></ul><p> <img src="http://t-blog-images.aijs.top/img/20220523171918.webp"></p><ul><li>图3</li></ul><p> <img src="http://t-blog-images.aijs.top/img/20220523172024.webp"></p><h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p> 图1 元素没有宽度，宽度默认是<code>100%</code></p><p> 图1到图3是由a标签子元素撑开的，宽度是<code>100%</code>,加上操作按钮，元素宽度超100%</p><p> 而在侧边树结构的最外层设置了<code>max-width: 500px</code>,而内部子元素尺寸却是<code>599.48 x 36</code></p><p> 显然是不合理的</p><h2 id="修复"><a href="#修复" class="headerlink" title="修复"></a>修复</h2> <pre class="line-numbers language-none"><code class="language-none">根元素  ……  - 父元素flex  …… flex   - 子元素flex(默认宽度设置宽度0 或者其他小点的宽度，越小越好)</code></pre><p> <img src="http://t-blog-images.aijs.top/img/20220523173256.webp"></p><h2 id="什么原因导致的"><a href="#什么原因导致的" class="headerlink" title="什么原因导致的"></a>什么原因导致的</h2><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/flex">MDN flex</a></p><p>语法</p><pre class="line-numbers language-none"><code class="language-none">&#x2F;* 关键字值 *&#x2F;flex: auto;flex: initial;flex: none;&#x2F;* 一个值, 无单位数字: flex-grow *&#x2F;flex: 2;&#x2F;* 一个值, width&#x2F;height: flex-basis *&#x2F;flex: 10em;flex: 30px;flex: min-content;&#x2F;* 两个值: flex-grow | flex-basis *&#x2F;flex: 1 30px;&#x2F;* 两个值: flex-grow | flex-shrink *&#x2F;flex: 2 2;&#x2F;* 三个值: flex-grow | flex-shrink | flex-basis *&#x2F;flex: 2 2 10%;&#x2F;*全局属性值 *&#x2F;flex: inherit;flex: initial;flex: unset;</code></pre><p>可以使用一个，两个或三个值来指定 flex属性。</p><p>1.<strong>单值语法</strong>: 值必须为以下其中之一:</p><ul><li>一个无单位数(<code>&lt;number&gt;</code>): 它会被当作flex:<number> 1 0; <flex-shrink>的值被假定为1，然后<flex-basis> 的值被假定为0。</li><li>一个有效的宽度(width)值: 它会被当作 <flex-basis>的值。</li><li>关键字none，auto或initial.</li></ul><p>2.<strong>双值语法</strong>: 第一个值必须为一个无单位数，并且它会被当作 <flex-grow> 的值。第二个值必须为以下之一：</p><ul><li>一个无单位数：它会被当作 <flex-shrink> 的值。</li><li>一个有效的宽度值: 它会被当作 <flex-basis> 的值。</li></ul><p>3.<strong>三值语法</strong>:</p><ul><li>第一个值必须为一个无单位数，并且它会被当作 <flex-grow> 的值。</li><li>第二个值必须为一个无单位数，并且它会被当作  <flex-shrink> 的值。</li><li>第三个值必须为一个有效的宽度值， 并且它会被当作 <flex-basis> 的值。</li></ul><p> 可以看到单值，作为双值处理</p> <pre class="line-numbers language-css" data-language="css"><code class="language-css">flex-shrink:1;flex-basis: 0;</code></pre><h2 id="flex-basis"><a href="#flex-basis" class="headerlink" title="flex-basis"></a>flex-basis</h2><p> 自来看下<a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/flex-basis">flex-base</a></p><p> 查看文档后发现，文档上没说关于<code>flex-basic: 0 </code>的事情,给了个演示，也看不出来想表达什么</p><p><a href="https://blog.csdn.net/u010951953/article/details/124145786">flex-basis 属性的含义</a><br><a href="https://www.w3.org/TR/2018/CR-css-flexbox-1-20181119/#flex-basis-property">w3c flex-basis-property</a><br>flex布局一般由flex容器（display 属性值为 flex 或 inline-flex）和其子元素（后文亦称flex子项或flex item）构成。flex-basis 属性一般作用在flex子项上，它定义了：在flex容器分配剩余空间前flex子项在主轴方向上的初始尺寸。flex子项在主轴方向上的实际尺寸是根据元素自身尺寸、flex-basis、flex-grow、flex-shrink 等属性共同决定的。如何计算实际尺寸不是本文重点，不继续展开。</p><h2 id="flex-basis-0px与0"><a href="#flex-basis-0px与0" class="headerlink" title="flex-basis:0px与0%"></a>flex-basis:0px与0%</h2><ul><li>如果 flex-basis 的值为百分数，且它flex容器的尺寸没有被显式设置，此时 flex-basis 的值会被解析为 content</li><li></li></ul><h2 id="其他，值得一看"><a href="#其他，值得一看" class="headerlink" title="其他，值得一看"></a>其他，值得一看</h2><h2 id="flex-1"><a href="#flex-1" class="headerlink" title="flex: 1"></a>flex: 1</h2><p>在浏览器中，flex: 1 的 flex-basis 值为什么不是W3C文档中提到的 0 ？</p><p>当使用 flex 属性但又省略不写它其中的 flex-basis 值时，会将 flex-basis 设置为 0.</p><p>这里的 0 单位是 px 还是 % 我们在Chrome浏览器里就能验证：</p><img src="http://t-blog-images.aijs.top/img/20220523181618.webp" width=400  style="object-fit: content"/><p>答案是 px.</p><p>这段是2015年修正日志里的，意思是将之前 flex 简写语法里的 flex-basis 的解析值从 0% 恢复为原来的 0.</p><p>注意： 这个值的解析规则经历了 0px -&gt; 0% -&gt; 0px 的变化，这是W3C flex 标准文档的视角。</p><p>简而言之就是有兼容性问题。现在已有很多网页都利用了 flex 属性的这个特性来开发。如果简写语法里 flex-basis 的解析从 0% 变为 0px 会导致部分情况下flex容器塌陷，致使很多网页异常</p><p><a href="https://blog.csdn.net/u010951953/article/details/124145786">建议看原文</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> css3 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> bug </tag>
+            
+            <tag> css3 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>CSS如何工作</title>
       <link href="//post/2022-05-23css.html"/>
       <url>//post/2022-05-23css.html</url>
       
-        <content type="html"><![CDATA[<h2 id="浏览器工作原理"><a href="#浏览器工作原理" class="headerlink" title="浏览器工作原理"></a>浏览器工作原理</h2><blockquote><span class="custom-blockquote-svg"><svg width="24" height="24" viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg" data-reactroot=""><path fill="" d="M22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C13.8 22 15.5 21.5 17 20.6L22 22L20.7 17C21.5 15.5 22 13.8 22 12Z" undefined="1"></path><path fill="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z" undefined="1"></path><path fill="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z" undefined="1"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M17 8.5C15.23 8.97 14.07 10.84 14.01 13.27C14 13.33 14 13.4 14 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M9 8.5C7.23 8.97 6.07 10.84 6.01 13.27C6 13.33 6 13.4 6 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z"></path></svg></span><p>当浏览器展示一个文件的时候，它必须兼顾文件的内容和文件的样式信息</p></blockquote><h2 id="理解浏览器如何加载CSS和HTML"><a href="#理解浏览器如何加载CSS和HTML" class="headerlink" title="理解浏览器如何加载CSS和HTML"></a>理解浏览器如何加载CSS和HTML</h2><p>下面的步骤是浏览加载网页的简化版本:</p><ol><li>浏览器载入HTML文件（比如从网络上获取）。</li><li>将HTML文件转化成一个DOM（Document Object Model），DOM是文件在计算机内存中的表现形式，下一节将更加详细的解释DOM。</li><li>接下来，浏览器会拉取该HTML相关的大部分资源，比如嵌入到页面的图片、视频和CSS样式。JavaScript则会稍后进行处理，简单起见，同时此节主讲CSS，所以这里对如何加载JavaScript不会展开叙述。</li><li>浏览器拉取到CSS之后会进行解析，根据选择器的不同类型（比如element、class、id等等）把他们分到不同的“桶”中。浏览器基于它找到的不同的选择器，将不同的规则（基于选择器的规则，如元素选择器、类选择器、id选择器等）应用在对应的DOM的节点中，并添加节点依赖的样式（这个中间步骤称为渲染树）。</li><li>上述的规则应用于渲染树之后，渲染树会依照应该出现的结构进行布局。</li><li>网页展示在屏幕上（这一步被称为着色）。</li></ol><p><img src="http://t-blog-images.aijs.top/img/rendering.svg"></p><h2 id="浏览器遇到无法解析的CSS会发生什么"><a href="#浏览器遇到无法解析的CSS会发生什么" class="headerlink" title="浏览器遇到无法解析的CSS会发生什么"></a>浏览器遇到无法解析的CSS会发生什么</h2><blockquote><span class="custom-blockquote-svg"><svg width="24" height="24" viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg" data-reactroot=""><path fill="" d="M22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C13.8 22 15.5 21.5 17 20.6L22 22L20.7 17C21.5 15.5 22 13.8 22 12Z" undefined="1"></path><path fill="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z" undefined="1"></path><path fill="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z" undefined="1"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M17 8.5C15.23 8.97 14.07 10.84 14.01 13.27C14 13.33 14 13.4 14 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M9 8.5C7.23 8.97 6.07 10.84 6.01 13.27C6 13.33 6 13.4 6 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z"></path></svg></span><p>答案就是浏览器什么也不会做，继续解析下一个CSS样式！</p></blockquote><p>以下是废话：</p><ul><li><p>浏览器并不会同时实现所有的新CSS，此外很多人也不会使用最新版本的浏览器。鉴于CSS一直不断的开发，因此领先于浏览器可以识别的范围，那么你也许会好奇当浏览器遇到无法解析的CSS选择器或声明的时候会发生什么呢？</p></li><li><p>CSS规则： 如果一个浏览器在解析你所书写的CSS规则的过程中遇到了无法理解的属性或者值，它会忽略这些并继续解析下面的CSS声明。在你书写了错误的CSS代码（或者误拼写），又或者当浏览器遇到对于它来说很新的还没有支持的CSS代码的时候上述的情况同样会发生（直接忽略）。</p></li><li><p>选择器： 相似的，当浏览器遇到无法解析的选择器的时候，他会<code>直接忽略整个选择器规则</code>，然后解析下一个CSS选择器。</p></li></ul><h2 id="关于DOM"><a href="#关于DOM" class="headerlink" title="关于DOM"></a>关于DOM</h2><p>一个DOM有一个树形结构，标记语言中的每一个元素、属性以及每一段文字都对应着结构树中的一个节点（Node&#x2F;DOM或DOM node）。节点由节点本身和其他DOM节点的关系定义，有些节点有父节点，有些节点有兄弟节点（同级节点）。</p><p>对于DOM的理解会很大程度上帮助你设计、调试和维护你的CSS，因为DOM是你的CSS样式和文件内容的结合。当你使用浏览器F12调试的时候你需要操作DOM以查看使用了哪些规则。</p><pre class="line-numbers language-html" data-language="html"><code class="language-html">&lt;p&gt;  Let&#39;s use:  &lt;span&gt;Cascading&lt;&#x2F;span&gt;  &lt;span&gt;Style&lt;&#x2F;span&gt;  &lt;span&gt;Sheets&lt;&#x2F;span&gt;&lt;&#x2F;p&gt;</code></pre><pre class="line-numbers language-none"><code class="language-none">P├─ &quot;Let&#39;s use:&quot;├─ SPAN|  └─ &quot;Cascading&quot;├─ SPAN|  └─ &quot;Style&quot;└─ SPAN   └─ &quot;Sheets&quot;</code></pre><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://developer.mozilla.org/zh-CN/docs/Learn/CSS/First_steps/How_CSS_works">MDN</a></p>]]></content>
+        <content type="html"><![CDATA[<h2 id="浏览器工作原理"><a href="#浏览器工作原理" class="headerlink" title="浏览器工作原理"></a>浏览器工作原理</h2><blockquote><span class="custom-blockquote-svg"><svg width="24" height="24" viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg" data-reactroot=""><path fill="" d="M22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C13.8 22 15.5 21.5 17 20.6L22 22L20.7 17C21.5 15.5 22 13.8 22 12Z" undefined="1"></path><path fill="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z" undefined="1"></path><path fill="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z" undefined="1"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M17 8.5C15.23 8.97 14.07 10.84 14.01 13.27C14 13.33 14 13.4 14 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M9 8.5C7.23 8.97 6.07 10.84 6.01 13.27C6 13.33 6 13.4 6 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z"></path></svg></span><p>当浏览器展示一个文件的时候，它必须兼顾文件的内容和文件的样式信息</p></blockquote><h2 id="如何加载CSS和HTML"><a href="#如何加载CSS和HTML" class="headerlink" title="如何加载CSS和HTML"></a>如何加载CSS和HTML</h2><p>下面的步骤是浏览加载网页的简化版本:</p><ol><li>浏览器载入HTML文件（比如从网络上获取）。</li><li>将HTML文件转化成一个DOM（Document Object Model），DOM是文件在计算机内存中的表现形式，下一节将更加详细的解释DOM。</li><li>接下来，浏览器会拉取该HTML相关的大部分资源，比如嵌入到页面的图片、视频和CSS样式。JavaScript则会稍后进行处理，简单起见，同时此节主讲CSS，所以这里对如何加载JavaScript不会展开叙述。</li><li>浏览器拉取到CSS之后会进行解析，根据选择器的不同类型（比如element、class、id等等）把他们分到不同的“桶”中。浏览器基于它找到的不同的选择器，将不同的规则（基于选择器的规则，如元素选择器、类选择器、id选择器等）应用在对应的DOM的节点中，并添加节点依赖的样式（这个中间步骤称为渲染树）。</li><li>上述的规则应用于渲染树之后，渲染树会依照应该出现的结构进行布局。</li><li>网页展示在屏幕上（这一步被称为着色）。</li></ol><p><strong>运行图</strong></p><img src="http://t-blog-images.aijs.top/img/rendering.svg" width=400 style="object-fit:content; background: #fff"/><hr/><h2 id="无法解析的CSS会发生什么"><a href="#无法解析的CSS会发生什么" class="headerlink" title="无法解析的CSS会发生什么"></a>无法解析的CSS会发生什么</h2><blockquote><span class="custom-blockquote-svg"><svg width="24" height="24" viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg" data-reactroot=""><path fill="" d="M22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C13.8 22 15.5 21.5 17 20.6L22 22L20.7 17C21.5 15.5 22 13.8 22 12Z" undefined="1"></path><path fill="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z" undefined="1"></path><path fill="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z" undefined="1"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M17 8.5C15.23 8.97 14.07 10.84 14.01 13.27C14 13.33 14 13.4 14 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M9 8.5C7.23 8.97 6.07 10.84 6.01 13.27C6 13.33 6 13.4 6 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z"></path></svg></span><p>答案就是浏览器什么也不会做，继续解析下一个CSS样式！</p></blockquote><p>以下是废话：</p><ul><li><p>浏览器并不会同时实现所有的新CSS，此外很多人也不会使用最新版本的浏览器。鉴于CSS一直不断的开发，因此领先于浏览器可以识别的范围，那么你也许会好奇当浏览器遇到无法解析的CSS选择器或声明的时候会发生什么呢？</p></li><li><p>CSS规则： 如果一个浏览器在解析你所书写的CSS规则的过程中遇到了无法理解的属性或者值，它会忽略这些并继续解析下面的CSS声明。在你书写了错误的CSS代码（或者误拼写），又或者当浏览器遇到对于它来说很新的还没有支持的CSS代码的时候上述的情况同样会发生（直接忽略）。</p></li><li><p>选择器： 相似的，当浏览器遇到无法解析的选择器的时候，他会<code>直接忽略整个选择器规则</code>，然后解析下一个CSS选择器。</p></li></ul><hr/><h2 id="关于DOM"><a href="#关于DOM" class="headerlink" title="关于DOM"></a>关于DOM</h2><p>一个DOM有一个树形结构，标记语言中的每一个元素、属性以及每一段文字都对应着结构树中的一个节点（Node&#x2F;DOM或DOM node）。节点由节点本身和其他DOM节点的关系定义，有些节点有父节点，有些节点有兄弟节点（同级节点）。</p><p>对于DOM的理解会很大程度上帮助你设计、调试和维护你的CSS，因为DOM是你的CSS样式和文件内容的结合。当你使用浏览器F12调试的时候你需要操作DOM以查看使用了哪些规则。</p><pre class="line-numbers language-html" data-language="html"><code class="language-html">&lt;p&gt;  Let&#39;s use:  &lt;span&gt;Cascading&lt;&#x2F;span&gt;  &lt;span&gt;Style&lt;&#x2F;span&gt;  &lt;span&gt;Sheets&lt;&#x2F;span&gt;&lt;&#x2F;p&gt;</code></pre><pre class="line-numbers language-none"><code class="language-none">P├─ &quot;Let&#39;s use:&quot;├─ SPAN|  └─ &quot;Cascading&quot;├─ SPAN|  └─ &quot;Style&quot;└─ SPAN   └─ &quot;Sheets&quot;</code></pre><hr/><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://developer.mozilla.org/zh-CN/docs/Learn/CSS/First_steps/How_CSS_works">MDN</a></p>]]></content>
       
       
       <categories>
@@ -859,31 +886,6 @@
     
     
     <entry>
-      <title>Iterm2美化终端</title>
-      <link href="//post/2017-07-09item2.html"/>
-      <url>//post/2017-07-09item2.html</url>
-      
-        <content type="html"><![CDATA[<h2 id="oh-my-zsh-插件推荐"><a href="#oh-my-zsh-插件推荐" class="headerlink" title="oh-my-zsh 插件推荐 :"></a>oh-my-zsh 插件推荐 :</h2><h3 id="autojump、zsh-autosuggestion-以及-zsh-syntax-highlighting"><a href="#autojump、zsh-autosuggestion-以及-zsh-syntax-highlighting" class="headerlink" title="autojump、zsh-autosuggestion 以及 zsh-syntax-highlighting"></a>autojump、zsh-autosuggestion 以及 zsh-syntax-highlighting</h3><h3 id="推荐博客左岸博客"><a href="#推荐博客左岸博客" class="headerlink" title="推荐博客左岸博客"></a>推荐博客<a href="https://www.zrahh.com/archives/167.html">左岸博客</a></h3><h3 id="使用效果"><a href="#使用效果" class="headerlink" title="使用效果"></a>使用效果</h3><p><img src="http://t-blog-images.aijs.top/img/11460713-14c8ef376aabe04a.png"><br><img src="http://t-blog-images.aijs.top/img/11460713-ef2da0af46da7712.png"><br><img src="http://t-blog-images.aijs.top/img/11460713-e49ed15245409774.png"></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 工具 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 工具 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Git public key</title>
       <link href="//post/2016-06-20git.html"/>
       <url>//post/2016-06-20git.html</url>
@@ -901,6 +903,31 @@
         <tags>
             
             <tag> git </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Iterm2美化终端</title>
+      <link href="//post/2017-07-09item2.html"/>
+      <url>//post/2017-07-09item2.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="oh-my-zsh-插件推荐"><a href="#oh-my-zsh-插件推荐" class="headerlink" title="oh-my-zsh 插件推荐 :"></a>oh-my-zsh 插件推荐 :</h2><h3 id="autojump、zsh-autosuggestion-以及-zsh-syntax-highlighting"><a href="#autojump、zsh-autosuggestion-以及-zsh-syntax-highlighting" class="headerlink" title="autojump、zsh-autosuggestion 以及 zsh-syntax-highlighting"></a>autojump、zsh-autosuggestion 以及 zsh-syntax-highlighting</h3><h3 id="推荐博客左岸博客"><a href="#推荐博客左岸博客" class="headerlink" title="推荐博客左岸博客"></a>推荐博客<a href="https://www.zrahh.com/archives/167.html">左岸博客</a></h3><h3 id="使用效果"><a href="#使用效果" class="headerlink" title="使用效果"></a>使用效果</h3><p><img src="http://t-blog-images.aijs.top/img/11460713-14c8ef376aabe04a.png"><br><img src="http://t-blog-images.aijs.top/img/11460713-ef2da0af46da7712.png"><br><img src="http://t-blog-images.aijs.top/img/11460713-e49ed15245409774.png"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 工具 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 工具 </tag>
             
         </tags>
       
@@ -951,6 +978,31 @@
         <tags>
             
             <tag> Layoffs </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Nestjs服务端技术栈</title>
+      <link href="//post/2021-06-30node.html"/>
+      <url>//post/2021-06-30node.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="NestJS中文文档"><a href="#NestJS中文文档" class="headerlink" title="NestJS中文文档"></a>NestJS中文文档</h2><p><a href="https://nestjs.bootcss.com/">NestJS中文文档</a><br><a href="https://docs.nestjs.cn/">NestJS中文文档</a><br><a href="https://github.com/nestjs/nest">github</a> 42.2K</p><blockquote><span class="custom-blockquote-svg"><svg width="24" height="24" viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg" data-reactroot=""><path fill="" d="M22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C13.8 22 15.5 21.5 17 20.6L22 22L20.7 17C21.5 15.5 22 13.8 22 12Z" undefined="1"></path><path fill="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z" undefined="1"></path><path fill="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z" undefined="1"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M17 8.5C15.23 8.97 14.07 10.84 14.01 13.27C14 13.33 14 13.4 14 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M9 8.5C7.23 8.97 6.07 10.84 6.01 13.27C6 13.33 6 13.4 6 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z"></path></svg></span><p>A progressive Node.js framework for building efficient, scalable, and enterprise-grade server-side applications on top of TypeScript &amp; JavaScript (ES6, ES7, ES8) 🚀</p></blockquote><h2 id="TypeORM"><a href="#TypeORM" class="headerlink" title="TypeORM"></a>TypeORM</h2><p><a href="https://typeorm.biunav.com/zh/#%E5%AE%89%E8%A3%85">TypeORM中文文档</a><br><a href="https://github.com/typeorm/typeorm">github地址</a> 26.3K</p><blockquote><span class="custom-blockquote-svg"><svg width="24" height="24" viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg" data-reactroot=""><path fill="" d="M22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C13.8 22 15.5 21.5 17 20.6L22 22L20.7 17C21.5 15.5 22 13.8 22 12Z" undefined="1"></path><path fill="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z" undefined="1"></path><path fill="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z" undefined="1"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M17 8.5C15.23 8.97 14.07 10.84 14.01 13.27C14 13.33 14 13.4 14 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M9 8.5C7.23 8.97 6.07 10.84 6.01 13.27C6 13.33 6 13.4 6 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z"></path></svg></span><p>ORM for TypeScript and JavaScript (ES7, ES6, ES5). Supports MySQL, PostgreSQL, MariaDB, SQLite, MS SQL Server, Oracle, SAP Hana, WebSQL databases. Works in NodeJS, Browser, Ionic, Cordova and Electron platforms.</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> Node </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Node </tag>
             
         </tags>
       
@@ -1026,31 +1078,6 @@
         <tags>
             
             <tag> Shell </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Nestjs服务端技术栈</title>
-      <link href="//post/2021-06-30node.html"/>
-      <url>//post/2021-06-30node.html</url>
-      
-        <content type="html"><![CDATA[<h2 id="NestJS中文文档"><a href="#NestJS中文文档" class="headerlink" title="NestJS中文文档"></a>NestJS中文文档</h2><p><a href="https://nestjs.bootcss.com/">NestJS中文文档</a><br><a href="https://docs.nestjs.cn/">NestJS中文文档</a><br><a href="https://github.com/nestjs/nest">github</a> 42.2K</p><blockquote><span class="custom-blockquote-svg"><svg width="24" height="24" viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg" data-reactroot=""><path fill="" d="M22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C13.8 22 15.5 21.5 17 20.6L22 22L20.7 17C21.5 15.5 22 13.8 22 12Z" undefined="1"></path><path fill="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z" undefined="1"></path><path fill="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z" undefined="1"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M17 8.5C15.23 8.97 14.07 10.84 14.01 13.27C14 13.33 14 13.4 14 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M9 8.5C7.23 8.97 6.07 10.84 6.01 13.27C6 13.33 6 13.4 6 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z"></path></svg></span><p>A progressive Node.js framework for building efficient, scalable, and enterprise-grade server-side applications on top of TypeScript &amp; JavaScript (ES6, ES7, ES8) 🚀</p></blockquote><h2 id="TypeORM"><a href="#TypeORM" class="headerlink" title="TypeORM"></a>TypeORM</h2><p><a href="https://typeorm.biunav.com/zh/#%E5%AE%89%E8%A3%85">TypeORM中文文档</a><br><a href="https://github.com/typeorm/typeorm">github地址</a> 26.3K</p><blockquote><span class="custom-blockquote-svg"><svg width="24" height="24" viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg" data-reactroot=""><path fill="" d="M22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C13.8 22 15.5 21.5 17 20.6L22 22L20.7 17C21.5 15.5 22 13.8 22 12Z" undefined="1"></path><path fill="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z" undefined="1"></path><path fill="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z" undefined="1"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M17 8.5C15.23 8.97 14.07 10.84 14.01 13.27C14 13.33 14 13.4 14 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M9 8.5C7.23 8.97 6.07 10.84 6.01 13.27C6 13.33 6 13.4 6 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z"></path></svg></span><p>ORM for TypeScript and JavaScript (ES7, ES6, ES5). Supports MySQL, PostgreSQL, MariaDB, SQLite, MS SQL Server, Oracle, SAP Hana, WebSQL databases. Works in NodeJS, Browser, Ionic, Cordova and Electron platforms.</p></blockquote>]]></content>
-      
-      
-      <categories>
-          
-          <category> Node </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Node </tag>
             
         </tags>
       
