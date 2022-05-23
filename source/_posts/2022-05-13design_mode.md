@@ -32,7 +32,7 @@ cover:
 ## 代理模式
 
 - 作用：访问控制
-- 距离：事件代理、Proxy、Object.defineProperty
+- 场景：事件代理、Proxy、Object.defineProperty
 
 ## 单例模式
 
