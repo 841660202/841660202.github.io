@@ -44,8 +44,8 @@ Bruno 不仅支持全局色号的替换，还支持组件圆角、字体大小�
 
  - 默认基础规范
 
-<img src="http://t-blog-images.aijs.top/img/20220520105949.webp" style="max-width:400px" />
-<img src="http://t-blog-images.aijs.top/img/20220520110003.webp" style="max-width:400px" />
+<img src="http://t-blog-images.aijs.top/img/20220520105949.webp" style="width:400px;object-fit:contain" />
+<img src="http://t-blog-images.aijs.top/img/20220520110003.webp" style="width:400px;object-fit:contain" />
 
  - 全局样式定制
 
