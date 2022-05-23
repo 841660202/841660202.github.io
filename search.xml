@@ -29,6 +29,31 @@
     
     
     <entry>
+      <title>CSS如何工作</title>
+      <link href="//post/2022-05-23css.html"/>
+      <url>//post/2022-05-23css.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="浏览器工作原理"><a href="#浏览器工作原理" class="headerlink" title="浏览器工作原理"></a>浏览器工作原理</h2><blockquote><span class="custom-blockquote-svg"><svg width="24" height="24" viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg" data-reactroot=""><path fill="" d="M22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C13.8 22 15.5 21.5 17 20.6L22 22L20.7 17C21.5 15.5 22 13.8 22 12Z" undefined="1"></path><path fill="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z" undefined="1"></path><path fill="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z" undefined="1"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M17 8.5C15.23 8.97 14.07 10.84 14.01 13.27C14 13.33 14 13.4 14 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M9 8.5C7.23 8.97 6.07 10.84 6.01 13.27C6 13.33 6 13.4 6 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z"></path></svg></span><p>当浏览器展示一个文件的时候，它必须兼顾文件的内容和文件的样式信息</p></blockquote><h2 id="理解浏览器如何加载CSS和HTML"><a href="#理解浏览器如何加载CSS和HTML" class="headerlink" title="理解浏览器如何加载CSS和HTML"></a>理解浏览器如何加载CSS和HTML</h2><p>下面的步骤是浏览加载网页的简化版本:</p><ol><li>浏览器载入HTML文件（比如从网络上获取）。</li><li>将HTML文件转化成一个DOM（Document Object Model），DOM是文件在计算机内存中的表现形式，下一节将更加详细的解释DOM。</li><li>接下来，浏览器会拉取该HTML相关的大部分资源，比如嵌入到页面的图片、视频和CSS样式。JavaScript则会稍后进行处理，简单起见，同时此节主讲CSS，所以这里对如何加载JavaScript不会展开叙述。</li><li>浏览器拉取到CSS之后会进行解析，根据选择器的不同类型（比如element、class、id等等）把他们分到不同的“桶”中。浏览器基于它找到的不同的选择器，将不同的规则（基于选择器的规则，如元素选择器、类选择器、id选择器等）应用在对应的DOM的节点中，并添加节点依赖的样式（这个中间步骤称为渲染树）。</li><li>上述的规则应用于渲染树之后，渲染树会依照应该出现的结构进行布局。</li><li>网页展示在屏幕上（这一步被称为着色）。</li></ol><p><img src="http://t-blog-images.aijs.top/img/rendering.svg"></p><h2 id="浏览器遇到无法解析的CSS会发生什么"><a href="#浏览器遇到无法解析的CSS会发生什么" class="headerlink" title="浏览器遇到无法解析的CSS会发生什么"></a>浏览器遇到无法解析的CSS会发生什么</h2><blockquote><span class="custom-blockquote-svg"><svg width="24" height="24" viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg" data-reactroot=""><path fill="" d="M22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C13.8 22 15.5 21.5 17 20.6L22 22L20.7 17C21.5 15.5 22 13.8 22 12Z" undefined="1"></path><path fill="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z" undefined="1"></path><path fill="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z" undefined="1"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M17 8.5C15.23 8.97 14.07 10.84 14.01 13.27C14 13.33 14 13.4 14 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M9 8.5C7.23 8.97 6.07 10.84 6.01 13.27C6 13.33 6 13.4 6 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z"></path></svg></span><p>答案就是浏览器什么也不会做，继续解析下一个CSS样式！</p></blockquote><p>以下是废话：</p><ul><li><p>浏览器并不会同时实现所有的新CSS，此外很多人也不会使用最新版本的浏览器。鉴于CSS一直不断的开发，因此领先于浏览器可以识别的范围，那么你也许会好奇当浏览器遇到无法解析的CSS选择器或声明的时候会发生什么呢？</p></li><li><p>CSS规则： 如果一个浏览器在解析你所书写的CSS规则的过程中遇到了无法理解的属性或者值，它会忽略这些并继续解析下面的CSS声明。在你书写了错误的CSS代码（或者误拼写），又或者当浏览器遇到对于它来说很新的还没有支持的CSS代码的时候上述的情况同样会发生（直接忽略）。</p></li><li><p>选择器： 相似的，当浏览器遇到无法解析的选择器的时候，他会<code>直接忽略整个选择器规则</code>，然后解析下一个CSS选择器。</p></li></ul><h2 id="关于DOM"><a href="#关于DOM" class="headerlink" title="关于DOM"></a>关于DOM</h2><p>一个DOM有一个树形结构，标记语言中的每一个元素、属性以及每一段文字都对应着结构树中的一个节点（Node&#x2F;DOM或DOM node）。节点由节点本身和其他DOM节点的关系定义，有些节点有父节点，有些节点有兄弟节点（同级节点）。</p><p>对于DOM的理解会很大程度上帮助你设计、调试和维护你的CSS，因为DOM是你的CSS样式和文件内容的结合。当你使用浏览器F12调试的时候你需要操作DOM以查看使用了哪些规则。</p><pre class="line-numbers language-html" data-language="html"><code class="language-html">&lt;p&gt;  Let&#39;s use:  &lt;span&gt;Cascading&lt;&#x2F;span&gt;  &lt;span&gt;Style&lt;&#x2F;span&gt;  &lt;span&gt;Sheets&lt;&#x2F;span&gt;&lt;&#x2F;p&gt;</code></pre><pre class="line-numbers language-none"><code class="language-none">P├─ &quot;Let&#39;s use:&quot;├─ SPAN|  └─ &quot;Cascading&quot;├─ SPAN|  └─ &quot;Style&quot;└─ SPAN   └─ &quot;Sheets&quot;</code></pre><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://developer.mozilla.org/zh-CN/docs/Learn/CSS/First_steps/How_CSS_works">MDN</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 浏览器原理 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 浏览器原理 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>monorepo</title>
       <link href="//post/2022-05-23monorepo.html"/>
       <url>//post/2022-05-23monorepo.html</url>
@@ -189,7 +214,7 @@
       <link href="//post/2022-05-13design_mode.html"/>
       <url>//post/2022-05-13design_mode.html</url>
       
-        <content type="html"><![CDATA[<h2 id="先聊用到过哪些，背后的设计模式是什么"><a href="#先聊用到过哪些，背后的设计模式是什么" class="headerlink" title="先聊用到过哪些，背后的设计模式是什么"></a>先聊用到过哪些，背后的设计模式是什么</h2><ol><li>实例化一个 axios 实例，全局都来使用它 <em>单例模式</em></li><li>兄弟组件通信,事件监听 <em>观察者模式</em></li><li>构造函数继承、类的继承 <em>构造函数模式</em></li><li>实例化不同的实例 <em>工厂模式</em></li><li>优化中的<code>事件代理</code><em>代理模式</em></li><li>esm、commonjs<em>模块模式</em></li></ol><p><em>熟悉而又陌生</em>：熟悉的是一直在用，陌生的是学名竟然是这些。我都有点怀疑了，这是真的吗？是真的吗？～～～</p><p><img    src="https://img1.baidu.com/it/u=1902986975,2375222058&fm=253&fmt=auto&app=138&f=JPEG?w=535&h=500"    width=100 style="border-radius: 10px"    /></p>   <div style="font-size: 20px; color: orange;margin-top: 30px">来～来～来～，我们继续。。。</div><h2 id="啥呀"><a href="#啥呀" class="headerlink" title="啥呀"></a>啥呀</h2><blockquote><span class="custom-blockquote-svg"><svg width="24" height="24" viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg" data-reactroot=""><path fill="" d="M22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C13.8 22 15.5 21.5 17 20.6L22 22L20.7 17C21.5 15.5 22 13.8 22 12Z" undefined="1"></path><path fill="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z" undefined="1"></path><path fill="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z" undefined="1"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M17 8.5C15.23 8.97 14.07 10.84 14.01 13.27C14 13.33 14 13.4 14 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M9 8.5C7.23 8.97 6.07 10.84 6.01 13.27C6 13.33 6 13.4 6 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z"></path></svg></span><p>“设计模式(英语 design pattern)是对面向对象设计中<code>反复出现的问题的解决方案</code>。这个术语是在1990年代由Erich Gamma等人从建筑设计领域<code>引入到</code>计算机科学中来的。”</p></blockquote><h2 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h2><h2 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h2><ul><li>作用：访问控制</li><li>距离：事件代理、Proxy、Object.defineProperty</li></ul><h2 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h2><ul><li>定义：唯一实例，全局可访问</li><li>场景：请求实例、全局缓存、线程池、window 对象、登录浮框</li><li>实现：已经创建过的直接返回，不重复创建</li></ul><h2 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h2><ul><li>作用：创建同一类对象</li><li>分类：<em>简单工厂_、_方法工厂</em></li></ul><h3 id="1-简单工厂"><a href="#1-简单工厂" class="headerlink" title="1. 简单工厂"></a>1. 简单工厂</h3><ul><li>例如：项目中根据用户权限渲染不同的页面，在不同权限等级用户的构造函数中，保存用户可以看到的页面</li><li>优点：一个正确的参数，就可以获取到所需要的对象，无需知道其创建的具体细节</li><li>缺点：函数会成为一个超级函数，难以维护，简单工厂适用于创建少量对象，对象的逻辑不能复杂</li></ul><h3 id="2-工厂方法"><a href="#2-工厂方法" class="headerlink" title="2. 工厂方法"></a>2. 工厂方法</h3><ul><li>本质：将创建对象的工作，推迟到子类中，这样核心类就变成抽象类</li></ul><pre class="line-numbers language-js" data-language="js"><code class="language-js">let UserFactory &#x3D; function (type) &#123;  if (this instanceof UserFactory) &#123;    return new this[type]();  &#125; else &#123;    return new UserFactory(type);  &#125;&#125;;&#x2F;&#x2F; 工厂方法，函数的原型中设置所有对象的构造函数UserFactory.prototype &#x3D; &#123;  SuperAdmin: function () &#123;    this.name &#x3D; &quot;超级管理员&quot;;    this.viewPage &#x3D; [&quot;首页&quot;, &quot;订单管理&quot;, &quot;用户管理&quot;, &quot;应用管理&quot;, &quot;权限管理&quot;];  &#125;,  Admin: function () &#123;    this.name &#x3D; &quot;管理员&quot;;    this.viewPage &#x3D; [&quot;首页&quot;, &quot;订单管理&quot;, &quot;用户管理&quot;];  &#125;,  NormalUser: function () &#123;    this.name &#x3D; &quot;普通用户&quot;;    this.viewPage &#x3D; [&quot;首页&quot;, &quot;订单管理&quot;];  &#125;,&#125;;&#x2F;&#x2F; 调用let superAdmin &#x3D; new UserFactory(&quot;SuperAdmin&quot;);let admin &#x3D; new UserFactory(&quot;Admin&quot;);let normalUser &#x3D; new UserFactory(&quot;NormalUser&quot;);</code></pre><h3 id="3-抽象工厂"><a href="#3-抽象工厂" class="headerlink" title="3. 抽象工厂"></a>3. 抽象工厂</h3><ul><li></li></ul><h2 id="构造函数模式"><a href="#构造函数模式" class="headerlink" title="构造函数模式"></a>构造函数模式</h2><h2 id="👀-观察者模式"><a href="#👀-观察者模式" class="headerlink" title="👀 观察者模式"></a>👀 观察者模式</h2><ul><li>定义： 对象间的一种一对多的依赖关系</li><li>作用：一个对象状态发生变化时，所有依赖他的对象，都将得到通知</li><li>优点：解耦</li><li>组成：发布者、订阅者</li><li>场景：事件监听、eventBus</li></ul><pre class="line-numbers language-js" data-language="js"><code class="language-js">document.body.addEventListener(&quot;click&quot;, function () &#123;&#125;, false);</code></pre><h2 id="混合模式"><a href="#混合模式" class="headerlink" title="混合模式"></a>混合模式</h2><h2 id="模块模式"><a href="#模块模式" class="headerlink" title="模块模式"></a>模块模式</h2><ul><li>作用：避免全局污染，按需暴露</li><li>实现：多采用闭包</li></ul><pre class="line-numbers language-js" data-language="js"><code class="language-js">var Person &#x3D; (function () &#123;  var name &#x3D; &quot;xxx&quot;;  function sayName(params) &#123;    console.log(name);  &#125;  return &#123;    name,    sayName,  &#125;;&#125;)();</code></pre>]]></content>
+        <content type="html"><![CDATA[<h2 id="先聊用到过哪些，背后的设计模式是什么"><a href="#先聊用到过哪些，背后的设计模式是什么" class="headerlink" title="先聊用到过哪些，背后的设计模式是什么"></a>先聊用到过哪些，背后的设计模式是什么</h2><ol><li>实例化一个 axios 实例，全局都来使用它 <em>单例模式</em></li><li>兄弟组件通信,事件监听 <em>观察者模式</em></li><li>构造函数继承、类的继承 <em>构造函数模式</em></li><li>实例化不同的实例 <em>工厂模式</em></li><li>优化中的<code>事件代理</code><em>代理模式</em></li><li>esm、commonjs<em>模块模式</em></li></ol><p><em>熟悉而又陌生</em>：熟悉的是一直在用，陌生的是学名竟然是这些。我都有点怀疑了，这是真的吗？是真的吗？～～～</p><p><img    src="https://img1.baidu.com/it/u=1902986975,2375222058&fm=253&fmt=auto&app=138&f=JPEG?w=535&h=500"    width=100 style="border-radius: 10px"    /></p>   <div style="font-size: 20px; color: orange;margin-top: 30px">来～来～来～，我们继续。。。</div><h2 id="啥呀"><a href="#啥呀" class="headerlink" title="啥呀"></a>啥呀</h2><blockquote><span class="custom-blockquote-svg"><svg width="24" height="24" viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg" data-reactroot=""><path fill="" d="M22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C13.8 22 15.5 21.5 17 20.6L22 22L20.7 17C21.5 15.5 22 13.8 22 12Z" undefined="1"></path><path fill="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z" undefined="1"></path><path fill="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z" undefined="1"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M17 8.5C15.23 8.97 14.07 10.84 14.01 13.27C14 13.33 14 13.4 14 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M9 8.5C7.23 8.97 6.07 10.84 6.01 13.27C6 13.33 6 13.4 6 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z"></path></svg></span><p>“设计模式(英语 design pattern)是对面向对象设计中<code>反复出现的问题的解决方案</code>。这个术语是在1990年代由Erich Gamma等人从建筑设计领域<code>引入到</code>计算机科学中来的。”</p></blockquote><h2 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h2><h2 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h2><ul><li>作用：访问控制</li><li>场景：事件代理、Proxy、Object.defineProperty</li></ul><h2 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h2><ul><li>定义：唯一实例，全局可访问</li><li>场景：请求实例、全局缓存、线程池、window 对象、登录浮框</li><li>实现：已经创建过的直接返回，不重复创建</li></ul><h2 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h2><ul><li>作用：创建同一类对象</li><li>分类：<em>简单工厂_、_方法工厂</em></li></ul><h3 id="1-简单工厂"><a href="#1-简单工厂" class="headerlink" title="1. 简单工厂"></a>1. 简单工厂</h3><ul><li>例如：项目中根据用户权限渲染不同的页面，在不同权限等级用户的构造函数中，保存用户可以看到的页面</li><li>优点：一个正确的参数，就可以获取到所需要的对象，无需知道其创建的具体细节</li><li>缺点：函数会成为一个超级函数，难以维护，简单工厂适用于创建少量对象，对象的逻辑不能复杂</li></ul><h3 id="2-工厂方法"><a href="#2-工厂方法" class="headerlink" title="2. 工厂方法"></a>2. 工厂方法</h3><ul><li>本质：将创建对象的工作，推迟到子类中，这样核心类就变成抽象类</li></ul><pre class="line-numbers language-js" data-language="js"><code class="language-js">let UserFactory &#x3D; function (type) &#123;  if (this instanceof UserFactory) &#123;    return new this[type]();  &#125; else &#123;    return new UserFactory(type);  &#125;&#125;;&#x2F;&#x2F; 工厂方法，函数的原型中设置所有对象的构造函数UserFactory.prototype &#x3D; &#123;  SuperAdmin: function () &#123;    this.name &#x3D; &quot;超级管理员&quot;;    this.viewPage &#x3D; [&quot;首页&quot;, &quot;订单管理&quot;, &quot;用户管理&quot;, &quot;应用管理&quot;, &quot;权限管理&quot;];  &#125;,  Admin: function () &#123;    this.name &#x3D; &quot;管理员&quot;;    this.viewPage &#x3D; [&quot;首页&quot;, &quot;订单管理&quot;, &quot;用户管理&quot;];  &#125;,  NormalUser: function () &#123;    this.name &#x3D; &quot;普通用户&quot;;    this.viewPage &#x3D; [&quot;首页&quot;, &quot;订单管理&quot;];  &#125;,&#125;;&#x2F;&#x2F; 调用let superAdmin &#x3D; new UserFactory(&quot;SuperAdmin&quot;);let admin &#x3D; new UserFactory(&quot;Admin&quot;);let normalUser &#x3D; new UserFactory(&quot;NormalUser&quot;);</code></pre><h3 id="3-抽象工厂"><a href="#3-抽象工厂" class="headerlink" title="3. 抽象工厂"></a>3. 抽象工厂</h3><ul><li></li></ul><h2 id="构造函数模式"><a href="#构造函数模式" class="headerlink" title="构造函数模式"></a>构造函数模式</h2><h2 id="👀-观察者模式"><a href="#👀-观察者模式" class="headerlink" title="👀 观察者模式"></a>👀 观察者模式</h2><ul><li>定义： 对象间的一种一对多的依赖关系</li><li>作用：一个对象状态发生变化时，所有依赖他的对象，都将得到通知</li><li>优点：解耦</li><li>组成：发布者、订阅者</li><li>场景：事件监听、eventBus</li></ul><pre class="line-numbers language-js" data-language="js"><code class="language-js">document.body.addEventListener(&quot;click&quot;, function () &#123;&#125;, false);</code></pre><h2 id="混合模式"><a href="#混合模式" class="headerlink" title="混合模式"></a>混合模式</h2><h2 id="模块模式"><a href="#模块模式" class="headerlink" title="模块模式"></a>模块模式</h2><ul><li>作用：避免全局污染，按需暴露</li><li>实现：多采用闭包</li></ul><pre class="line-numbers language-js" data-language="js"><code class="language-js">var Person &#x3D; (function () &#123;  var name &#x3D; &quot;xxx&quot;;  function sayName(params) &#123;    console.log(name);  &#125;  return &#123;    name,    sayName,  &#125;;&#125;)();</code></pre>]]></content>
       
       
       <categories>
@@ -834,6 +859,31 @@
     
     
     <entry>
+      <title>Iterm2美化终端</title>
+      <link href="//post/2017-07-09item2.html"/>
+      <url>//post/2017-07-09item2.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="oh-my-zsh-插件推荐"><a href="#oh-my-zsh-插件推荐" class="headerlink" title="oh-my-zsh 插件推荐 :"></a>oh-my-zsh 插件推荐 :</h2><h3 id="autojump、zsh-autosuggestion-以及-zsh-syntax-highlighting"><a href="#autojump、zsh-autosuggestion-以及-zsh-syntax-highlighting" class="headerlink" title="autojump、zsh-autosuggestion 以及 zsh-syntax-highlighting"></a>autojump、zsh-autosuggestion 以及 zsh-syntax-highlighting</h3><h3 id="推荐博客左岸博客"><a href="#推荐博客左岸博客" class="headerlink" title="推荐博客左岸博客"></a>推荐博客<a href="https://www.zrahh.com/archives/167.html">左岸博客</a></h3><h3 id="使用效果"><a href="#使用效果" class="headerlink" title="使用效果"></a>使用效果</h3><p><img src="http://t-blog-images.aijs.top/img/11460713-14c8ef376aabe04a.png"><br><img src="http://t-blog-images.aijs.top/img/11460713-ef2da0af46da7712.png"><br><img src="http://t-blog-images.aijs.top/img/11460713-e49ed15245409774.png"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 工具 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 工具 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Git public key</title>
       <link href="//post/2016-06-20git.html"/>
       <url>//post/2016-06-20git.html</url>
@@ -884,31 +934,6 @@
     
     
     <entry>
-      <title>Iterm2美化终端</title>
-      <link href="//post/2017-07-09item2.html"/>
-      <url>//post/2017-07-09item2.html</url>
-      
-        <content type="html"><![CDATA[<h2 id="oh-my-zsh-插件推荐"><a href="#oh-my-zsh-插件推荐" class="headerlink" title="oh-my-zsh 插件推荐 :"></a>oh-my-zsh 插件推荐 :</h2><h3 id="autojump、zsh-autosuggestion-以及-zsh-syntax-highlighting"><a href="#autojump、zsh-autosuggestion-以及-zsh-syntax-highlighting" class="headerlink" title="autojump、zsh-autosuggestion 以及 zsh-syntax-highlighting"></a>autojump、zsh-autosuggestion 以及 zsh-syntax-highlighting</h3><h3 id="推荐博客左岸博客"><a href="#推荐博客左岸博客" class="headerlink" title="推荐博客左岸博客"></a>推荐博客<a href="https://www.zrahh.com/archives/167.html">左岸博客</a></h3><h3 id="使用效果"><a href="#使用效果" class="headerlink" title="使用效果"></a>使用效果</h3><p><img src="http://t-blog-images.aijs.top/img/11460713-14c8ef376aabe04a.png"><br><img src="http://t-blog-images.aijs.top/img/11460713-ef2da0af46da7712.png"><br><img src="http://t-blog-images.aijs.top/img/11460713-e49ed15245409774.png"></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 工具 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 工具 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Layoffs</title>
       <link href="//post/2022-03-25Layoffs.html"/>
       <url>//post/2022-03-25Layoffs.html</url>
@@ -926,31 +951,6 @@
         <tags>
             
             <tag> Layoffs </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Nestjs服务端技术栈</title>
-      <link href="//post/2021-06-30node.html"/>
-      <url>//post/2021-06-30node.html</url>
-      
-        <content type="html"><![CDATA[<h2 id="NestJS中文文档"><a href="#NestJS中文文档" class="headerlink" title="NestJS中文文档"></a>NestJS中文文档</h2><p><a href="https://nestjs.bootcss.com/">NestJS中文文档</a><br><a href="https://docs.nestjs.cn/">NestJS中文文档</a><br><a href="https://github.com/nestjs/nest">github</a> 42.2K</p><blockquote><span class="custom-blockquote-svg"><svg width="24" height="24" viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg" data-reactroot=""><path fill="" d="M22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C13.8 22 15.5 21.5 17 20.6L22 22L20.7 17C21.5 15.5 22 13.8 22 12Z" undefined="1"></path><path fill="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z" undefined="1"></path><path fill="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z" undefined="1"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M17 8.5C15.23 8.97 14.07 10.84 14.01 13.27C14 13.33 14 13.4 14 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M9 8.5C7.23 8.97 6.07 10.84 6.01 13.27C6 13.33 6 13.4 6 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z"></path></svg></span><p>A progressive Node.js framework for building efficient, scalable, and enterprise-grade server-side applications on top of TypeScript &amp; JavaScript (ES6, ES7, ES8) 🚀</p></blockquote><h2 id="TypeORM"><a href="#TypeORM" class="headerlink" title="TypeORM"></a>TypeORM</h2><p><a href="https://typeorm.biunav.com/zh/#%E5%AE%89%E8%A3%85">TypeORM中文文档</a><br><a href="https://github.com/typeorm/typeorm">github地址</a> 26.3K</p><blockquote><span class="custom-blockquote-svg"><svg width="24" height="24" viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg" data-reactroot=""><path fill="" d="M22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C13.8 22 15.5 21.5 17 20.6L22 22L20.7 17C21.5 15.5 22 13.8 22 12Z" undefined="1"></path><path fill="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z" undefined="1"></path><path fill="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z" undefined="1"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M17 8.5C15.23 8.97 14.07 10.84 14.01 13.27C14 13.33 14 13.4 14 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M9 8.5C7.23 8.97 6.07 10.84 6.01 13.27C6 13.33 6 13.4 6 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z"></path></svg></span><p>ORM for TypeScript and JavaScript (ES7, ES6, ES5). Supports MySQL, PostgreSQL, MariaDB, SQLite, MS SQL Server, Oracle, SAP Hana, WebSQL databases. Works in NodeJS, Browser, Ionic, Cordova and Electron platforms.</p></blockquote>]]></content>
-      
-      
-      <categories>
-          
-          <category> Node </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Node </tag>
             
         </tags>
       
@@ -1026,6 +1026,31 @@
         <tags>
             
             <tag> Shell </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Nestjs服务端技术栈</title>
+      <link href="//post/2021-06-30node.html"/>
+      <url>//post/2021-06-30node.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="NestJS中文文档"><a href="#NestJS中文文档" class="headerlink" title="NestJS中文文档"></a>NestJS中文文档</h2><p><a href="https://nestjs.bootcss.com/">NestJS中文文档</a><br><a href="https://docs.nestjs.cn/">NestJS中文文档</a><br><a href="https://github.com/nestjs/nest">github</a> 42.2K</p><blockquote><span class="custom-blockquote-svg"><svg width="24" height="24" viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg" data-reactroot=""><path fill="" d="M22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C13.8 22 15.5 21.5 17 20.6L22 22L20.7 17C21.5 15.5 22 13.8 22 12Z" undefined="1"></path><path fill="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z" undefined="1"></path><path fill="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z" undefined="1"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M17 8.5C15.23 8.97 14.07 10.84 14.01 13.27C14 13.33 14 13.4 14 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M9 8.5C7.23 8.97 6.07 10.84 6.01 13.27C6 13.33 6 13.4 6 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z"></path></svg></span><p>A progressive Node.js framework for building efficient, scalable, and enterprise-grade server-side applications on top of TypeScript &amp; JavaScript (ES6, ES7, ES8) 🚀</p></blockquote><h2 id="TypeORM"><a href="#TypeORM" class="headerlink" title="TypeORM"></a>TypeORM</h2><p><a href="https://typeorm.biunav.com/zh/#%E5%AE%89%E8%A3%85">TypeORM中文文档</a><br><a href="https://github.com/typeorm/typeorm">github地址</a> 26.3K</p><blockquote><span class="custom-blockquote-svg"><svg width="24" height="24" viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg" data-reactroot=""><path fill="" d="M22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C13.8 22 15.5 21.5 17 20.6L22 22L20.7 17C21.5 15.5 22 13.8 22 12Z" undefined="1"></path><path fill="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z" undefined="1"></path><path fill="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z" undefined="1"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M17 8.5C15.23 8.97 14.07 10.84 14.01 13.27C14 13.33 14 13.4 14 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M9 8.5C7.23 8.97 6.07 10.84 6.01 13.27C6 13.33 6 13.4 6 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z"></path></svg></span><p>ORM for TypeScript and JavaScript (ES7, ES6, ES5). Supports MySQL, PostgreSQL, MariaDB, SQLite, MS SQL Server, Oracle, SAP Hana, WebSQL databases. Works in NodeJS, Browser, Ionic, Cordova and Electron platforms.</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> Node </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Node </tag>
             
         </tags>
       
