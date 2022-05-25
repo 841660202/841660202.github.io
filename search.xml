@@ -29,6 +29,31 @@
     
     
     <entry>
+      <title>redux 源码</title>
+      <link href="//post/2022-05-25.redux.html"/>
+      <url>//post/2022-05-25.redux.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>A Predictable State Container for JS Apps</p><h2 id="package-json"><a href="#package-json" class="headerlink" title="package.json"></a>package.json</h2><pre class="line-numbers language-json" data-language="json"><code class="language-json">&#123;  &quot;name&quot;: &quot;redux&quot;,  &quot;version&quot;: &quot;5.0.0-alpha.0&quot;,  &quot;description&quot;: &quot;Predictable state container for JavaScript apps&quot;,  &quot;keywords&quot;: [    &quot;redux&quot;,    &quot;reducer&quot;,  &#x2F;&#x2F; reducer, redux构成组成之一    &quot;state&quot;,    &#x2F;&#x2F; 状态管理    &quot;predictable&quot;,   &#x2F;&#x2F; 可预测的    &quot;functional&quot;,    &#x2F;&#x2F; 纯函数的    &quot;immutable&quot;,     &#x2F;&#x2F; 不可变的    &quot;hot&quot;,    &quot;live&quot;,    &quot;replay&quot;,        &#x2F;&#x2F; 回放    &quot;flux&quot;,          &#x2F;&#x2F; redux对flux的改进    &quot;elm&quot;            &#x2F;&#x2F; Elm 是一门专注于Web前端的纯函数式语言, reducer受elm启发  ],  &#x2F;&#x2F; 入口  &quot;main&quot;: &quot;lib&#x2F;redux.js&quot;,  &#x2F;&#x2F; unpkg 是一个内容源自 npm 的全球快速 CDN, 它能以快速而简单的方式提供任意包、任意文件，通过类似这样的 URL ：unpkg.com&#x2F;:package@:version&#x2F;:file  &#x2F;&#x2F; 当你访问: https:&#x2F;&#x2F;unpkg.com&#x2F;redux@4.0.3&#x2F;dist&#x2F;redux.min.js 是对应redux@4.0.3版本的压缩后的js文件  &#x2F;&#x2F; 当你访问: https:&#x2F;&#x2F;unpkg.com&#x2F;redux ——根据package.json配置的unpkg, 重定向为--—&gt; https:&#x2F;&#x2F;unpkg.com&#x2F;redux@4.0.4&#x2F;dist&#x2F;redux.js , 做了两次重定向  &#x2F;&#x2F; 如何你访问: https:&#x2F;&#x2F;unpkg.com&#x2F;redux&#x2F; (注意redux后有&#x2F;), 是一个页面  &quot;unpkg&quot;: &quot;dist&#x2F;redux.js&quot;, &#x2F;&#x2F; 用unpkg的裸url访问时, 指定到该文件  &#x2F;**    module      点击 Setting up multi-platform npm packages 查看相关介绍。      就像 main 字段一样，定义一个针对 es6 模块及语法的入口文件。      构建工具在构建项目的时候，如果发现了这个字段，会首先使用这个字段指向的文件，如果未定义，则回退到 main 字段指向的文件。      支持的工具：      rollup      webpack  **&#x2F;  &quot;module&quot;: &quot;es&#x2F;redux.js&quot;,&#x2F;&#x2F; TypeScript是javascript 的超集, typings&#x2F;types字段, 定义了TypeScript的入口文件  &quot;types&quot;: &quot;types&#x2F;index.d.ts&quot;,  &#x2F;&#x2F; 发布上传内容  &#x2F;&#x2F; 是一个可选字段, 用来描述作将软件包作为依赖项安装时要包含的条目, 相当于白名单, 类似.gitignore类似的语法, files字段中包含的文件不能通过.npmignore或.gitignore排除  &quot;files&quot;: [    &quot;dist&quot;,    &quot;lib&quot;,    &quot;es&quot;,    &quot;src&quot;,    &quot;types&quot;  ],  &quot;scripts&quot;: &#123;    ...  &#125;,  &#x2F;&#x2F; 表示在生产环境下使用该依赖, 对应 npm install xx -S 或 npm install xx --save  &quot;dependencies&quot;: &#123;    &quot;@babel&#x2F;runtime&quot;: &quot;^7.16.7&quot;  &#125;,  &#x2F;&#x2F; 表示仅在开发环境下使用, 不会在生产环境中使用的依赖, 对应 npm install xx -D 或 npm install xx --save-dev  &quot;devDependencies&quot;: &#123;   ...  &#125;,  &quot;npmName&quot;: &quot;redux&quot;,  &#x2F;&#x2F; npm文件映射。把需要同步到 cdnjs 的文件配置在这里。  &quot;npmFileMap&quot;: [    &#123;      &quot;basePath&quot;: &quot;&#x2F;dist&#x2F;&quot;,      &quot;files&quot;: [        &quot;*.js&quot;      ]    &#125;  ],  &#x2F;&#x2F; webpack相关字段, 声明该模块是否包含 sideEffects（副作用），从而可以为 tree-shaking 提供更大的优化空间。  &quot;sideEffects&quot;: false&#125;</code></pre><h2 id="version字段"><a href="#version字段" class="headerlink" title="version字段"></a>version字段</h2><p>包的版本, 必须有, 要符合<a href="https://docs.npmjs.com/about-semantic-versioning">semantic versioning guidelines</a>, 参考 <a href="https://semver.org/lang/zh-CN/">语义化版本控制规范</a>, 建议仔细通读<br><img src="http://t-blog-images.aijs.top/img/20220525140247.webp" width=600 style="object-fit: content"/></p><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="http://givencui.com/index.php/archives/29/">配合redux项目深度了解package.json</a><br><a href="https://docs.npmjs.com/about-semantic-versioning">semantic versioning guidelines</a><br><a href="https://semver.org/lang/zh-CN/">语义化版本控制规范</a></p><h2 id="源码目录"><a href="#源码目录" class="headerlink" title="源码目录"></a>源码目录</h2><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">.├── applyMiddleware.ts├── bindActionCreators.ts├── combineReducers.ts├── compose.ts├── createStore.ts├── index.ts├── types│   ├── actions.ts│   ├── middleware.ts│   ├── reducers.ts│   └── store.ts└── utils    ├── actionTypes.ts    ├── formatProdErrorMessage.ts    ├── isPlainObject.ts    ├── kindOf.ts    ├── symbol-observable.ts    └── warning.ts2 directories, 16 files</code></pre><h2 id="index-ts"><a href="#index-ts" class="headerlink" title="index.ts"></a>index.ts</h2><pre class="line-numbers language-ts" data-language="ts"><code class="language-ts">export &#123;  createStore,  combineReducers,  bindActionCreators,  applyMiddleware,  compose,  __DO_NOT_USE__ActionTypes&#125;</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> redux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> redux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>react-redux  源码2</title>
       <link href="//post/2022-05-25react-redux.html"/>
       <url>//post/2022-05-25react-redux.html</url>
@@ -1055,31 +1080,6 @@
     
     
     <entry>
-      <title>node-dev</title>
-      <link href="//post/2021-11-02node.html"/>
-      <url>//post/2021-11-02node.html</url>
-      
-        <content type="html"><![CDATA[<h2 id="在幕后用ts-node调整node-dev"><a href="#在幕后用ts-node调整node-dev" class="headerlink" title="在幕后用ts-node调整node-dev"></a>在幕后用ts-node调整node-dev</h2><ul><li>作用：在幕后用ts-node调整node-dev</li><li>优点：<ul><li>任意依赖的文件改变时候，重启node process，但是共享ts编译线程。</li><li>因为不需要每次ts-node编译的实例化，而提升性能</li></ul></li><li>配置项：</li><li>注意事项：</li><li>截图：<br><img src="http://t-blog-images.aijs.top/img/11460713-10cfe41335cfeb5d.png"></li></ul>]]></content>
-      
-      
-      <categories>
-          
-          <category> Node </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Node </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Web office预览</title>
       <link href="//post/2021-09-07web.html"/>
       <url>//post/2021-09-07web.html</url>
@@ -1097,6 +1097,31 @@
         <tags>
             
             <tag> Web </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>node-dev</title>
+      <link href="//post/2021-11-02node.html"/>
+      <url>//post/2021-11-02node.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="在幕后用ts-node调整node-dev"><a href="#在幕后用ts-node调整node-dev" class="headerlink" title="在幕后用ts-node调整node-dev"></a>在幕后用ts-node调整node-dev</h2><ul><li>作用：在幕后用ts-node调整node-dev</li><li>优点：<ul><li>任意依赖的文件改变时候，重启node process，但是共享ts编译线程。</li><li>因为不需要每次ts-node编译的实例化，而提升性能</li></ul></li><li>配置项：</li><li>注意事项：</li><li>截图：<br><img src="http://t-blog-images.aijs.top/img/11460713-10cfe41335cfeb5d.png"></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Node </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Node </tag>
             
         </tags>
       
