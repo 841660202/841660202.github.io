@@ -33,6 +33,9 @@ menu:
   About: true
   Tags: true
   Archives: true
+  Aurora:
+    name: 'Aurora'
+    path: 'https://github.com/Aurora/hexo-theme-Aurora'
 
 #! ---------------------------------------------------------------
 #! Theme Config
@@ -129,7 +132,7 @@ busuanzi:
   enable: true
 
 copy_protection:
-  enable: true
+  enable: false
   author:
     cn: 作者
     en: Author
