@@ -2,7 +2,7 @@
 title: redux-thunk源码
 date: 2022-05-27 09:21:50
 categories: redux
-tags: [redux-thunk,redux]
+tags: [redux-thunk,redux, 源码]
 cover:
 ---
 

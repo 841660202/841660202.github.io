@@ -2,7 +2,7 @@
 title: react-redux  源码2
 date: 2022-05-24 21:15:31
 categories: react-redux
-tags: [react-redux, redux]
+tags: [react-redux, redux, 源码]
 cover: 
 ---
 源码版本`"version": "8.0.2",`
