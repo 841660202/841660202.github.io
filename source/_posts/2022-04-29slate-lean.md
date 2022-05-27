@@ -3,6 +3,7 @@ title: Slate 学习
 cover: https://img2.baidu.com/it/u=2057256038,1983468493&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500
 categories: 前端
 tags: [前端]
+date:  2022-05-16 21:00:00
 ---
 ## 文档
 [slate 中文文档](https://doodlewind.github.io/slate-doc-cn/)
