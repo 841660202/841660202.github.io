@@ -263,6 +263,8 @@
       
         <tags>
             
+            <tag> 增效 </tag>
+            
             <tag> npm </tag>
             
             <tag> monorepo </tag>
@@ -314,6 +316,8 @@
       
       
         <tags>
+            
+            <tag> 增效 </tag>
             
             <tag> flutter </tag>
             
@@ -551,6 +555,8 @@
       
       
         <tags>
+            
+            <tag> 增效 </tag>
             
             <tag> vscode </tag>
             
@@ -972,7 +978,7 @@
       <link href="//post/2021-06-10scss2type.html"/>
       <url>//post/2021-06-10scss2type.html</url>
       
-        <content type="html"><![CDATA[<h2 id="CSS-Module-Typed"><a href="#CSS-Module-Typed" class="headerlink" title="CSS Module Typed"></a>CSS Module Typed</h2><h2 id="address"><a href="#address" class="headerlink" title="address"></a>address</h2><p><a href="https://marketplace.visualstudio.com/items?itemName=awwit.typed-css-modules-plugin">link</a></p><h2 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h2><p>Install deps first:</p><h3 id="require"><a href="#require" class="headerlink" title="require"></a>require</h3><p><code>npm install typed-css-modules</code></p><h3 id="if-you-need-less"><a href="#if-you-need-less" class="headerlink" title="if you need less"></a>if you need less</h3><p><code>npm install less</code></p><h3 id="if-you-need-scss-x2F-sass"><a href="#if-you-need-scss-x2F-sass" class="headerlink" title="if you need scss&#x2F;sass"></a>if you need scss&#x2F;sass</h3><p><code>npm install sass</code></p><h3 id="if-you-need-stylus"><a href="#if-you-need-stylus" class="headerlink" title="if you need stylus"></a>if you need stylus</h3><p><code>npm install stylus</code></p><blockquote><span class="custom-blockquote-svg"><svg width="24" height="24" viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg" data-reactroot=""><path fill="" d="M22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C13.8 22 15.5 21.5 17 20.6L22 22L20.7 17C21.5 15.5 22 13.8 22 12Z" undefined="1"></path><path fill="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z" undefined="1"></path><path fill="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z" undefined="1"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M17 8.5C15.23 8.97 14.07 10.84 14.01 13.27C14 13.33 14 13.4 14 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M9 8.5C7.23 8.97 6.07 10.84 6.01 13.27C6 13.33 6 13.4 6 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z"></path></svg></span><p>Modules can be installed globally. yarn is supported.</p></blockquote><blockquote><span class="custom-blockquote-svg"><svg width="24" height="24" viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg" data-reactroot=""><path fill="" d="M22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C13.8 22 15.5 21.5 17 20.6L22 22L20.7 17C21.5 15.5 22 13.8 22 12Z" undefined="1"></path><path fill="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z" undefined="1"></path><path fill="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z" undefined="1"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M17 8.5C15.23 8.97 14.07 10.84 14.01 13.27C14 13.33 14 13.4 14 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M9 8.5C7.23 8.97 6.07 10.84 6.01 13.27C6 13.33 6 13.4 6 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z"></path></svg></span><p>To switch the package manager (npm or yarn), you need to change the settings npm.packageManager of the built-in module vscode.npm.</p></blockquote><h3 id="Configuring"><a href="#Configuring" class="headerlink" title="Configuring"></a>Configuring</h3><p>By default, the option to automatically format .d.ts files using eslint is enabled. You can disable this feature through the setting “typed-css-modules.eslint.enable”: false.</p><p>Usage<br>put</p><p><code>// @type</code></p><p>or</p><p><code>/* @type */</code></p><p>ahead of your .css&#x2F;.less&#x2F;.scss&#x2F;.sass&#x2F;.styl file, and save, you will get a d.ts file in same directory.</p><h3 id="preview"><a href="#preview" class="headerlink" title="preview"></a>preview</h3><p><img src="https://s2.ax1x.com/2019/01/31/k1yTT1.gif"></p><h3 id="demo"><a href="#demo" class="headerlink" title="demo"></a>demo</h3><pre class="line-numbers language-scss" data-language="scss"><code class="language-scss">&#x2F;* @type *&#x2F;.root &#123;  padding: 16px;  min-height: 100%;  .empty-wrapper &#123;    height: 380px;    display: flex;    flex-direction: column;    align-items: center;    justify-content: center;  &#125;  &gt; h3 &#123;    font-size: inherit;    margin-bottom: 4px;  &#125;  .toolbar-wrapper &#123;    position: relative;    .toolbar &#123;      position: absolute;      margin: 12px 0;      z-index: 1;      &amp;.static &#123;        position: static;      &#125;      &gt; *:not(:first-child) &#123;        margin-left: 8px;      &#125;    &#125;  &#125;  .buttons&#123;    button &#123;      margin-right: 8px;    &#125;  &#125;&#125;.use-select&#123;  width: 300px&#125;</code></pre><pre class="line-numbers language-ts" data-language="ts"><code class="language-ts">declare const styles: &#123;  readonly &quot;root&quot;: string;  readonly &quot;empty-wrapper&quot;: string;  readonly &quot;toolbar-wrapper&quot;: string;  readonly &quot;toolbar&quot;: string;  readonly &quot;static&quot;: string;  readonly &quot;buttons&quot;: string;  readonly &quot;use-select&quot;: string;&#125;;export &#x3D; styles;</code></pre><h3 id="problem"><a href="#problem" class="headerlink" title="problem"></a>problem</h3><blockquote><span class="custom-blockquote-svg"><svg width="24" height="24" viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg" data-reactroot=""><path fill="" d="M22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C13.8 22 15.5 21.5 17 20.6L22 22L20.7 17C21.5 15.5 22 13.8 22 12Z" undefined="1"></path><path fill="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z" undefined="1"></path><path fill="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z" undefined="1"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M17 8.5C15.23 8.97 14.07 10.84 14.01 13.27C14 13.33 14 13.4 14 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M9 8.5C7.23 8.97 6.07 10.84 6.01 13.27C6 13.33 6 13.4 6 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z"></path></svg></span><p>Creates .d.ts files from css-modules .css&#x2F;.less&#x2F;.scss&#x2F;.sass&#x2F;.styl files.</p></blockquote><blockquote><span class="custom-blockquote-svg"><svg width="24" height="24" viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg" data-reactroot=""><path fill="" d="M22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C13.8 22 15.5 21.5 17 20.6L22 22L20.7 17C21.5 15.5 22 13.8 22 12Z" undefined="1"></path><path fill="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z" undefined="1"></path><path fill="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z" undefined="1"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M17 8.5C15.23 8.97 14.07 10.84 14.01 13.27C14 13.33 14 13.4 14 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M9 8.5C7.23 8.97 6.07 10.84 6.01 13.27C6 13.33 6 13.4 6 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z"></path></svg></span><p>Error: vscode-typed-css-modules: Cannot find global module ‘typed-css-modules’</p></blockquote><pre class="line-numbers language-none"><code class="language-none">npm install -g typed-css-modules</code></pre>]]></content>
+        <content type="html"><![CDATA[<h2 id="CSS-Module-Typed"><a href="#CSS-Module-Typed" class="headerlink" title="CSS Module Typed"></a>CSS Module Typed</h2><h2 id="address"><a href="#address" class="headerlink" title="address"></a>address</h2><p><a href="https://marketplace.visualstudio.com/items?itemName=awwit.typed-css-modules-plugin">link</a></p><h2 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h2><p>Install deps first:</p><h3 id="require"><a href="#require" class="headerlink" title="require"></a>require</h3><p><code>npm install typed-css-modules</code></p><h3 id="if-you-need-less"><a href="#if-you-need-less" class="headerlink" title="if you need less"></a>if you need less</h3><p><code>npm install less</code></p><h3 id="if-you-need-scss-x2F-sass"><a href="#if-you-need-scss-x2F-sass" class="headerlink" title="if you need scss&#x2F;sass"></a>if you need scss&#x2F;sass</h3><p><code>npm install sass</code></p><h3 id="if-you-need-stylus"><a href="#if-you-need-stylus" class="headerlink" title="if you need stylus"></a>if you need stylus</h3><p><code>npm install stylus</code></p><blockquote><span class="custom-blockquote-svg"><svg width="24" height="24" viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg" data-reactroot=""><path fill="" d="M22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C13.8 22 15.5 21.5 17 20.6L22 22L20.7 17C21.5 15.5 22 13.8 22 12Z" undefined="1"></path><path fill="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z" undefined="1"></path><path fill="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z" undefined="1"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M17 8.5C15.23 8.97 14.07 10.84 14.01 13.27C14 13.33 14 13.4 14 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M9 8.5C7.23 8.97 6.07 10.84 6.01 13.27C6 13.33 6 13.4 6 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z"></path></svg></span><p>Modules can be installed globally. yarn is supported.</p></blockquote><blockquote><span class="custom-blockquote-svg"><svg width="24" height="24" viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg" data-reactroot=""><path fill="" d="M22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C13.8 22 15.5 21.5 17 20.6L22 22L20.7 17C21.5 15.5 22 13.8 22 12Z" undefined="1"></path><path fill="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z" undefined="1"></path><path fill="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z" undefined="1"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M17 8.5C15.23 8.97 14.07 10.84 14.01 13.27C14 13.33 14 13.4 14 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M9 8.5C7.23 8.97 6.07 10.84 6.01 13.27C6 13.33 6 13.4 6 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z"></path></svg></span><p>To switch the package manager (npm or yarn), you need to change the settings npm.packageManager of the built-in module vscode.npm.</p></blockquote><h3 id="Configuring"><a href="#Configuring" class="headerlink" title="Configuring"></a>Configuring</h3><p>By default, the option to automatically format .d.ts files using eslint is enabled. You can disable this feature through the setting “typed-css-modules.eslint.enable”: false.</p><p>Usage<br>put</p><p><code>// @type</code></p><p>or</p><p><code>/* @type */</code></p><p>ahead of your .css&#x2F;.less&#x2F;.scss&#x2F;.sass&#x2F;.styl file, and save, you will get a d.ts file in same directory.</p><h3 id="preview"><a href="#preview" class="headerlink" title="preview"></a>preview</h3><p><img src="https://s2.ax1x.com/2019/01/31/k1yTT1.gif"></p><h3 id="demo"><a href="#demo" class="headerlink" title="demo"></a>demo</h3><pre class="line-numbers language-scss" data-language="scss"><code class="language-scss">&#x2F;* @type *&#x2F;.root &#123;  padding: 16px;  min-height: 100%;  .empty-wrapper &#123;    height: 380px;    display: flex;    flex-direction: column;    align-items: center;    justify-content: center;  &#125;  &gt; h3 &#123;    font-size: inherit;    margin-bottom: 4px;  &#125;  .toolbar-wrapper &#123;    position: relative;    .toolbar &#123;      position: absolute;      margin: 12px 0;      z-index: 1;      &amp;.static &#123;        position: static;      &#125;      &gt; *:not(:first-child) &#123;        margin-left: 8px;      &#125;    &#125;  &#125;  .buttons &#123;    button &#123;      margin-right: 8px;    &#125;  &#125;&#125;.use-select &#123;  width: 300px;&#125;</code></pre><pre class="line-numbers language-ts" data-language="ts"><code class="language-ts">declare const styles: &#123;  readonly root: string;  readonly &quot;empty-wrapper&quot;: string;  readonly &quot;toolbar-wrapper&quot;: string;  readonly toolbar: string;  readonly static: string;  readonly buttons: string;  readonly &quot;use-select&quot;: string;&#125;;export &#x3D; styles;</code></pre><h3 id="problem"><a href="#problem" class="headerlink" title="problem"></a>problem</h3><blockquote><span class="custom-blockquote-svg"><svg width="24" height="24" viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg" data-reactroot=""><path fill="" d="M22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C13.8 22 15.5 21.5 17 20.6L22 22L20.7 17C21.5 15.5 22 13.8 22 12Z" undefined="1"></path><path fill="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z" undefined="1"></path><path fill="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z" undefined="1"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M17 8.5C15.23 8.97 14.07 10.84 14.01 13.27C14 13.33 14 13.4 14 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M9 8.5C7.23 8.97 6.07 10.84 6.01 13.27C6 13.33 6 13.4 6 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z"></path></svg></span><p>Creates .d.ts files from css-modules .css&#x2F;.less&#x2F;.scss&#x2F;.sass&#x2F;.styl files.</p></blockquote><blockquote><span class="custom-blockquote-svg"><svg width="24" height="24" viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg" data-reactroot=""><path fill="" d="M22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C13.8 22 15.5 21.5 17 20.6L22 22L20.7 17C21.5 15.5 22 13.8 22 12Z" undefined="1"></path><path fill="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z" undefined="1"></path><path fill="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z" undefined="1"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M17 8.5C15.23 8.97 14.07 10.84 14.01 13.27C14 13.33 14 13.4 14 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M9 8.5C7.23 8.97 6.07 10.84 6.01 13.27C6 13.33 6 13.4 6 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z"></path></svg></span><p>Error: vscode-typed-css-modules: Cannot find global module ‘typed-css-modules’</p></blockquote><pre class="line-numbers language-none"><code class="language-none">npm install -g typed-css-modules</code></pre>]]></content>
       
       
       <categories>
@@ -984,7 +990,11 @@
       
         <tags>
             
+            <tag> 增效 </tag>
+            
             <tag> 工具 </tag>
+            
+            <tag> vscode </tag>
             
         </tags>
       
@@ -1022,6 +1032,8 @@
       
         <tags>
             
+            <tag> 增效 </tag>
+            
             <tag> vscode </tag>
             
             <tag> AI编程 </tag>
@@ -1058,31 +1070,6 @@
     
     
     <entry>
-      <title>Iterm2美化终端</title>
-      <link href="//post/2017-07-09item2.html"/>
-      <url>//post/2017-07-09item2.html</url>
-      
-        <content type="html"><![CDATA[<h2 id="oh-my-zsh-插件推荐"><a href="#oh-my-zsh-插件推荐" class="headerlink" title="oh-my-zsh 插件推荐 :"></a>oh-my-zsh 插件推荐 :</h2><h3 id="autojump、zsh-autosuggestion-以及-zsh-syntax-highlighting"><a href="#autojump、zsh-autosuggestion-以及-zsh-syntax-highlighting" class="headerlink" title="autojump、zsh-autosuggestion 以及 zsh-syntax-highlighting"></a>autojump、zsh-autosuggestion 以及 zsh-syntax-highlighting</h3><h3 id="推荐博客左岸博客"><a href="#推荐博客左岸博客" class="headerlink" title="推荐博客左岸博客"></a>推荐博客<a href="https://www.zrahh.com/archives/167.html">左岸博客</a></h3><h3 id="使用效果"><a href="#使用效果" class="headerlink" title="使用效果"></a>使用效果</h3><p><img src="http://t-blog-images.aijs.top/img/11460713-14c8ef376aabe04a.png"><br><img src="http://t-blog-images.aijs.top/img/11460713-ef2da0af46da7712.png"><br><img src="http://t-blog-images.aijs.top/img/11460713-e49ed15245409774.png"></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 工具 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 工具 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>批量删除目录</title>
       <link href="//post/2019-10-30shell.html"/>
       <url>//post/2019-10-30shell.html</url>
@@ -1100,6 +1087,35 @@
         <tags>
             
             <tag> Shell </tag>
+            
+            <tag> 增效 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Iterm2美化终端 及 命令提示</title>
+      <link href="//post/2017-07-09item2.html"/>
+      <url>//post/2017-07-09item2.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="oh-my-zsh-插件推荐"><a href="#oh-my-zsh-插件推荐" class="headerlink" title="oh-my-zsh 插件推荐 :"></a>oh-my-zsh 插件推荐 :</h2><h3 id="autojump、zsh-autosuggestion-以及-zsh-syntax-highlighting"><a href="#autojump、zsh-autosuggestion-以及-zsh-syntax-highlighting" class="headerlink" title="autojump、zsh-autosuggestion 以及 zsh-syntax-highlighting"></a>autojump、zsh-autosuggestion 以及 zsh-syntax-highlighting</h3><h3 id="推荐博客左岸博客"><a href="#推荐博客左岸博客" class="headerlink" title="推荐博客左岸博客"></a>推荐博客<a href="https://www.zrahh.com/archives/167.html">左岸博客</a></h3><h3 id="使用效果"><a href="#使用效果" class="headerlink" title="使用效果"></a>使用效果</h3><p><img src="http://t-blog-images.aijs.top/img/11460713-14c8ef376aabe04a.png"><br><img src="http://t-blog-images.aijs.top/img/11460713-ef2da0af46da7712.png"><br><img src="http://t-blog-images.aijs.top/img/11460713-e49ed15245409774.png"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 工具 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 增效 </tag>
+            
+            <tag> 工具 </tag>
             
         </tags>
       
@@ -1158,6 +1174,31 @@
     
     
     <entry>
+      <title>Web office预览</title>
+      <link href="//post/2021-09-07web.html"/>
+      <url>//post/2021-09-07web.html</url>
+      
+        <content type="html"><![CDATA[<p>第一步<br>将文件上传到你的服务器里，并支持url下载这个文件。<br>第二步<br>访问：<a href="http://view.officeapps.live.com/op/view.aspx?src=%E8%A6%81%E9%A2%84%E8%A7%88%E6%96%87%E4%BB%B6%E7%9A%84url%E5%9C%B0%E5%9D%80%EF%BC%88%E8%AE%B0%E5%BE%97url%E7%BC%96%E7%A0%81%E5%93%A6%EF%BC%89">http://view.officeapps.live.com/op/view.aspx?src=要预览文件的url地址（记得url编码哦）</a><br>第三步<br>可以使用iframe嵌入你的系统<br>更多<br>详情查看：<a href="https://www.microsoft.com/en-us/microsoft-365/blog/2013/04/10/office-web-viewer-view-office-documents-in-a-browser/?eu=true">https://www.microsoft.com/en-us/microsoft-365/blog/2013/04/10/office-web-viewer-view-office-documents-in-a-browser/?eu=true</a><br><img src="http://t-blog-images.aijs.top/img/11460713-93b26693cac5c2d8.png"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Web </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Web </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>node-dev</title>
       <link href="//post/2021-11-02node.html"/>
       <url>//post/2021-11-02node.html</url>
@@ -1200,31 +1241,6 @@
         <tags>
             
             <tag> Shell </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Web office预览</title>
-      <link href="//post/2021-09-07web.html"/>
-      <url>//post/2021-09-07web.html</url>
-      
-        <content type="html"><![CDATA[<p>第一步<br>将文件上传到你的服务器里，并支持url下载这个文件。<br>第二步<br>访问：<a href="http://view.officeapps.live.com/op/view.aspx?src=%E8%A6%81%E9%A2%84%E8%A7%88%E6%96%87%E4%BB%B6%E7%9A%84url%E5%9C%B0%E5%9D%80%EF%BC%88%E8%AE%B0%E5%BE%97url%E7%BC%96%E7%A0%81%E5%93%A6%EF%BC%89">http://view.officeapps.live.com/op/view.aspx?src=要预览文件的url地址（记得url编码哦）</a><br>第三步<br>可以使用iframe嵌入你的系统<br>更多<br>详情查看：<a href="https://www.microsoft.com/en-us/microsoft-365/blog/2013/04/10/office-web-viewer-view-office-documents-in-a-browser/?eu=true">https://www.microsoft.com/en-us/microsoft-365/blog/2013/04/10/office-web-viewer-view-office-documents-in-a-browser/?eu=true</a><br><img src="http://t-blog-images.aijs.top/img/11460713-93b26693cac5c2d8.png"></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Web </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Web </tag>
             
         </tags>
       
