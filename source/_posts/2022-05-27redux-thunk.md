@@ -20,18 +20,21 @@ export function addCount() {
   return {type: ADD_COUNT}
 } 
 export function addCountAsync() {
-  return dispatch => {
+  return dispatch => { // dispatch对应源码的 ： action(dispatch, getState, extraArgument);的第一个参数
     setTimeout( () => {
       dispatch(addCount())
     },2000)
   }
 }
+
 ```
 - addCountAsync函数就返回了一个函数，将dispatch作为函数的第一个参数传递进去，在函数内进行异步操作就可以了。
+
 ## package.json
 
 - 这个文件结构与redux、react-redux相比，没有什么特别之处，这里及以后如无必要不在进行阅读
 - 简单扫一眼就好
+
 ## 源码
 
 ```ts
