@@ -2,7 +2,7 @@
 title: flutter Bruno
 date: 2022-05-20 10:52:49
 categories: flutter
-tags: [flutter, mobile]
+tags: [flutter, mobile, 增效]
 cover: http://t-blog-images.aijs.top/img/20220520105610.webp
 ---
 # Bruno
