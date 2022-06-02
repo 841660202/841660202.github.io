@@ -233,7 +233,7 @@
       <link href="//post/2022-06-02vue-0.html"/>
       <url>//post/2022-06-02vue-0.html</url>
       
-        <content type="html"><![CDATA[<h2 id="vue3"><a href="#vue3" class="headerlink" title="vue3"></a>vue3</h2><ul><li>使用 proxy 重写了 vue2，并增加了组合式 api</li><li>以下思维导图以<a href="https://staging-cn.vuejs.org/">vue3 文档</a>内容为依据，在学习过程中绘制</li><li>学习过程中对比了 vue3 和 react</li></ul><h2 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h2><!-- ![](http://t-blog-images.aijs.top/img/20220602185624.webp) --><p><img src="http://t-blog-images.aijs.top/img/20220602201338.webp"></p>]]></content>
+        <content type="html"><![CDATA[<h2 id="vue3"><a href="#vue3" class="headerlink" title="vue3"></a>vue3</h2><ul><li>使用 proxy 重写了 vue2，并增加了组合式 api</li><li>以下思维导图以<a href="https://staging-cn.vuejs.org/">vue3 文档</a>内容为依据，在学习过程中绘制</li><li>学习过程中对比了 vue3 和 react</li><li>很长一段时间没看vue了，vue3一直没接触，媳妇不学。万一哪天媳妇需要用vue3了，没人带岂不是要失业，赶紧学起来～<h2 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h2></li></ul><!-- ![](http://t-blog-images.aijs.top/img/20220602185624.webp) --><!-- ![](http://t-blog-images.aijs.top/img/20220602201338.webp) --><img src="http://t-blog-images.aijs.top/img/20220602201338.webp" style="max-width:240px" /><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><ul><li>念叨着 <code>渐进式</code> <code>依赖收集</code> 去学习<a href="https://staging-cn.vuejs.org/guide/introduction.html">vue指南</a></li></ul><p><img src="http://t-blog-images.aijs.top/img/20220602201731.webp"></p>]]></content>
       
       
       <categories>
