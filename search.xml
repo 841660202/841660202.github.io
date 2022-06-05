@@ -33,7 +33,7 @@
       <link href="//post/2022-06-05https.html"/>
       <url>//post/2022-06-05https.html</url>
       
-        <content type="html"><![CDATA[<h2 id="吐槽掘金"><a href="#吐槽掘金" class="headerlink" title="吐槽掘金"></a>吐槽掘金</h2><ul><li>后台有定时器在运行，一直发送请求，打开多个 web 标签页面，cpu 直接飙升到 100% +，鉴于掘金太卡，所以转载</li></ul><h2 id="为什么要有-HTTPS"><a href="#为什么要有-HTTPS" class="headerlink" title="为什么要有 HTTPS"></a>为什么要有 HTTPS</h2><p>在 HTTPS 出现之前，所有请求都是以明文方式送出的，那么如果有人在传输途中偷听或者抓包的话，你的所有通信内容都会泄漏。<br>比较安全的方法是将通信内容加密在发送给对方。加密方法有两种，对称加密和非对称加密。</p><h2 id="对称加密"><a href="#对称加密" class="headerlink" title="对称加密"></a>对称加密</h2><ul><li>对称加密指的是加密和解密用同一个密钥。</li><li>但是在通信之前，客户端和服务端是不会有这样同一把密钥的。需要其中一方将密钥发送给对方。</li><li>在整个传输过程没有任何验证操作，所以黑客也可以截取到这把密钥从而破译出加密的内容。<br>所以纯对称加密是不安全的。</li></ul><h2 id="非对称加密"><a href="#非对称加密" class="headerlink" title="非对称加密"></a>非对称加密</h2><p>非对称加密指的是加密和解密用不同的密钥。可以是用私钥加密，公钥解密，也可以是用公钥加密，私钥解密。<br>但是会有这种情况。</p><ul><li>服务端拥有私钥和公钥，将公钥发给客户端。<br>既然客户端可以获得公钥，黑客也可以获得公钥。那么服务端发送给客户端的所有内容黑客也是可以解读的。</li><li>客户端用公钥加密发送给服务端不受影响，因为黑客手上没有服务器的私钥。<br>所以纯非对称加密也是不安全的。</li></ul><h2 id="传输密钥的过程"><a href="#传输密钥的过程" class="headerlink" title="传输密钥的过程"></a>传输密钥的过程</h2><p><img src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/5/15/17217c84d03a66a9~tplv-t2oaga2asx-zoom-in-crop-mark:1304:0:0:0.awebp"></p><h2 id="图解传输密钥的过程"><a href="#图解传输密钥的过程" class="headerlink" title="图解传输密钥的过程"></a>图解传输密钥的过程</h2><p>HTTPS 采用对称加密来加密通信内容，所用的密钥称为 A。用非对称加密来加密密钥 A 再发送给对方（有点绕）。只要密钥 A 不落入他人手中，那传输的数据就不会被别人破译。</p><p>那么问题来了，要如何安全的将这把密钥送到对方手上呢？</p><p>我们来看密钥的传输过程<br><img src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/5/15/17218630ec9be8b3~tplv-t2oaga2asx-zoom-in-crop-mark:1304:0:0:0.awebp"></p><h2 id="为什么-HTTPS-是可靠的？"><a href="#为什么-HTTPS-是可靠的？" class="headerlink" title="为什么 HTTPS 是可靠的？"></a>为什么 HTTPS 是可靠的？</h2><p>HTTPS 是可靠的，因为它解决了三个问题。</p><ol><li>加密通信，即使别人获取到了信息也没法复原成原来的信息。</li><li>防止中间人攻击。黑客没法冒充服务端。因为在第 2 步，服务端给了客户端一个 CA 证书。</li></ol><ul><li>如果客户端验证了这个证书，说明这个证书和公钥是由服务端发来的且真实可靠。</li><li>如果客户端验证不了这个证书，就说明这个证书不可靠，有可能是假的。</li></ul><ol start="3"><li>CA 证书的公信力<br>CA 证书需要由公司或者个人发出申请，再通过邮箱验证等方法验证域名存在。避免了黑客冒充网站获取证书的可能。<br>在技术层面上，CA 机构的公钥是写在操作系统或者浏览器里的。只有用 CA 机构的私钥加密的内容才能完成解密。确保了证书的确是 CA 机构发行的。</li></ol><h2 id="密钥的作用"><a href="#密钥的作用" class="headerlink" title="密钥的作用"></a>密钥的作用</h2><p>最后让我们再来回顾一下每一把密钥的作用<br><img src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/5/15/17217e2ee1709bcd~tplv-t2oaga2asx-zoom-in-crop-mark:1304:0:0:0.awebp"></p><h2 id="HTTPS一定安全吗"><a href="#HTTPS一定安全吗" class="headerlink" title="HTTPS一定安全吗"></a>HTTPS一定安全吗</h2><p>非全站HTTPS并不安全</p><p>登录页面支持HTTPS不就行了，首页又没有涉及账户信息<br>其实这是非常不安全的行为，黑客会利用这一点进行攻击，一般是以下流程：</p><p>1.用户在首页点击「登录」，页面跳转到有htps的网银页面，但此时由于首页是htp请求，所以是明文的，这就会被黑客劫持<br>2.黑客劫持用户的跳转请求，将https网银页面地址转换为http的地址再发送给银行</p><p>用户&lt;&#x3D;&#x3D;HTTP&#x3D;&#x3D;&gt;黑客&lt;&#x3D;&#x3D;HTTPS&#x3D;&#x3D;&gt;银行</p><p>1.此时如果用户输入账户信息，那么会被中间的黑客获取，此时的账号密码就被泄露了</p><p>好在是银行的网银页面,只支持htps,因此上述攻击暂时是无效的</p><p>参考资料<br><a href="https://link.juejin.cn/?target=https://www.bilibili.com/video/BV1w4411m7GL">【web 安全 3】【硬核】HTTPS 原理全解析</a></p><p>作者：站在书脊之上<br>链接：<a href="https://juejin.cn/post/6844904160089882631">https://juejin.cn/post/6844904160089882631</a><br>来源：稀土掘金<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>]]></content>
+        <content type="html"><![CDATA[<h2 id="吐槽掘金"><a href="#吐槽掘金" class="headerlink" title="吐槽掘金"></a>吐槽掘金</h2><ul><li>后台有定时器在运行，一直发送请求，打开多个 web 标签页面，cpu 直接飙升到 100% +，鉴于掘金太卡，所以转载</li></ul><h2 id="为什么要有-HTTPS"><a href="#为什么要有-HTTPS" class="headerlink" title="为什么要有 HTTPS"></a>为什么要有 HTTPS</h2><p>在 HTTPS 出现之前，所有请求都是以明文方式送出的，那么如果有人在传输途中偷听或者抓包的话，你的所有通信内容都会泄漏。<br>比较安全的方法是将通信内容加密在发送给对方。加密方法有两种，对称加密和非对称加密。</p><h2 id="对称加密"><a href="#对称加密" class="headerlink" title="对称加密"></a>对称加密</h2><ul><li>对称加密指的是加密和解密用同一个密钥。</li><li>但是在通信之前，客户端和服务端是不会有这样同一把密钥的。需要其中一方将密钥发送给对方。</li><li>在整个传输过程没有任何验证操作，所以黑客也可以截取到这把密钥从而破译出加密的内容。<br>所以纯对称加密是不安全的。</li></ul><h2 id="非对称加密"><a href="#非对称加密" class="headerlink" title="非对称加密"></a>非对称加密</h2><p>非对称加密指的是加密和解密用不同的密钥。可以是用私钥加密，公钥解密，也可以是用公钥加密，私钥解密。<br>但是会有这种情况。</p><ul><li>服务端拥有私钥和公钥，将公钥发给客户端。<br>既然客户端可以获得公钥，黑客也可以获得公钥。那么服务端发送给客户端的所有内容黑客也是可以解读的。</li><li>客户端用公钥加密发送给服务端不受影响，因为黑客手上没有服务器的私钥。<br>所以纯非对称加密也是不安全的。</li></ul><h2 id="传输密钥的过程"><a href="#传输密钥的过程" class="headerlink" title="传输密钥的过程"></a>传输密钥的过程</h2><p><img src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/5/15/17217c84d03a66a9~tplv-t2oaga2asx-zoom-in-crop-mark:1304:0:0:0.awebp"></p><h2 id="图解传输密钥的过程"><a href="#图解传输密钥的过程" class="headerlink" title="图解传输密钥的过程"></a>图解传输密钥的过程</h2><p>HTTPS 采用对称加密来加密通信内容，所用的密钥称为 A。用非对称加密来加密密钥 A 再发送给对方（有点绕）。只要密钥 A 不落入他人手中，那传输的数据就不会被别人破译。</p><p>那么问题来了，要如何安全的将这把密钥送到对方手上呢？</p><p>我们来看密钥的传输过程<br><img src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/5/15/17218630ec9be8b3~tplv-t2oaga2asx-zoom-in-crop-mark:1304:0:0:0.awebp"></p><h2 id="为什么-HTTPS-是可靠的？"><a href="#为什么-HTTPS-是可靠的？" class="headerlink" title="为什么 HTTPS 是可靠的？"></a>为什么 HTTPS 是可靠的？</h2><p>HTTPS 是可靠的，因为它解决了三个问题。</p><ol><li>加密通信，即使别人获取到了信息也没法复原成原来的信息。</li><li>防止中间人攻击。黑客没法冒充服务端。因为在第 2 步，服务端给了客户端一个 CA 证书。</li></ol><ul><li>如果客户端验证了这个证书，说明这个证书和公钥是由服务端发来的且真实可靠。</li><li>如果客户端验证不了这个证书，就说明这个证书不可靠，有可能是假的。</li></ul><ol start="3"><li>CA 证书的公信力<br>CA 证书需要由公司或者个人发出申请，再通过邮箱验证等方法验证域名存在。避免了黑客冒充网站获取证书的可能。<br>在技术层面上，CA 机构的公钥是写在操作系统或者浏览器里的。只有用 CA 机构的私钥加密的内容才能完成解密。确保了证书的确是 CA 机构发行的。</li></ol><h2 id="密钥的作用"><a href="#密钥的作用" class="headerlink" title="密钥的作用"></a>密钥的作用</h2><p>最后让我们再来回顾一下每一把密钥的作用<br><img src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/5/15/17217e2ee1709bcd~tplv-t2oaga2asx-zoom-in-crop-mark:1304:0:0:0.awebp"></p><h2 id="HTTPS一定安全吗"><a href="#HTTPS一定安全吗" class="headerlink" title="HTTPS一定安全吗"></a>HTTPS一定安全吗</h2><p>非全站HTTPS并不安全</p><p>登录页面支持HTTPS不就行了，首页又没有涉及账户信息<br>其实这是非常不安全的行为，黑客会利用这一点进行攻击，一般是以下流程：</p><p>1.用户在首页点击「登录」，页面跳转到有htps的网银页面，但此时由于首页是htp请求，所以是明文的，这就会被黑客劫持<br>2.黑客劫持用户的跳转请求，将https网银页面地址转换为http的地址再发送给银行</p><p>用户&lt;&#x3D;&#x3D;HTTP&#x3D;&#x3D;&gt;黑客&lt;&#x3D;&#x3D;HTTPS&#x3D;&#x3D;&gt;银行</p><p>1.此时如果用户输入账户信息，那么会被中间的黑客获取，此时的账号密码就被泄露了</p><p>好在是银行的网银页面,只支持htps,因此上述攻击暂时是无效的</p><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://link.juejin.cn/?target=https://www.bilibili.com/video/BV1w4411m7GL">【web 安全 3】【硬核】HTTPS 原理全解析</a></p><p>作者：站在书脊之上<br>链接：<a href="https://juejin.cn/post/6844904160089882631">https://juejin.cn/post/6844904160089882631</a><br>来源：稀土掘金<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>]]></content>
       
       
       <categories>
@@ -1401,6 +1401,31 @@
     
     
     <entry>
+      <title>Git public key</title>
+      <link href="//post/2016-06-20git.html"/>
+      <url>//post/2016-06-20git.html</url>
+      
+        <content type="html"><![CDATA[<pre class="line-numbers language-none"><code class="language-none">[root@izbp1hun1qsl59e2nzqyvcz ~]# git config --global user.name &quot;hailong.chen&quot;[root@izbp1hun1qsl59e2nzqyvcz ~]# git config --global user.email &quot;841660202@qq.com&quot;</code></pre><blockquote><span class="custom-blockquote-svg"><svg width="24" height="24" viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg" data-reactroot=""><path fill="" d="M22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C13.8 22 15.5 21.5 17 20.6L22 22L20.7 17C21.5 15.5 22 13.8 22 12Z" undefined="1"></path><path fill="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z" undefined="1"></path><path fill="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z" undefined="1"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M17 8.5C15.23 8.97 14.07 10.84 14.01 13.27C14 13.33 14 13.4 14 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M9 8.5C7.23 8.97 6.07 10.84 6.01 13.27C6 13.33 6 13.4 6 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z"></path></svg></span><p>SSH<br>SSH keys<br>SSH key 可以让你在你的电脑和Code服务器之间建立安全的加密连接。 先执行以下语句来判断是否已经存在本地公钥：<br><code>cat ~/.ssh/id_rsa.pub</code><br>如果你看到一长串以 ssh-rsa或 ssh-dsa开头的字符串, 你可以跳过 ssh-keygen的步骤。<br>提示: 最好的情况是一个密码对应一个ssh key，但是那不是必须的。你完全可以跳过创建密码这个步骤。请记住设置的密码并不能被修改或获取。<br>你可以按如下命令来生成ssh key<br><code>ssh-keygen -t rsa -C &quot;841660202@qq.com&quot;</code><br>这个指令会要求你提供一个位置和文件名去存放键值对和密码，你可以点击Enter键去使用默认值。<br>用以下命令获取你生成的公钥：<br><code>cat ~/.ssh/id_rsa.pub</code><br>复制这个公钥放到你的个人设置中的SSH&#x2F;My SSH Keys下，请完整拷贝从ssh-开始直到你的用户名和主机名为止的内容。<br>如果打算拷贝你的公钥到你的粘贴板下，请参考你的操作系统使用以下的命令：<br>Windows:<br><code>clip &lt; ~/.ssh/id_rsa.pub</code><br>Mac:<br><code>pbcopy &lt; ~/.ssh/id_rsa.pub</code><br>GNU&#x2F;Linux (requires xclip):<br><code>xclip -sel clip &lt; ~/.ssh/id_rsa.pub</code><br>Applications<br>Eclipse<br>如何在Eclipse中添加ssh key: <a href="https://wiki.eclipse.org/EGit/User_Guide#Eclipse_SSH_Configuration">https://wiki.eclipse.org/EGit/User_Guide#Eclipse_SSH_Configuration</a><br>Tip: Non-default OpenSSH key file names or locations<br>如果，不管你有什么理由，当你决定去用一个非默认的位置或文件名去存放你的ssh key。你必须配置好你的ssh客户端以找到你的ssh私钥去连接Code服务器，对于OpenSSH客户端，这个通常是在~&#x2F;.ssh&#x2F;config类似的位置配置的：<br>Host my-git.company.com<br>RSAAuthentication yes<br>IdentityFile ~&#x2F;my-ssh-key-directory&#x2F;company-com-private-key-filename</p></blockquote><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">Last login: Sun Apr 17 16:06:15 on consoleN&#x2F;A: version &quot;N&#x2F;A -&gt; N&#x2F;A&quot; is not yet installed.You need to run &quot;nvm install N&#x2F;A&quot; to install it before using it.N&#x2F;A: version &quot;N&#x2F;A -&gt; N&#x2F;A&quot; is not yet installed.You need to run &quot;nvm install N&#x2F;A&quot; to install it before using it.The default interactive shell is now zsh.To update your account to use zsh, please run &#96;chsh -s &#x2F;bin&#x2F;zsh&#96;.For more details, please visit https:&#x2F;&#x2F;support.apple.com&#x2F;kb&#x2F;HT208050.chenhailong@chenhailongdeMacBook-Pro:~$ &#x2F;Users&#x2F;chenhailong&#x2F;Desktop -bash: &#x2F;Users&#x2F;chenhailong&#x2F;Desktop: is a directorychenhailong@chenhailongdeMacBook-Pro:~$ cd &#x2F;Users&#x2F;chenhailong&#x2F;Desktop chenhailong@chenhailongdeMacBook-Pro:~&#x2F;Desktop$ git clone git@github.com:841660202&#x2F;841660202.github.io.gitCloning into &#39;841660202.github.io&#39;...The authenticity of host &#39;github.com (20.205.243.166)&#39; can&#39;t be established.ED25519 key fingerprint is SHA256:+DiY3wvvV6TuJJhbpZisF&#x2F;zLDA0zPMSvHdkr4UvCOqU.This key is not known by any other namesAre you sure you want to continue connecting (yes&#x2F;no&#x2F;[fingerprint])? yesWarning: Permanently added &#39;github.com&#39; (ED25519) to the list of known hosts.git@github.com: Permission denied (publickey).fatal: Could not read from remote repository.Please make sure you have the correct access rightsand the repository exists.chenhailong@chenhailongdeMacBook-Pro:~&#x2F;Desktop$ git clone git@github.com:841660202&#x2F;841660202.github.io.gitCloning into &#39;841660202.github.io&#39;...git@github.com: Permission denied (publickey).fatal: Could not read from remote repository.Please make sure you have the correct access rightsand the repository exists.chenhailong@chenhailongdeMacBook-Pro:~&#x2F;Desktop$ pbcopy &lt; ~&#x2F;.ssh&#x2F;id_rsa.pub-bash: &#x2F;Users&#x2F;chenhailong&#x2F;.ssh&#x2F;id_rsa.pub: No such file or directorychenhailong@chenhailongdeMacBook-Pro:~&#x2F;Desktop$ cat ~&#x2F;.ssh&#x2F;id_rsa.pubcat: &#x2F;Users&#x2F;chenhailong&#x2F;.ssh&#x2F;id_rsa.pub: No such file or directorychenhailong@chenhailongdeMacBook-Pro:~&#x2F;Desktop$ git config --global user.name &quot;hailong.chen&quot;chenhailong@chenhailongdeMacBook-Pro:~&#x2F;Desktop$ chenhailong@chenhailongdeMacBook-Pro:~&#x2F;Desktop$ git config --global user.email &quot;841660202@qq.com&quot;chenhailong@chenhailongdeMacBook-Pro:~&#x2F;Desktop$ cat ~&#x2F;.ssh&#x2F;id_rsa.pubcat: &#x2F;Users&#x2F;chenhailong&#x2F;.ssh&#x2F;id_rsa.pub: No such file or directorychenhailong@chenhailongdeMacBook-Pro:~&#x2F;Desktop$ ssh-keygen -t rsa -C &quot;841660202@qq.com&quot;Generating public&#x2F;private rsa key pair.Enter file in which to save the key (&#x2F;Users&#x2F;chenhailong&#x2F;.ssh&#x2F;id_rsa): Enter passphrase (empty for no passphrase): Enter same passphrase again: Your identification has been saved in &#x2F;Users&#x2F;chenhailong&#x2F;.ssh&#x2F;id_rsaYour public key has been saved in &#x2F;Users&#x2F;chenhailong&#x2F;.ssh&#x2F;id_rsa.pubThe key fingerprint is:SHA256:bdtIDeRXGKxGTEa&#x2F;Ex3QdPtVoOUiwuiq7YKjKrLakbU 841660202@qq.comThe key&#39;s randomart image is:+---[RSA 3072]----+|         +&#x3D;.o**.o||       o +o.o*.oo||      . o.+.* o..||     .   oo&#x3D; +  o||    . . S.+ +   .||   o o   o + .   || .o E     o .    ||&#x3D;..+             ||@oooo            |+----[SHA256]-----+chenhailong@chenhailongdeMacBook-Pro:~&#x2F;Desktop$ pbcopy &lt; ~&#x2F;.ssh&#x2F;id_rsa.pubchenhailong@chenhailongdeMacBook-Pro:~&#x2F;Desktop$ git clone git@github.com:841660202&#x2F;841660202.github.io.gitCloning into &#39;841660202.github.io&#39;...remote: Enumerating objects: 441, done.remote: Counting objects: 100% (441&#x2F;441), done.remote: Compressing objects: 100% (216&#x2F;216), done.remote: Total 441 (delta 208), reused 401 (delta 168), pack-reused 0Receiving objects: 100% (441&#x2F;441), 1.34 MiB | 1.05 MiB&#x2F;s, done.Resolving deltas: 100% (208&#x2F;208), done.chenhailong@chenhailongdeMacBook-Pro:~&#x2F;Desktop$ </code></pre><h2 id="设置github-SSH-keys"><a href="#设置github-SSH-keys" class="headerlink" title="设置github SSH keys"></a>设置github SSH keys</h2><p><a href="https://github.com/settings/keys">https://github.com/settings/keys</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> git </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> git </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>MAC Iterm2美化终端</title>
       <link href="//post/2017-07-09item2.html"/>
       <url>//post/2017-07-09item2.html</url>
@@ -1447,31 +1472,6 @@
             <tag> 增效 </tag>
             
             <tag> Shell </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Git public key</title>
-      <link href="//post/2016-06-20git.html"/>
-      <url>//post/2016-06-20git.html</url>
-      
-        <content type="html"><![CDATA[<pre class="line-numbers language-none"><code class="language-none">[root@izbp1hun1qsl59e2nzqyvcz ~]# git config --global user.name &quot;hailong.chen&quot;[root@izbp1hun1qsl59e2nzqyvcz ~]# git config --global user.email &quot;841660202@qq.com&quot;</code></pre><blockquote><span class="custom-blockquote-svg"><svg width="24" height="24" viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg" data-reactroot=""><path fill="" d="M22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C13.8 22 15.5 21.5 17 20.6L22 22L20.7 17C21.5 15.5 22 13.8 22 12Z" undefined="1"></path><path fill="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z" undefined="1"></path><path fill="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z" undefined="1"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M17 8.5C15.23 8.97 14.07 10.84 14.01 13.27C14 13.33 14 13.4 14 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M9 8.5C7.23 8.97 6.07 10.84 6.01 13.27C6 13.33 6 13.4 6 13.47V13.5"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z"></path></svg></span><p>SSH<br>SSH keys<br>SSH key 可以让你在你的电脑和Code服务器之间建立安全的加密连接。 先执行以下语句来判断是否已经存在本地公钥：<br><code>cat ~/.ssh/id_rsa.pub</code><br>如果你看到一长串以 ssh-rsa或 ssh-dsa开头的字符串, 你可以跳过 ssh-keygen的步骤。<br>提示: 最好的情况是一个密码对应一个ssh key，但是那不是必须的。你完全可以跳过创建密码这个步骤。请记住设置的密码并不能被修改或获取。<br>你可以按如下命令来生成ssh key<br><code>ssh-keygen -t rsa -C &quot;841660202@qq.com&quot;</code><br>这个指令会要求你提供一个位置和文件名去存放键值对和密码，你可以点击Enter键去使用默认值。<br>用以下命令获取你生成的公钥：<br><code>cat ~/.ssh/id_rsa.pub</code><br>复制这个公钥放到你的个人设置中的SSH&#x2F;My SSH Keys下，请完整拷贝从ssh-开始直到你的用户名和主机名为止的内容。<br>如果打算拷贝你的公钥到你的粘贴板下，请参考你的操作系统使用以下的命令：<br>Windows:<br><code>clip &lt; ~/.ssh/id_rsa.pub</code><br>Mac:<br><code>pbcopy &lt; ~/.ssh/id_rsa.pub</code><br>GNU&#x2F;Linux (requires xclip):<br><code>xclip -sel clip &lt; ~/.ssh/id_rsa.pub</code><br>Applications<br>Eclipse<br>如何在Eclipse中添加ssh key: <a href="https://wiki.eclipse.org/EGit/User_Guide#Eclipse_SSH_Configuration">https://wiki.eclipse.org/EGit/User_Guide#Eclipse_SSH_Configuration</a><br>Tip: Non-default OpenSSH key file names or locations<br>如果，不管你有什么理由，当你决定去用一个非默认的位置或文件名去存放你的ssh key。你必须配置好你的ssh客户端以找到你的ssh私钥去连接Code服务器，对于OpenSSH客户端，这个通常是在~&#x2F;.ssh&#x2F;config类似的位置配置的：<br>Host my-git.company.com<br>RSAAuthentication yes<br>IdentityFile ~&#x2F;my-ssh-key-directory&#x2F;company-com-private-key-filename</p></blockquote><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">Last login: Sun Apr 17 16:06:15 on consoleN&#x2F;A: version &quot;N&#x2F;A -&gt; N&#x2F;A&quot; is not yet installed.You need to run &quot;nvm install N&#x2F;A&quot; to install it before using it.N&#x2F;A: version &quot;N&#x2F;A -&gt; N&#x2F;A&quot; is not yet installed.You need to run &quot;nvm install N&#x2F;A&quot; to install it before using it.The default interactive shell is now zsh.To update your account to use zsh, please run &#96;chsh -s &#x2F;bin&#x2F;zsh&#96;.For more details, please visit https:&#x2F;&#x2F;support.apple.com&#x2F;kb&#x2F;HT208050.chenhailong@chenhailongdeMacBook-Pro:~$ &#x2F;Users&#x2F;chenhailong&#x2F;Desktop -bash: &#x2F;Users&#x2F;chenhailong&#x2F;Desktop: is a directorychenhailong@chenhailongdeMacBook-Pro:~$ cd &#x2F;Users&#x2F;chenhailong&#x2F;Desktop chenhailong@chenhailongdeMacBook-Pro:~&#x2F;Desktop$ git clone git@github.com:841660202&#x2F;841660202.github.io.gitCloning into &#39;841660202.github.io&#39;...The authenticity of host &#39;github.com (20.205.243.166)&#39; can&#39;t be established.ED25519 key fingerprint is SHA256:+DiY3wvvV6TuJJhbpZisF&#x2F;zLDA0zPMSvHdkr4UvCOqU.This key is not known by any other namesAre you sure you want to continue connecting (yes&#x2F;no&#x2F;[fingerprint])? yesWarning: Permanently added &#39;github.com&#39; (ED25519) to the list of known hosts.git@github.com: Permission denied (publickey).fatal: Could not read from remote repository.Please make sure you have the correct access rightsand the repository exists.chenhailong@chenhailongdeMacBook-Pro:~&#x2F;Desktop$ git clone git@github.com:841660202&#x2F;841660202.github.io.gitCloning into &#39;841660202.github.io&#39;...git@github.com: Permission denied (publickey).fatal: Could not read from remote repository.Please make sure you have the correct access rightsand the repository exists.chenhailong@chenhailongdeMacBook-Pro:~&#x2F;Desktop$ pbcopy &lt; ~&#x2F;.ssh&#x2F;id_rsa.pub-bash: &#x2F;Users&#x2F;chenhailong&#x2F;.ssh&#x2F;id_rsa.pub: No such file or directorychenhailong@chenhailongdeMacBook-Pro:~&#x2F;Desktop$ cat ~&#x2F;.ssh&#x2F;id_rsa.pubcat: &#x2F;Users&#x2F;chenhailong&#x2F;.ssh&#x2F;id_rsa.pub: No such file or directorychenhailong@chenhailongdeMacBook-Pro:~&#x2F;Desktop$ git config --global user.name &quot;hailong.chen&quot;chenhailong@chenhailongdeMacBook-Pro:~&#x2F;Desktop$ chenhailong@chenhailongdeMacBook-Pro:~&#x2F;Desktop$ git config --global user.email &quot;841660202@qq.com&quot;chenhailong@chenhailongdeMacBook-Pro:~&#x2F;Desktop$ cat ~&#x2F;.ssh&#x2F;id_rsa.pubcat: &#x2F;Users&#x2F;chenhailong&#x2F;.ssh&#x2F;id_rsa.pub: No such file or directorychenhailong@chenhailongdeMacBook-Pro:~&#x2F;Desktop$ ssh-keygen -t rsa -C &quot;841660202@qq.com&quot;Generating public&#x2F;private rsa key pair.Enter file in which to save the key (&#x2F;Users&#x2F;chenhailong&#x2F;.ssh&#x2F;id_rsa): Enter passphrase (empty for no passphrase): Enter same passphrase again: Your identification has been saved in &#x2F;Users&#x2F;chenhailong&#x2F;.ssh&#x2F;id_rsaYour public key has been saved in &#x2F;Users&#x2F;chenhailong&#x2F;.ssh&#x2F;id_rsa.pubThe key fingerprint is:SHA256:bdtIDeRXGKxGTEa&#x2F;Ex3QdPtVoOUiwuiq7YKjKrLakbU 841660202@qq.comThe key&#39;s randomart image is:+---[RSA 3072]----+|         +&#x3D;.o**.o||       o +o.o*.oo||      . o.+.* o..||     .   oo&#x3D; +  o||    . . S.+ +   .||   o o   o + .   || .o E     o .    ||&#x3D;..+             ||@oooo            |+----[SHA256]-----+chenhailong@chenhailongdeMacBook-Pro:~&#x2F;Desktop$ pbcopy &lt; ~&#x2F;.ssh&#x2F;id_rsa.pubchenhailong@chenhailongdeMacBook-Pro:~&#x2F;Desktop$ git clone git@github.com:841660202&#x2F;841660202.github.io.gitCloning into &#39;841660202.github.io&#39;...remote: Enumerating objects: 441, done.remote: Counting objects: 100% (441&#x2F;441), done.remote: Compressing objects: 100% (216&#x2F;216), done.remote: Total 441 (delta 208), reused 401 (delta 168), pack-reused 0Receiving objects: 100% (441&#x2F;441), 1.34 MiB | 1.05 MiB&#x2F;s, done.Resolving deltas: 100% (208&#x2F;208), done.chenhailong@chenhailongdeMacBook-Pro:~&#x2F;Desktop$ </code></pre><h2 id="设置github-SSH-keys"><a href="#设置github-SSH-keys" class="headerlink" title="设置github SSH keys"></a>设置github SSH keys</h2><p><a href="https://github.com/settings/keys">https://github.com/settings/keys</a></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> git </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> git </tag>
             
         </tags>
       
@@ -1530,6 +1530,31 @@
     
     
     <entry>
+      <title>Web office预览</title>
+      <link href="//post/2021-09-07web.html"/>
+      <url>//post/2021-09-07web.html</url>
+      
+        <content type="html"><![CDATA[<p>第一步<br>将文件上传到你的服务器里，并支持url下载这个文件。<br>第二步<br>访问：<a href="http://view.officeapps.live.com/op/view.aspx?src=%E8%A6%81%E9%A2%84%E8%A7%88%E6%96%87%E4%BB%B6%E7%9A%84url%E5%9C%B0%E5%9D%80%EF%BC%88%E8%AE%B0%E5%BE%97url%E7%BC%96%E7%A0%81%E5%93%A6%EF%BC%89">http://view.officeapps.live.com/op/view.aspx?src=要预览文件的url地址（记得url编码哦）</a><br>第三步<br>可以使用iframe嵌入你的系统<br>更多<br>详情查看：<a href="https://www.microsoft.com/en-us/microsoft-365/blog/2013/04/10/office-web-viewer-view-office-documents-in-a-browser/?eu=true">https://www.microsoft.com/en-us/microsoft-365/blog/2013/04/10/office-web-viewer-view-office-documents-in-a-browser/?eu=true</a><br><img src="http://t-blog-images.aijs.top/img/11460713-93b26693cac5c2d8.png"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Web </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Web </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>node-dev</title>
       <link href="//post/2021-11-02node.html"/>
       <url>//post/2021-11-02node.html</url>
@@ -1572,31 +1597,6 @@
         <tags>
             
             <tag> Shell </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Web office预览</title>
-      <link href="//post/2021-09-07web.html"/>
-      <url>//post/2021-09-07web.html</url>
-      
-        <content type="html"><![CDATA[<p>第一步<br>将文件上传到你的服务器里，并支持url下载这个文件。<br>第二步<br>访问：<a href="http://view.officeapps.live.com/op/view.aspx?src=%E8%A6%81%E9%A2%84%E8%A7%88%E6%96%87%E4%BB%B6%E7%9A%84url%E5%9C%B0%E5%9D%80%EF%BC%88%E8%AE%B0%E5%BE%97url%E7%BC%96%E7%A0%81%E5%93%A6%EF%BC%89">http://view.officeapps.live.com/op/view.aspx?src=要预览文件的url地址（记得url编码哦）</a><br>第三步<br>可以使用iframe嵌入你的系统<br>更多<br>详情查看：<a href="https://www.microsoft.com/en-us/microsoft-365/blog/2013/04/10/office-web-viewer-view-office-documents-in-a-browser/?eu=true">https://www.microsoft.com/en-us/microsoft-365/blog/2013/04/10/office-web-viewer-view-office-documents-in-a-browser/?eu=true</a><br><img src="http://t-blog-images.aijs.top/img/11460713-93b26693cac5c2d8.png"></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Web </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Web </tag>
             
         </tags>
       
