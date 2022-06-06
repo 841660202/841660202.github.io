@@ -14,8 +14,10 @@ date: 2022-12-12 59:59:59
 // 5. iconfont自定义图标 https://www.zoo.team/article/decorator
 // 6. 函数式编程 https://www.zoo.team/article/function-production
 // 7. 换肤 https://www.zoo.team/article/theme-scss
-// 8. vscode setting sync 另一台电脑配置无法同步到本电脑
-// 9. item2本机重新配置【完】
-// 10. webwork使用
+// 8.[x] vscode setting sync 另一台电脑配置无法同步到本电脑
+// 9.[x]item2本机重新配置
+// 10.[x]莫名其妙的，代码片段在md上失效了
+// 11. typescript 工具类型源码
+// 12. react源码
 
 ```
