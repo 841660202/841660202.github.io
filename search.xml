@@ -8,7 +8,7 @@
       <link href="//post/todo.html"/>
       <url>//post/todo.html</url>
       
-        <content type="html"><![CDATA[<pre class="line-numbers language-js" data-language="js"><code class="language-js">&#x2F;&#x2F; 1. headless-recorder&#x2F;&#x2F; 2. lightHouse https:&#x2F;&#x2F;blog.csdn.net&#x2F;tangdou369098655&#x2F;article&#x2F;details&#x2F;122531766&#x2F;&#x2F; 3. 博客封面生成&#x2F;&#x2F; 4. 装饰器模式 https:&#x2F;&#x2F;www.zoo.team&#x2F;article&#x2F;decorator&#x2F;&#x2F; 5. iconfont自定义图标 https:&#x2F;&#x2F;www.zoo.team&#x2F;article&#x2F;decorator&#x2F;&#x2F; 6. 函数式编程 https:&#x2F;&#x2F;www.zoo.team&#x2F;article&#x2F;function-production&#x2F;&#x2F; 7. 换肤 https:&#x2F;&#x2F;www.zoo.team&#x2F;article&#x2F;theme-scss&#x2F;&#x2F; 8.[x] vscode setting sync 另一台电脑配置无法同步到本电脑&#x2F;&#x2F; 9.[x]item2本机重新配置&#x2F;&#x2F; 10. 莫名其妙的，代码片段在md上失效了</code></pre>]]></content>
+        <content type="html"><![CDATA[<pre class="line-numbers language-js" data-language="js"><code class="language-js">&#x2F;&#x2F; 1. headless-recorder&#x2F;&#x2F; 2. lightHouse https:&#x2F;&#x2F;blog.csdn.net&#x2F;tangdou369098655&#x2F;article&#x2F;details&#x2F;122531766&#x2F;&#x2F; 3. 博客封面生成&#x2F;&#x2F; 4. 装饰器模式 https:&#x2F;&#x2F;www.zoo.team&#x2F;article&#x2F;decorator&#x2F;&#x2F; 5. iconfont自定义图标 https:&#x2F;&#x2F;www.zoo.team&#x2F;article&#x2F;decorator&#x2F;&#x2F; 6. 函数式编程 https:&#x2F;&#x2F;www.zoo.team&#x2F;article&#x2F;function-production&#x2F;&#x2F; 7. 换肤 https:&#x2F;&#x2F;www.zoo.team&#x2F;article&#x2F;theme-scss&#x2F;&#x2F; 8.[x] vscode setting sync 另一台电脑配置无法同步到本电脑&#x2F;&#x2F; 9.[x]item2本机重新配置&#x2F;&#x2F; 10.[x]莫名其妙的，代码片段在md上失效了</code></pre>]]></content>
       
       
       <categories>
@@ -368,9 +368,9 @@
       
         <tags>
             
-            <tag> 工具 </tag>
-            
             <tag> 增效 </tag>
+            
+            <tag> 工具 </tag>
             
             <tag> vscode </tag>
             
@@ -1055,11 +1055,11 @@
     
     
     <entry>
-      <title>Lerna调试开源库遇到的问题</title>
-      <link href="//post/2022-05-05lerna.html"/>
-      <url>//post/2022-05-05lerna.html</url>
+      <title>MAC存储空间不足问题</title>
+      <link href="//post/2022-05-05mac.html"/>
+      <url>//post/2022-05-05mac.html</url>
       
-        <content type="html"><![CDATA[<pre class="line-numbers language-none"><code class="language-none">yarn install --mutex network:42424 --non-interactive👑 ~&#x2F;Desktop&#x2F;slate git:(main) $ lerna --version4.0.0👑 ~&#x2F;Desktop&#x2F;slate git:(main) $ yarn global add lerna@3.19.0    Usage Error: The &#39;yarn global&#39; commands have been removed in 2.x - consider using &#39;yarn dlx&#39; or a third-party plugin instead$ yarn run [--inspect] [--inspect-brk] &lt;scriptName&gt; ...👑 ~&#x2F;Desktop&#x2F;slate git:(main) $ yarn --version              3.0.1</code></pre>]]></content>
+        <content type="html"><![CDATA[<p><img src="http://t-blog-images.aijs.top/img/20220505165350.webp"></p>]]></content>
       
       
       <categories>
@@ -1080,11 +1080,11 @@
     
     
     <entry>
-      <title>MAC存储空间不足问题</title>
-      <link href="//post/2022-05-05mac.html"/>
-      <url>//post/2022-05-05mac.html</url>
+      <title>Lerna调试开源库遇到的问题</title>
+      <link href="//post/2022-05-05lerna.html"/>
+      <url>//post/2022-05-05lerna.html</url>
       
-        <content type="html"><![CDATA[<p><img src="http://t-blog-images.aijs.top/img/20220505165350.webp"></p>]]></content>
+        <content type="html"><![CDATA[<pre class="line-numbers language-none"><code class="language-none">yarn install --mutex network:42424 --non-interactive👑 ~&#x2F;Desktop&#x2F;slate git:(main) $ lerna --version4.0.0👑 ~&#x2F;Desktop&#x2F;slate git:(main) $ yarn global add lerna@3.19.0    Usage Error: The &#39;yarn global&#39; commands have been removed in 2.x - consider using &#39;yarn dlx&#39; or a third-party plugin instead$ yarn run [--inspect] [--inspect-brk] &lt;scriptName&gt; ...👑 ~&#x2F;Desktop&#x2F;slate git:(main) $ yarn --version              3.0.1</code></pre>]]></content>
       
       
       <categories>
@@ -1346,9 +1346,9 @@
       
         <tags>
             
-            <tag> 工具 </tag>
-            
             <tag> 增效 </tag>
+            
+            <tag> 工具 </tag>
             
             <tag> vscode </tag>
             
@@ -1426,33 +1426,6 @@
     
     
     <entry>
-      <title>MAC Iterm2美化终端</title>
-      <link href="//post/2017-07-09item2.html"/>
-      <url>//post/2017-07-09item2.html</url>
-      
-        <content type="html"><![CDATA[<h2 id="MAC-环境"><a href="#MAC-环境" class="headerlink" title="MAC 环境"></a>MAC 环境</h2><p><strong>注意：以下内容仅限MAC,其他环境，请自行谷歌</strong></p><h2 id="oh-my-zsh-插件推荐"><a href="#oh-my-zsh-插件推荐" class="headerlink" title="oh-my-zsh 插件推荐 :"></a>oh-my-zsh 插件推荐 :</h2><ul><li>autojump 这个没用起来，使用没什么效果🥹</li><li>zsh-autosuggestion 命令行输入有提示，（命令下载失败，手动下载，拷贝到 <code>~/.oh-my-zsh/custom/plugins/zsh-autosuggestions</code>）</li><li>zsh-syntax-highlighting</li></ul><h2 id="安装zsh"><a href="#安装zsh" class="headerlink" title="安装zsh"></a>安装zsh</h2><p><strong>1.使用 brew 安装</strong></p><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">brew install oh-my-zsh</code></pre><p><strong>2. 手动安装</strong></p><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">git clone git:&#x2F;&#x2F;github.com&#x2F;robbyrussell&#x2F;oh-my-zsh.git ~&#x2F;.oh-my-zshcp ~&#x2F;.oh-my-zsh&#x2F;templates&#x2F;zshrc.zsh-template ~&#x2F;.zshrc</code></pre><h2 id="安装-autojump"><a href="#安装-autojump" class="headerlink" title="安装 autojump"></a>安装 autojump</h2><p><strong>1.安装</strong></p><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">brew install autojump</code></pre><p><strong>2.配置</strong><br><code>code ~/.zshrc</code>，把以下代码加到尾部</p><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># 使用brew安装的[[ -s $(brew --prefix)&#x2F;etc&#x2F;profile.d&#x2F;autojump.sh ]] &amp;&amp; . $(brew --prefix)&#x2F;etc&#x2F;profile.d&#x2F;autojump.shsource $ZSH&#x2F;oh-my-zsh.sh# 使用git安装的[[ -s ~&#x2F;.autojump&#x2F;etc&#x2F;profile.d&#x2F;autojump.sh ]] &amp;&amp; . ~&#x2F;.autojump&#x2F;etc&#x2F;profile.d&#x2F;autojump.sh</code></pre><p><strong>3.刷新配置</strong></p><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">source ~&#x2F;.zshrc</code></pre><h2 id="安装-zsh-autosuggestion"><a href="#安装-zsh-autosuggestion" class="headerlink" title="安装 zsh-autosuggestion"></a>安装 zsh-autosuggestion</h2><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">git clone git:&#x2F;&#x2F;github.com&#x2F;zsh-users&#x2F;zsh-autosuggestions $ZSH_CUSTOM&#x2F;plugins&#x2F;zsh-autosuggestions</code></pre><h2 id="安装-zsh-syntax-highlighting"><a href="#安装-zsh-syntax-highlighting" class="headerlink" title="安装 zsh-syntax-highlighting"></a>安装 zsh-syntax-highlighting</h2><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">git clone https:&#x2F;&#x2F;github.com&#x2F;zsh-users&#x2F;zsh-syntax-highlighting.git $&#123;ZSH_CUSTOM:-~&#x2F;.oh-my-zsh&#x2F;custom&#125;&#x2F;plugins&#x2F;zsh-syntax-highlighting</code></pre><h2 id="刷新配置"><a href="#刷新配置" class="headerlink" title="刷新配置"></a>刷新配置</h2><p>最后用 <code>source ~/.zshrc</code> 命令更新配置文件</p><h2 id="zshrc-配置如下："><a href="#zshrc-配置如下：" class="headerlink" title=".zshrc 配置如下："></a>.zshrc 配置如下：</h2><ul><li>自己电脑配置，下面截图是办公电脑截图<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># If you come from bash you might have to change your $PATH.# export PATH&#x3D;$HOME&#x2F;bin:&#x2F;usr&#x2F;local&#x2F;bin:$PATH# Path to your oh-my-zsh installation.export ZSH&#x3D;&quot;$HOME&#x2F;.oh-my-zsh&quot;# Set name of the theme to load --- if set to &quot;random&quot;, it will# load a random theme each time oh-my-zsh is loaded, in which case,# to know which specific one was loaded, run: echo $RANDOM_THEME# See https:&#x2F;&#x2F;github.com&#x2F;ohmyzsh&#x2F;ohmyzsh&#x2F;wiki&#x2F;ThemesZSH_THEME&#x3D;&quot;robbyrussell&quot;# Set list of themes to pick from when loading at random# Setting this variable when ZSH_THEME&#x3D;random will cause zsh to load# a theme from this variable instead of looking in $ZSH&#x2F;themes&#x2F;# If set to an empty array, this variable will have no effect.# ZSH_THEME_RANDOM_CANDIDATES&#x3D;( &quot;robbyrussell&quot; &quot;agnoster&quot; )# Uncomment the following line to use case-sensitive completion.# CASE_SENSITIVE&#x3D;&quot;true&quot;# Uncomment the following line to use hyphen-insensitive completion.# Case-sensitive completion must be off. _ and - will be interchangeable.# HYPHEN_INSENSITIVE&#x3D;&quot;true&quot;# Uncomment one of the following lines to change the auto-update behavior# zstyle &#39;:omz:update&#39; mode disabled  # disable automatic updates# zstyle &#39;:omz:update&#39; mode auto      # update automatically without asking# zstyle &#39;:omz:update&#39; mode reminder  # just remind me to update when it&#39;s time# Uncomment the following line to change how often to auto-update (in days).# zstyle &#39;:omz:update&#39; frequency 13# Uncomment the following line if pasting URLs and other text is messed up.# DISABLE_MAGIC_FUNCTIONS&#x3D;&quot;true&quot;# Uncomment the following line to disable colors in ls.# DISABLE_LS_COLORS&#x3D;&quot;true&quot;# Uncomment the following line to disable auto-setting terminal title.# DISABLE_AUTO_TITLE&#x3D;&quot;true&quot;# Uncomment the following line to enable command auto-correction.# ENABLE_CORRECTION&#x3D;&quot;true&quot;# Uncomment the following line to display red dots whilst waiting for completion.# You can also set it to another string to have that shown instead of the default red dots.# e.g. COMPLETION_WAITING_DOTS&#x3D;&quot;%F&#123;yellow&#125;waiting...%f&quot;# Caution: this setting can cause issues with multiline prompts in zsh &lt; 5.7.1 (see #5765)# COMPLETION_WAITING_DOTS&#x3D;&quot;true&quot;# Uncomment the following line if you want to disable marking untracked files# under VCS as dirty. This makes repository status check for large repositories# much, much faster.# DISABLE_UNTRACKED_FILES_DIRTY&#x3D;&quot;true&quot;# Uncomment the following line if you want to change the command execution time# stamp shown in the history command output.# You can set one of the optional three formats:# &quot;mm&#x2F;dd&#x2F;yyyy&quot;|&quot;dd.mm.yyyy&quot;|&quot;yyyy-mm-dd&quot;# or set a custom format using the strftime function format specifications,# see &#39;man strftime&#39; for details.# HIST_STAMPS&#x3D;&quot;mm&#x2F;dd&#x2F;yyyy&quot;# Would you like to use another custom folder than $ZSH&#x2F;custom?# ZSH_CUSTOM&#x3D;&#x2F;path&#x2F;to&#x2F;new-custom-folder# Which plugins would you like to load?# Standard plugins can be found in $ZSH&#x2F;plugins&#x2F;# Custom plugins may be added to $ZSH_CUSTOM&#x2F;plugins&#x2F;# Example format: plugins&#x3D;(rails git textmate ruby lighthouse)# Add wisely, as too many plugins slow down shell startup.# 插件信息plugins&#x3D;(  git  zsh-syntax-highlighting  zsh-autosuggestions  autojump)source $ZSH&#x2F;oh-my-zsh.sh[[ -s $(brew --prefix)&#x2F;etc&#x2F;profile.d&#x2F;autojump.sh ]] &amp;&amp; . $(brew --prefix)&#x2F;etc&#x2F;profile.d&#x2F;autojump.shsource $ZSH&#x2F;oh-my-zsh.sh# User configurationPROMPT&#x3D;&quot;%(?:%&#123;$fg_bold[yellow]%&#125;♠ :%&#123;$fg_bold[red]%&#125;♠ )%&#123;$fg[cyan]%&#125;%d $ &quot;# PROMPT&#x3D;&quot;%(?:%&#123;$fg_bold[yellow]%&#125;♠ :%&#123;$fg_bold[red]%&#125;♠ )%&#123;$fg[cyan]%&#125;%d %&#123;$fg_bold[magenta]%&#125;$ &quot;PROMPT+&#x3D;&#39;%&#123;$reset_color%&#125;&#39;ZSH_THEME_GIT_PROMPT_PREFIX&#x3D;&quot;%&#123;$fg_bold[blue]%&#125;&quot;ZSH_THEME_GIT_PROMPT_SUFFIX&#x3D;&quot;%&#123;$reset_color%&#125; &quot;ZSH_THEME_GIT_PROMPT_DIRTY&#x3D;&quot;%&#123;$fg[blue]%&#125;) %&#123;$fg[yellow]%&#125;✗&quot;ZSH_THEME_GIT_PROMPT_CLEAN&#x3D;&quot;%&#123;$fg[blue]%&#125;)&quot;# 参考 https:&#x2F;&#x2F;www.jianshu.com&#x2F;p&#x2F;b84d8b7b134e# codevalue# %T系统时间（时：分）# %*系统时间（时：分：秒）# %D系统日期（年-月-日）# %n用户名# %B - %b开始到结束使用粗体打印# %U - %u开始到结束使用下划线打印# %c仅当前文件夹路径# %d当前目录路径完整# %~当前目录相对于～的相对路径# %M计算机的主机名# %m计算机的主机名（在第一个句号之前截断# %l当前的tty# export MANPATH&#x3D;&quot;&#x2F;usr&#x2F;local&#x2F;man:$MANPATH&quot;# You may need to manually set your language environment# export LANG&#x3D;en_US.UTF-8# Preferred editor for local and remote sessions# if [[ -n $SSH_CONNECTION ]]; then#   export EDITOR&#x3D;&#39;vim&#39;# else#   export EDITOR&#x3D;&#39;mvim&#39;# fi# Compilation flags# export ARCHFLAGS&#x3D;&quot;-arch x86_64&quot;# Set personal aliases, overriding those provided by oh-my-zsh libs,# plugins, and themes. Aliases can be placed here, though oh-my-zsh# users are encouraged to define aliases within the ZSH_CUSTOM folder.# For a full list of active aliases, run &#96;alias&#96;.## Example aliases# alias zshconfig&#x3D;&quot;mate ~&#x2F;.zshrc&quot;# alias ohmyzsh&#x3D;&quot;mate ~&#x2F;.oh-my-zsh&quot;</code></pre><h2 id="推荐博客左岸博客"><a href="#推荐博客左岸博客" class="headerlink" title="推荐博客左岸博客"></a>推荐博客<a href="https://www.zrahh.com/archives/167.html">左岸博客</a></h2><h2 id="使用效果"><a href="#使用效果" class="headerlink" title="使用效果"></a>使用效果</h2><img src="http://t-blog-images.aijs.top/img/11460713-14c8ef376aabe04a.png"><br><img src="http://t-blog-images.aijs.top/img/11460713-ef2da0af46da7712.png"><br><img src="http://t-blog-images.aijs.top/img/11460713-e49ed15245409774.png"></li></ul>]]></content>
-      
-      
-      <categories>
-          
-          <category> 工具 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 工具 </tag>
-            
-            <tag> 增效 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>批量删除目录</title>
       <link href="//post/2019-10-30shell.html"/>
       <url>//post/2019-10-30shell.html</url>
@@ -1469,9 +1442,9 @@
       
         <tags>
             
-            <tag> 增效 </tag>
-            
             <tag> Shell </tag>
+            
+            <tag> 增效 </tag>
             
         </tags>
       
@@ -1505,6 +1478,33 @@
     
     
     <entry>
+      <title>MAC Iterm2美化终端</title>
+      <link href="//post/2017-07-09item2.html"/>
+      <url>//post/2017-07-09item2.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="MAC-环境"><a href="#MAC-环境" class="headerlink" title="MAC 环境"></a>MAC 环境</h2><p><strong>注意：以下内容仅限MAC,其他环境，请自行谷歌</strong></p><h2 id="oh-my-zsh-插件推荐"><a href="#oh-my-zsh-插件推荐" class="headerlink" title="oh-my-zsh 插件推荐 :"></a>oh-my-zsh 插件推荐 :</h2><ul><li>autojump 这个没用起来，使用没什么效果🥹</li><li>zsh-autosuggestion 命令行输入有提示，（命令下载失败，手动下载，拷贝到 <code>~/.oh-my-zsh/custom/plugins/zsh-autosuggestions</code>）</li><li>zsh-syntax-highlighting</li></ul><h2 id="安装zsh"><a href="#安装zsh" class="headerlink" title="安装zsh"></a>安装zsh</h2><p><strong>1.使用 brew 安装</strong></p><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">brew install oh-my-zsh</code></pre><p><strong>2. 手动安装</strong></p><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">git clone git:&#x2F;&#x2F;github.com&#x2F;robbyrussell&#x2F;oh-my-zsh.git ~&#x2F;.oh-my-zshcp ~&#x2F;.oh-my-zsh&#x2F;templates&#x2F;zshrc.zsh-template ~&#x2F;.zshrc</code></pre><h2 id="安装-autojump"><a href="#安装-autojump" class="headerlink" title="安装 autojump"></a>安装 autojump</h2><p><strong>1.安装</strong></p><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">brew install autojump</code></pre><p><strong>2.配置</strong><br><code>code ~/.zshrc</code>，把以下代码加到尾部</p><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># 使用brew安装的[[ -s $(brew --prefix)&#x2F;etc&#x2F;profile.d&#x2F;autojump.sh ]] &amp;&amp; . $(brew --prefix)&#x2F;etc&#x2F;profile.d&#x2F;autojump.shsource $ZSH&#x2F;oh-my-zsh.sh# 使用git安装的[[ -s ~&#x2F;.autojump&#x2F;etc&#x2F;profile.d&#x2F;autojump.sh ]] &amp;&amp; . ~&#x2F;.autojump&#x2F;etc&#x2F;profile.d&#x2F;autojump.sh</code></pre><p><strong>3.刷新配置</strong></p><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">source ~&#x2F;.zshrc</code></pre><h2 id="安装-zsh-autosuggestion"><a href="#安装-zsh-autosuggestion" class="headerlink" title="安装 zsh-autosuggestion"></a>安装 zsh-autosuggestion</h2><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">git clone git:&#x2F;&#x2F;github.com&#x2F;zsh-users&#x2F;zsh-autosuggestions $ZSH_CUSTOM&#x2F;plugins&#x2F;zsh-autosuggestions</code></pre><h2 id="安装-zsh-syntax-highlighting"><a href="#安装-zsh-syntax-highlighting" class="headerlink" title="安装 zsh-syntax-highlighting"></a>安装 zsh-syntax-highlighting</h2><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">git clone https:&#x2F;&#x2F;github.com&#x2F;zsh-users&#x2F;zsh-syntax-highlighting.git $&#123;ZSH_CUSTOM:-~&#x2F;.oh-my-zsh&#x2F;custom&#125;&#x2F;plugins&#x2F;zsh-syntax-highlighting</code></pre><h2 id="刷新配置"><a href="#刷新配置" class="headerlink" title="刷新配置"></a>刷新配置</h2><p>最后用 <code>source ~/.zshrc</code> 命令更新配置文件</p><h2 id="zshrc-配置如下："><a href="#zshrc-配置如下：" class="headerlink" title=".zshrc 配置如下："></a>.zshrc 配置如下：</h2><ul><li>自己电脑配置，下面截图是办公电脑截图<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># If you come from bash you might have to change your $PATH.# export PATH&#x3D;$HOME&#x2F;bin:&#x2F;usr&#x2F;local&#x2F;bin:$PATH# Path to your oh-my-zsh installation.export ZSH&#x3D;&quot;$HOME&#x2F;.oh-my-zsh&quot;# Set name of the theme to load --- if set to &quot;random&quot;, it will# load a random theme each time oh-my-zsh is loaded, in which case,# to know which specific one was loaded, run: echo $RANDOM_THEME# See https:&#x2F;&#x2F;github.com&#x2F;ohmyzsh&#x2F;ohmyzsh&#x2F;wiki&#x2F;ThemesZSH_THEME&#x3D;&quot;robbyrussell&quot;# Set list of themes to pick from when loading at random# Setting this variable when ZSH_THEME&#x3D;random will cause zsh to load# a theme from this variable instead of looking in $ZSH&#x2F;themes&#x2F;# If set to an empty array, this variable will have no effect.# ZSH_THEME_RANDOM_CANDIDATES&#x3D;( &quot;robbyrussell&quot; &quot;agnoster&quot; )# Uncomment the following line to use case-sensitive completion.# CASE_SENSITIVE&#x3D;&quot;true&quot;# Uncomment the following line to use hyphen-insensitive completion.# Case-sensitive completion must be off. _ and - will be interchangeable.# HYPHEN_INSENSITIVE&#x3D;&quot;true&quot;# Uncomment one of the following lines to change the auto-update behavior# zstyle &#39;:omz:update&#39; mode disabled  # disable automatic updates# zstyle &#39;:omz:update&#39; mode auto      # update automatically without asking# zstyle &#39;:omz:update&#39; mode reminder  # just remind me to update when it&#39;s time# Uncomment the following line to change how often to auto-update (in days).# zstyle &#39;:omz:update&#39; frequency 13# Uncomment the following line if pasting URLs and other text is messed up.# DISABLE_MAGIC_FUNCTIONS&#x3D;&quot;true&quot;# Uncomment the following line to disable colors in ls.# DISABLE_LS_COLORS&#x3D;&quot;true&quot;# Uncomment the following line to disable auto-setting terminal title.# DISABLE_AUTO_TITLE&#x3D;&quot;true&quot;# Uncomment the following line to enable command auto-correction.# ENABLE_CORRECTION&#x3D;&quot;true&quot;# Uncomment the following line to display red dots whilst waiting for completion.# You can also set it to another string to have that shown instead of the default red dots.# e.g. COMPLETION_WAITING_DOTS&#x3D;&quot;%F&#123;yellow&#125;waiting...%f&quot;# Caution: this setting can cause issues with multiline prompts in zsh &lt; 5.7.1 (see #5765)# COMPLETION_WAITING_DOTS&#x3D;&quot;true&quot;# Uncomment the following line if you want to disable marking untracked files# under VCS as dirty. This makes repository status check for large repositories# much, much faster.# DISABLE_UNTRACKED_FILES_DIRTY&#x3D;&quot;true&quot;# Uncomment the following line if you want to change the command execution time# stamp shown in the history command output.# You can set one of the optional three formats:# &quot;mm&#x2F;dd&#x2F;yyyy&quot;|&quot;dd.mm.yyyy&quot;|&quot;yyyy-mm-dd&quot;# or set a custom format using the strftime function format specifications,# see &#39;man strftime&#39; for details.# HIST_STAMPS&#x3D;&quot;mm&#x2F;dd&#x2F;yyyy&quot;# Would you like to use another custom folder than $ZSH&#x2F;custom?# ZSH_CUSTOM&#x3D;&#x2F;path&#x2F;to&#x2F;new-custom-folder# Which plugins would you like to load?# Standard plugins can be found in $ZSH&#x2F;plugins&#x2F;# Custom plugins may be added to $ZSH_CUSTOM&#x2F;plugins&#x2F;# Example format: plugins&#x3D;(rails git textmate ruby lighthouse)# Add wisely, as too many plugins slow down shell startup.# 插件信息plugins&#x3D;(  git  zsh-syntax-highlighting  zsh-autosuggestions  autojump)source $ZSH&#x2F;oh-my-zsh.sh[[ -s $(brew --prefix)&#x2F;etc&#x2F;profile.d&#x2F;autojump.sh ]] &amp;&amp; . $(brew --prefix)&#x2F;etc&#x2F;profile.d&#x2F;autojump.shsource $ZSH&#x2F;oh-my-zsh.sh# User configurationPROMPT&#x3D;&quot;%(?:%&#123;$fg_bold[yellow]%&#125;♠ :%&#123;$fg_bold[red]%&#125;♠ )%&#123;$fg[cyan]%&#125;%d $ &quot;# PROMPT&#x3D;&quot;%(?:%&#123;$fg_bold[yellow]%&#125;♠ :%&#123;$fg_bold[red]%&#125;♠ )%&#123;$fg[cyan]%&#125;%d %&#123;$fg_bold[magenta]%&#125;$ &quot;PROMPT+&#x3D;&#39;%&#123;$reset_color%&#125;&#39;ZSH_THEME_GIT_PROMPT_PREFIX&#x3D;&quot;%&#123;$fg_bold[blue]%&#125;&quot;ZSH_THEME_GIT_PROMPT_SUFFIX&#x3D;&quot;%&#123;$reset_color%&#125; &quot;ZSH_THEME_GIT_PROMPT_DIRTY&#x3D;&quot;%&#123;$fg[blue]%&#125;) %&#123;$fg[yellow]%&#125;✗&quot;ZSH_THEME_GIT_PROMPT_CLEAN&#x3D;&quot;%&#123;$fg[blue]%&#125;)&quot;# 参考 https:&#x2F;&#x2F;www.jianshu.com&#x2F;p&#x2F;b84d8b7b134e# codevalue# %T系统时间（时：分）# %*系统时间（时：分：秒）# %D系统日期（年-月-日）# %n用户名# %B - %b开始到结束使用粗体打印# %U - %u开始到结束使用下划线打印# %c仅当前文件夹路径# %d当前目录路径完整# %~当前目录相对于～的相对路径# %M计算机的主机名# %m计算机的主机名（在第一个句号之前截断# %l当前的tty# export MANPATH&#x3D;&quot;&#x2F;usr&#x2F;local&#x2F;man:$MANPATH&quot;# You may need to manually set your language environment# export LANG&#x3D;en_US.UTF-8# Preferred editor for local and remote sessions# if [[ -n $SSH_CONNECTION ]]; then#   export EDITOR&#x3D;&#39;vim&#39;# else#   export EDITOR&#x3D;&#39;mvim&#39;# fi# Compilation flags# export ARCHFLAGS&#x3D;&quot;-arch x86_64&quot;# Set personal aliases, overriding those provided by oh-my-zsh libs,# plugins, and themes. Aliases can be placed here, though oh-my-zsh# users are encouraged to define aliases within the ZSH_CUSTOM folder.# For a full list of active aliases, run &#96;alias&#96;.## Example aliases# alias zshconfig&#x3D;&quot;mate ~&#x2F;.zshrc&quot;# alias ohmyzsh&#x3D;&quot;mate ~&#x2F;.oh-my-zsh&quot;</code></pre><h2 id="推荐博客左岸博客"><a href="#推荐博客左岸博客" class="headerlink" title="推荐博客左岸博客"></a>推荐博客<a href="https://www.zrahh.com/archives/167.html">左岸博客</a></h2><h2 id="使用效果"><a href="#使用效果" class="headerlink" title="使用效果"></a>使用效果</h2><img src="http://t-blog-images.aijs.top/img/11460713-14c8ef376aabe04a.png"><br><img src="http://t-blog-images.aijs.top/img/11460713-ef2da0af46da7712.png"><br><img src="http://t-blog-images.aijs.top/img/11460713-e49ed15245409774.png"></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 工具 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 增效 </tag>
+            
+            <tag> 工具 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Nestjs服务端技术栈</title>
       <link href="//post/2021-06-30node.html"/>
       <url>//post/2021-06-30node.html</url>
@@ -1522,31 +1522,6 @@
         <tags>
             
             <tag> Node </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Web office预览</title>
-      <link href="//post/2021-09-07web.html"/>
-      <url>//post/2021-09-07web.html</url>
-      
-        <content type="html"><![CDATA[<p>第一步<br>将文件上传到你的服务器里，并支持url下载这个文件。<br>第二步<br>访问：<a href="http://view.officeapps.live.com/op/view.aspx?src=%E8%A6%81%E9%A2%84%E8%A7%88%E6%96%87%E4%BB%B6%E7%9A%84url%E5%9C%B0%E5%9D%80%EF%BC%88%E8%AE%B0%E5%BE%97url%E7%BC%96%E7%A0%81%E5%93%A6%EF%BC%89">http://view.officeapps.live.com/op/view.aspx?src=要预览文件的url地址（记得url编码哦）</a><br>第三步<br>可以使用iframe嵌入你的系统<br>更多<br>详情查看：<a href="https://www.microsoft.com/en-us/microsoft-365/blog/2013/04/10/office-web-viewer-view-office-documents-in-a-browser/?eu=true">https://www.microsoft.com/en-us/microsoft-365/blog/2013/04/10/office-web-viewer-view-office-documents-in-a-browser/?eu=true</a><br><img src="http://t-blog-images.aijs.top/img/11460713-93b26693cac5c2d8.png"></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Web </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Web </tag>
             
         </tags>
       
@@ -1597,6 +1572,31 @@
         <tags>
             
             <tag> Shell </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Web office预览</title>
+      <link href="//post/2021-09-07web.html"/>
+      <url>//post/2021-09-07web.html</url>
+      
+        <content type="html"><![CDATA[<p>第一步<br>将文件上传到你的服务器里，并支持url下载这个文件。<br>第二步<br>访问：<a href="http://view.officeapps.live.com/op/view.aspx?src=%E8%A6%81%E9%A2%84%E8%A7%88%E6%96%87%E4%BB%B6%E7%9A%84url%E5%9C%B0%E5%9D%80%EF%BC%88%E8%AE%B0%E5%BE%97url%E7%BC%96%E7%A0%81%E5%93%A6%EF%BC%89">http://view.officeapps.live.com/op/view.aspx?src=要预览文件的url地址（记得url编码哦）</a><br>第三步<br>可以使用iframe嵌入你的系统<br>更多<br>详情查看：<a href="https://www.microsoft.com/en-us/microsoft-365/blog/2013/04/10/office-web-viewer-view-office-documents-in-a-browser/?eu=true">https://www.microsoft.com/en-us/microsoft-365/blog/2013/04/10/office-web-viewer-view-office-documents-in-a-browser/?eu=true</a><br><img src="http://t-blog-images.aijs.top/img/11460713-93b26693cac5c2d8.png"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Web </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Web </tag>
             
         </tags>
       
