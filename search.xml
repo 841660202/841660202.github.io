@@ -1055,11 +1055,11 @@
     
     
     <entry>
-      <title>MAC存储空间不足问题</title>
-      <link href="//post/2022-05-05mac.html"/>
-      <url>//post/2022-05-05mac.html</url>
+      <title>Lerna调试开源库遇到的问题</title>
+      <link href="//post/2022-05-05lerna.html"/>
+      <url>//post/2022-05-05lerna.html</url>
       
-        <content type="html"><![CDATA[<p><img src="http://t-blog-images.aijs.top/img/20220505165350.webp"></p>]]></content>
+        <content type="html"><![CDATA[<pre class="line-numbers language-none"><code class="language-none">yarn install --mutex network:42424 --non-interactive👑 ~&#x2F;Desktop&#x2F;slate git:(main) $ lerna --version4.0.0👑 ~&#x2F;Desktop&#x2F;slate git:(main) $ yarn global add lerna@3.19.0    Usage Error: The &#39;yarn global&#39; commands have been removed in 2.x - consider using &#39;yarn dlx&#39; or a third-party plugin instead$ yarn run [--inspect] [--inspect-brk] &lt;scriptName&gt; ...👑 ~&#x2F;Desktop&#x2F;slate git:(main) $ yarn --version              3.0.1</code></pre>]]></content>
       
       
       <categories>
@@ -1080,11 +1080,11 @@
     
     
     <entry>
-      <title>Lerna调试开源库遇到的问题</title>
-      <link href="//post/2022-05-05lerna.html"/>
-      <url>//post/2022-05-05lerna.html</url>
+      <title>MAC存储空间不足问题</title>
+      <link href="//post/2022-05-05mac.html"/>
+      <url>//post/2022-05-05mac.html</url>
       
-        <content type="html"><![CDATA[<pre class="line-numbers language-none"><code class="language-none">yarn install --mutex network:42424 --non-interactive👑 ~&#x2F;Desktop&#x2F;slate git:(main) $ lerna --version4.0.0👑 ~&#x2F;Desktop&#x2F;slate git:(main) $ yarn global add lerna@3.19.0    Usage Error: The &#39;yarn global&#39; commands have been removed in 2.x - consider using &#39;yarn dlx&#39; or a third-party plugin instead$ yarn run [--inspect] [--inspect-brk] &lt;scriptName&gt; ...👑 ~&#x2F;Desktop&#x2F;slate git:(main) $ yarn --version              3.0.1</code></pre>]]></content>
+        <content type="html"><![CDATA[<p><img src="http://t-blog-images.aijs.top/img/20220505165350.webp"></p>]]></content>
       
       
       <categories>
