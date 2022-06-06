@@ -25,6 +25,25 @@ tags: [performance, 前端, 浏览器原理]
 
 ![](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9sejV6LmNvbS9hc3NldHMvaW1nL3BlcmZvcm1hbmNlLnBuZw?x-oss-process=image/format,png)
 
+## 输入 url 发生了什么
+
+- 1、当浏览器地址中输入 url 后，`navigationStart`如果之前有前一个网页（与当前页面不一定同域）unload 的时间戳,如果无前一个网页 unload ，则与 fetchStart 值相等,
+- 2、接着，是否有重定向（`redirect` ）
+- 3、接着，准备用 HTTP 抓取文档的内容（`fetchStart`）
+  - 域名查询（`domainLookupStart、domainLookupEnd`）
+  - TCP 连接（`connectStart、connectEnd`）,如果是安全链接，在 connectEnd 之前，会有 SSL 连接(secureConnectionStart)
+- 4、接着，HTTP 请求（`requestStart、responseStart、responseEnd`）,如果有缓存，在 responseStart 之前，会有 cacheStart，如果之前有网页，还涉及到网页的 unload，在 cacheStart 之前，会有`unloadStart、unloadEnd`
+- 5、接着，dom 解析
+  - `domLoading`Document.readyState 变为 loading，并将抛出 readystatechange 相关事件
+  - `domInteractive`Document.readyState 变为 interactive，并将抛出 readystatechange 相关事件
+  - `domContentLoadedEventStart、domContentLoadedEventEnd `DOM 解析完成后，
+    - 网页内资源加载开始，并将抛出 readystatechange 相关事件
+    - 网页内资源加载完成，并将抛出 readystatechange 相关事件
+  - `loadEventStart`load 事件发送给文档，也即 load 回调函数开始执行
+  - `loadEventEnd`load 事件的回调函数执行完毕的时间
+  - `domComplete`Document.readyState 变为 complete，并将抛出 readystatechange 相关事件
+  - 说明：dom 解析过程，HTML 生成 dom 树，解析 CSS 文件生成 CSSOM 树，DOM 树和 CSSOM 树生成 render 树，也就是渲染树， render 树中对每个节点进行布局，计算每个元素的大小，确定其在屏幕中的位置，绘制。根据 render 树和布局将显示页面
+
 ## 加载阶段
 
 左边红线代表的是网络传输层面的过程，右边红线代表了服务器传输回字节后浏览器的各种事件状态，这个阶段包含了浏览器对文档的解析，DOM 树构建，布局，绘制等等。
@@ -68,7 +87,9 @@ _1. prompt for unload_
 
 Performance 接口可以获取到当前页面与性能相关的信息。
 
+:::tip
 **数据先不要关注时间循序，后面我们会从多个角度来验证顺序**
+:::
 
 ```json
 {
@@ -187,10 +208,143 @@ function getPerfermanceTiming() {
 getPerfermanceTiming();
 ```
 
+<hr/>
+
+## 聊下性能计算
+
+```js
+// 计算加载时间
+function getPerformanceTiming() {
+  var performance = window.performance;
+
+  if (!performance) {
+    // 当前浏览器不支持
+    console.log("你的浏览器不支持 performance 接口");
+    return;
+  }
+
+  var t = performance.timing;
+  var times = {};
+
+  //【重要】页面加载完成的时间
+  //【原因】这几乎代表了用户等待页面可用的时间
+  times.loadPage = t.loadEventEnd - t.navigationStart;
+
+  //【重要】解析 DOM 树结构的时间
+  //【原因】反省下你的 DOM 树嵌套是不是太多了！
+  times.domReady = t.domComplete - t.responseEnd;
+
+  //【重要】重定向的时间
+  //【原因】拒绝重定向！比如，http://example.com/ 就不该写成 http://example.com
+  times.redirect = t.redirectEnd - t.redirectStart;
+
+  //【重要】DNS 查询时间
+  //【原因】DNS 预加载做了么？页面内是不是使用了太多不同的域名导致域名查询的时间太长？
+  // 可使用 HTML5 Prefetch 预查询 DNS ，见：[HTML5 prefetch](http://segmentfault.com/a/1190000000633364)
+  times.lookupDomain = t.domainLookupEnd - t.domainLookupStart;
+
+  //【重要】读取页面第一个字节的时间
+  //【原因】这可以理解为用户拿到你的资源占用的时间，加异地机房了么，加CDN 处理了么？加带宽了么？加 CPU 运算速度了么？
+  // TTFB 即 Time To First Byte 的意思
+  // 维基百科：https://en.wikipedia.org/wiki/Time_To_First_Byte
+  times.ttfb = t.responseStart - t.navigationStart;
+
+  //【重要】内容加载完成的时间
+  //【原因】页面内容经过 gzip 压缩了么，静态资源 css/js 等压缩了么？
+  times.request = t.responseEnd - t.requestStart;
+
+  //【重要】执行 onload 回调函数的时间
+  //【原因】是否太多不必要的操作都放到 onload 回调函数里执行了，考虑过延迟加载、按需加载的策略么？
+  times.loadEvent = t.loadEventEnd - t.loadEventStart;
+
+  // DNS 缓存时间
+  times.appcache = t.domainLookupStart - t.fetchStart;
+
+  // 卸载页面的时间
+  times.unloadEvent = t.unloadEventEnd - t.unloadEventStart;
+
+  // TCP 建立连接完成握手的时间
+  times.connect = t.connectEnd - t.connectStart;
+
+  return times;
+}
+```
+
+## 聊下性能优化
+
+**假设你对 performance API 很熟悉**
+
+- 减少重定向次数
+- DNS 查询时间：HTML5 Prefetch 预查询
+- TCP 连接: http1.1 开启 connect: keep-alive, http2.0， 如果可以的话 **http3.0 可以看本站另一篇文章**
+- 资源压缩：gzip、brotli、图片压缩、tree-shaking、console 移除
+- 资源整合：减少请求次数、减少网络请求，雪碧图（虽然 http2 提供了**多路复用**[多路复用代替了 HTTP1.x 的序列和阻塞机制，所有的相同域名请求都通过同一个 TCP 连接并发完成。在 HTTP1.x 中，并发多个请求需要多个 TCP 连接，浏览器为了控制资源会有 6-8 个 TCP 连接都限制,单个连接上可以并行交错的请求和响应，之间互不干扰,但是数量猛增，服务器要处理，多多少少也耗性能]的能力，而且现在还有使用的常见，比聊天表情，飞书也在用）
+- 资源加载：CDN、强缓存和协商缓存、按需加载
+- DOM 解析：自上而下，script 标签放在底部，css 放在上面，无论是 html 还是 css 的层级，应尽量少的解析，解析消耗性能
+- 渲染时候：回流和重绘、懒加载、虚拟列表
+
+## 两个事例
+
+**飞书雪碧图**
+- 为什么拿飞书桌端数据来说（比较熟悉，之前开发桌面端Electron，扒拉过飞书应用包的数据)
+
+<img src="http://t-blog-images.aijs.top/img/20220606170307.webp" width=200 style="object-fit:content"/>
+
+**京东移动端 dns-prefetch**
+
+- 为什么拿京东数据来说（比较熟悉，之前爬取过京东移动端数据开发 RN)
+
+![](http://t-blog-images.aijs.top/img/20220606172316.webp)
+
+```html
+<head>
+  <meta charset="utf-8" />
+  <script type="text/javascript">
+    window.alert = console.log;
+  </script>
+  <script>
+    window._PFM_TIMING = [[1351, new Date()]]; //TODO
+  </script>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+  />
+  <title>多快好省，购物上京东！</title>
+  <!-- 强缓存Cache-Control -->
+  <meta http-equiv="Cache-Control" content="max-age=180" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="format-detection" content="telephone=no" />
+  <!-- 京东 <meta name="format-detection" content="telephone=no" /> 写重复了 -->
+  <link rel="dns-prefetch" href="//m.360buyimg.com" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no, viewport-fit=cover"
+  />
+  <!-- X-DNS-Prefetch-Control 头控制着浏览器的 DNS 预读取功能  DNS 预读取是一项使浏览器主动去执行域名解析的功能-->
+  <meta http-equiv="x-dns-prefetch-control" content="on" />
+
+  <link rel="dns-prefetch" href="//img11.360buyimg.com" />
+  <link rel="dns-prefetch" href="//img10.360buyimg.com" />
+  <link rel="dns-prefetch" href="//img12.360buyimg.com" />
+  <link rel="dns-prefetch" href="//img13.360buyimg.com" />
+  <link rel="dns-prefetch" href="//img14.360buyimg.com" />
+  <link rel="dns-prefetch" href="//img20.360buyimg.com" />
+  <link rel="dns-prefetch" href="//img30.360buyimg.com" />
+  <link rel="dns-prefetch" href="//wq.360buyimg.com" />
+</head>
+```
+
+## performance 数据能干啥用？
+
+（开发者）熟悉 Chrome 开发者工具的朋友应该知道：在开发环境下，其实我们自己打开 Chrome 的开发者工具，切换到网络面板，就能很详细的看到网页性能相关的数据。
+
+（网站用户）但当我们需要统计分析用户打开我们网页时的性能如何时，我们将 performance 原始信息或通过简单计算后的信息 (如上面写到的 getPerformanceTiming()) 上传到服务器，配合其他信息（如 HTTP 请求头信息），就完美啦~
+
 ## 来看下简书
 
-- 链接
-  - [简书](https://www.jianshu.com/p/464593cea4dc)
+- 链接 <a href="https://www.jianshu.com/p/464593cea4dc" target="_blank" >简书</a> ,打开控制台可以看到输出结果一个数组（**如果简书没将此日志去除**）
 - 简书代码
 
 ```js
@@ -277,72 +431,6 @@ window.addEventListener("load", function () {
 
 ![](http://t-blog-images.aijs.top/img/20220605112219.webp)
 
-## 聊下性能计算
-
-```js
-// 计算加载时间
-function getPerformanceTiming() {
-  var performance = window.performance;
-
-  if (!performance) {
-    // 当前浏览器不支持
-    console.log("你的浏览器不支持 performance 接口");
-    return;
-  }
-
-  var t = performance.timing;
-  var times = {};
-
-  //【重要】页面加载完成的时间
-  //【原因】这几乎代表了用户等待页面可用的时间
-  times.loadPage = t.loadEventEnd - t.navigationStart;
-
-  //【重要】解析 DOM 树结构的时间
-  //【原因】反省下你的 DOM 树嵌套是不是太多了！
-  times.domReady = t.domComplete - t.responseEnd;
-
-  //【重要】重定向的时间
-  //【原因】拒绝重定向！比如，http://example.com/ 就不该写成 http://example.com
-  times.redirect = t.redirectEnd - t.redirectStart;
-
-  //【重要】DNS 查询时间
-  //【原因】DNS 预加载做了么？页面内是不是使用了太多不同的域名导致域名查询的时间太长？
-  // 可使用 HTML5 Prefetch 预查询 DNS ，见：[HTML5 prefetch](http://segmentfault.com/a/1190000000633364)
-  times.lookupDomain = t.domainLookupEnd - t.domainLookupStart;
-
-  //【重要】读取页面第一个字节的时间
-  //【原因】这可以理解为用户拿到你的资源占用的时间，加异地机房了么，加CDN 处理了么？加带宽了么？加 CPU 运算速度了么？
-  // TTFB 即 Time To First Byte 的意思
-  // 维基百科：https://en.wikipedia.org/wiki/Time_To_First_Byte
-  times.ttfb = t.responseStart - t.navigationStart;
-
-  //【重要】内容加载完成的时间
-  //【原因】页面内容经过 gzip 压缩了么，静态资源 css/js 等压缩了么？
-  times.request = t.responseEnd - t.requestStart;
-
-  //【重要】执行 onload 回调函数的时间
-  //【原因】是否太多不必要的操作都放到 onload 回调函数里执行了，考虑过延迟加载、按需加载的策略么？
-  times.loadEvent = t.loadEventEnd - t.loadEventStart;
-
-  // DNS 缓存时间
-  times.appcache = t.domainLookupStart - t.fetchStart;
-
-  // 卸载页面的时间
-  times.unloadEvent = t.unloadEventEnd - t.unloadEventStart;
-
-  // TCP 建立连接完成握手的时间
-  times.connect = t.connectEnd - t.connectStart;
-
-  return times;
-}
-```
-
-## performance 数据能干啥用？
-
-（开发者）熟悉 Chrome 开发者工具的朋友应该知道：在开发环境下，其实我们自己打开 Chrome 的开发者工具，切换到网络面板，就能很详细的看到网页性能相关的数据。
-
-（网站用户）但当我们需要统计分析用户打开我们网页时的性能如何时，我们将 performance 原始信息或通过简单计算后的信息 (如上面写到的 getPerformanceTiming()) 上传到服务器，配合其他信息（如 HTTP 请求头信息），就完美啦~
-
 ## domContentLoaded 与 loaded
 
 ```js
@@ -356,13 +444,20 @@ let loaded = t.loadEventEnd - t.navigationStart;
 
 ![](http://t-blog-images.aijs.top/img/20220605133905.webp)
 
+<hr/>
+
 ## 掘金页面
 
 - 话说已经到了 6 月 6 号，闲逛掘金，遇到面试题：`从输入url到页面展示发生了什么`，突然想起个 performance,就拿掘金的一个页面来验证这幅图
 
   ![](http://t-blog-images.aijs.top/img/20220606151451.webp)
 
+:::warning
+
 注意：此代码放到 dayjs 网站的 Sources/Snippets 中执行，利用全局的 dayjs，无需引入 dayjs
+:::
+
+<a href="https://dayjs.fenxianglu.cn/category/display.html#%E6%A0%BC%E5%BC%8F%E5%8C%96" target="_blank" >dayjs 网站</a>
 
 ![](http://t-blog-images.aijs.top/img/20220606152413.webp)
 
@@ -814,3 +909,4 @@ Referrer Policy: strict-origin-when-cross-origin
 
 [Web 性能优化-首屏和白屏时间](https://blog.csdn.net/z9061/article/details/101454438)
 [初探 performance – 监控网页与程序性能](http://www.alloyteam.com/2015/09/explore-performance/)
+[简述浏览器渲染机制](https://blog.csdn.net/abuanden/article/details/114530985)
