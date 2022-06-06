@@ -16,6 +16,6 @@ date: 2022-12-12 59:59:59
 // 7. 换肤 https://www.zoo.team/article/theme-scss
 // 8.[x] vscode setting sync 另一台电脑配置无法同步到本电脑
 // 9.[x]item2本机重新配置
-// 10. 莫名其妙的，代码片段在md上失效了
+// 10.[x]莫名其妙的，代码片段在md上失效了
 
 ```
