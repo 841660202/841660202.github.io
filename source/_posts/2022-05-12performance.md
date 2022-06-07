@@ -286,13 +286,13 @@ function getPerformanceTiming() {
 ## 两个事例
 
 **飞书雪碧图**
-- 为什么拿飞书桌端数据来说（比较熟悉，之前开发桌面端Electron，扒拉过飞书应用包的数据)
+- 为什么拿飞书桌端数据来说（之前开发桌面端Electron，扒拉过飞书应用包的数据)
 
 <img src="http://t-blog-images.aijs.top/img/20220606170307.webp" width=200 style="object-fit:content"/>
 
 **京东移动端 dns-prefetch**
 
-- 为什么拿京东数据来说（比较熟悉，之前爬取过京东移动端数据开发 RN)
+- 为什么拿京东数据来说（之前爬取过京东移动端数据开发 RN)
 
 ![](http://t-blog-images.aijs.top/img/20220606172316.webp)
 
