@@ -152,7 +152,7 @@ aurora_bot:
   # ======================================================
   # Set to true to turn on your lovely cute bot.
   # ======================================================
-  enable: true
+  enable: false
 
   # ======================================================
   # The bot comes with two languages support

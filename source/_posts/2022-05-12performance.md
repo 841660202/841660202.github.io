@@ -460,8 +460,8 @@ let loaded = t.loadEventEnd - t.navigationStart;
 <a href="https://dayjs.fenxianglu.cn/category/display.html#%E6%A0%BC%E5%BC%8F%E5%8C%96" target="_blank" >dayjs 网站</a>
 
 ![](http://t-blog-images.aijs.top/img/20220606152413.webp)
-
-代码如下：
+- 代码是为了对performance.timing按照时间值进行排序，排序结果大致是执行的顺序，稍微有出入，会手动做调整
+- 代码如下：
 
 ```js
 var timing = {
