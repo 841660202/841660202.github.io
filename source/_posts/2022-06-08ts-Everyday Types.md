@@ -1,5 +1,5 @@
 ---
-title: Typescript 常见类型
+title: 3.Typescript 常见类型
 date: 2022-06-08 16:40:41
 categories: typescript
 tags: [typescript]

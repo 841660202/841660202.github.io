@@ -1,5 +1,5 @@
 ---
-title: Typescript手册 类型操作
+title: 7.Typescript手册 类型操作
 date: 2022-06-07 09:20:35
 categories: typescript
 tags: [typescript]
