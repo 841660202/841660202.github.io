@@ -16,9 +16,12 @@ date: 2022-12-12 59:59:59
 // 7. 换肤 https://www.zoo.team/article/theme-scss
 // 8.[x] vscode setting sync 另一台电脑配置无法同步到本电脑
 // 9.[x]item2本机重新配置
-// 10.[x]莫名其妙的，代码片段在md上失效了
+// 10.[x]vscode 代码片段在md上失效了
 // 11. typescript 工具类型源码
 // 12. react源码
+// 13. ocr桌面端工具 可以借鉴：想使用 tauri 搞，没遇到好的截屏
+//                     1. https://github.com/wulkano/Kap  react + Electron开发
+//                     2. vscode插件 ImageToText
 
 ```
 ## 好的博客

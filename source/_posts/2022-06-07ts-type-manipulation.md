@@ -1,5 +1,5 @@
 ---
-title: typescript 工具类型源码
+title: Typescript手册 类型操作
 date: 2022-06-07 09:20:35
 categories: typescript
 tags: [typescript]
@@ -479,4 +479,26 @@ type StrArrOrNumArr = ToArrayNonDist<string | number>;
 // 提示：type StrArrOrNumArr = (string | number)[];
 ```
 
-## Return
+## Return 待完善
+
+## Mapped Types
+映射类型
+
+When you don’t want to repeat yourself, sometimes a type needs to be based on another type.
+当你不想重复自己的时候，有时候一个类型需要基于另一个类型。
+Mapped types build on the syntax for index signatures, which are used to declare the types of properties which have not been declared ahead of time:
+映射类型建立基于索引签名的语法，用于声明在预先定义的属性类型之前没有被声明的属性类型：
+
+```ts
+type OnlyBoolsAndHorses = {
+  [key: string]: boolean | Horse;
+};
+ 
+const conforms: OnlyBoolsAndHorses = {
+  del: true,
+  rodney: false,
+};
+
+```
+
+
