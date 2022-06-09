@@ -3,7 +3,7 @@ title: 9.Typescript手册 模块
 date: 2022-06-08 22:47:47
 categories: typescript
 tags: [typescript]
-cover:
+cover: https://img0.baidu.com/it/u=86492913,3057347241&fm=253&fmt=auto&app=138&f=JPEG?w=499&h=208
 ---
 
 JavaScript has a long history of different ways to handle modularizing code. TypeScript having been around since 2012, has implemented support for a lot of these formats, but over time the community and the JavaScript specification has converged on a format called ES Modules (or ES6 modules). You might know it as the import/export syntax.

@@ -3,7 +3,7 @@ title: 4.Typescript手册 收缩类型
 date: 2022-06-07 09:21:19
 categories: typescript
 tags: [typescript]
-cover:
+cover: https://img0.baidu.com/it/u=86492913,3057347241&fm=253&fmt=auto&app=138&f=JPEG?w=499&h=208
 ---
 
 ## Narrowing

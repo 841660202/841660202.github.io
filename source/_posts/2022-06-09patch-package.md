@@ -3,7 +3,8 @@ title: 修补node_modules下源码
 date: 2022-06-09 09:51:48
 categories: npm
 tags: [npm]
-cover:
+cover: 
+
 ---
 
 ## 背景
@@ -119,7 +120,7 @@ hexo-theme-aurora@1.5.5 ✔
 npx patch-package hexo-theme-aurora
 ```
 
-这个命令使用npm运行的，可能不会成功，使用`yarn patch-package  hexo-theme-aurora`
+这个命令使用 npm 运行的，可能不会成功，使用`yarn patch-package hexo-theme-aurora`
 
 ```shell
 👑 ~/Desktop/other/blog/technology-blog git:(main) ✗ $ npx patch-package  hexo-theme-aurora
@@ -133,3 +134,8 @@ Error: https://registry.npmjs.org/core-js: ETIMEDOUT
     at Timeout._onTimeout (/usr/local/lib/node_modules/yarn/lib/cli.js:132130:19)
     at listOnTimeout (node:internal/timers:557:17)
 ```
+
+## 参考链接
+
+[hexo-theme-aurora/issues/168](https://github.com/auroral-ui/hexo-theme-aurora/issues/168)
+[patch-package](https://www.npmjs.com/package/patch-package)

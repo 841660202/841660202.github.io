@@ -718,6 +718,6 @@ This condition will always return 'false' since the types 'typeof firstName' and
 
 You can learn more about them in Symbols reference page.
 
-## 参考文档
+## 参考链接
 
 [Typescript 常见类型](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#the-primitives-string-number-and-boolean)
