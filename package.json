@@ -8,7 +8,9 @@
     "deploy": "hexo deploy",
     "server": "hexo server",
     "release": "git push && hexo clean && hexo deploy",
-    "dev": "hexo clean & hexo g & hexo server"
+    "dev": "hexo clean & hexo g & hexo server",
+    "patch:hexo-theme-aurora": "yarn patch-package hexo-theme-aurora",
+    "postinstall": "yarn patch-package"
   },
   "hexo": {
     "version": "6.1.0"
@@ -28,5 +30,8 @@
     "hexo-server": "^3.0.0",
     "hexo-theme-aurora": "^1.5.5",
     "hexo-theme-landscape": "^0.0.3"
+  },
+  "devDependencies": {
+    "patch-package": "^6.4.7"
   }
 }

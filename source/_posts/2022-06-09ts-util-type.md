@@ -1,5 +1,5 @@
 ---
-title: 10.Typescript Utility Type
+title: 10.Typescript 工具类型
 date: 2022-06-08 22:49:28
 categories: typescript
 tags: [typescript]
@@ -37,12 +37,22 @@ const todo2 = updateTodo(todo1, {
 });
 ```
 
+## 原理
+
+- 首先通过 keyof T，遍历出类型 T 的所有属性，然后通过 in 操作符进行遍历，最后在属性后加上?，将属性变为可选属性。
+
+```ts
+// https://github.com/microsoft/TypeScript/blob/HEAD/src/lib/es5.d.ts#L1517
+type Partial<T> = {
+  [P in keyof T]?: T[P];
+};
+```
 ## Required<Type>
 
 Released:2.8
 
 Constructs a type consisting of all properties of Type set to required. The opposite of Partial.
-`构造一个具有所有属性类型的必需属性的类型。反对Partial。`
+`构造一个具有所有属性类型的必需属性的类型。与Partial相反。`
 
 ```ts
 // Example
@@ -67,15 +77,15 @@ Constructs a type with all properties of Type set to readonly, meaning the prope
 ```ts
 // Example
 interface Todo {
-title: string;
+  title: string;
 }
 
 const todo: Readonly<Todo> = {
-title: "Delete inactive users",
+  title: "Delete inactive users",
 };
 
 todo.title = "Hello";
-Cannot assign to 'title' because it is a read-only property.
+// Cannot assign to 'title' because it is a read-only property.
 ```
 
 This utility is useful for representing assignment expressions that will fail at runtime (i.e. when attempting to reassign properties of a frozen object).
@@ -227,10 +237,11 @@ Constructs a type by excluding null and undefined from Type.
 // Example
 type T0 = NonNullable<string | number | undefined>;
 
-type T0 = string | number;
+// type T0 = string | number;
+
 type T1 = NonNullable<string[] | null | undefined>;
 
-type T1 = string[];
+// type T1 = string[];
 ```
 
 ## Parameters<Type>
@@ -304,6 +315,7 @@ type T4 = ConstructorParameters<Function>;
 
 // type T4 = never
 ```
+
 
 ## ReturnType<Type>
 

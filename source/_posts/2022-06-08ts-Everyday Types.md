@@ -1,6 +1,6 @@
 ---
 title: 3.Typescript 常见类型
-date: 2022-06-08 16:40:41
+date: 2022-06-06 16:40:41
 categories: typescript
 tags: [typescript]
 cover: https://img0.baidu.com/it/u=86492913,3057347241&fm=253&fmt=auto&app=138&f=JPEG?w=499&h=208

@@ -1,6 +1,6 @@
 ---
 title: 7.Typescript手册 类型操作
-date: 2022-06-07 09:20:35
+date: 2022-06-08 11:20:35
 categories: typescript
 tags: [typescript]
 cover: https://img0.baidu.com/it/u=86492913,3057347241&fm=253&fmt=auto&app=138&f=JPEG?w=499&h=208

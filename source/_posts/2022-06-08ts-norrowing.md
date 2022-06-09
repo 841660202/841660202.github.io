@@ -1,6 +1,6 @@
 ---
 title: 4.Typescript手册 收缩类型
-date: 2022-06-08 09:21:19
+date: 2022-06-07 09:21:19
 categories: typescript
 tags: [typescript]
 cover:
