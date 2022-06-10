@@ -1520,3 +1520,7 @@ fn(window);
 fn({});
 fn(fn);
 ```
+## 参考链接
+
+[typescript官网 类](https://www.typescriptlang.org/docs/handbook/2/classes.html#class-members)
+[类（Classes）](https://ts.yayujs.com/handbook/Class.html#%E7%B1%BB-classes)
