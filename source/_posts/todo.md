@@ -24,6 +24,10 @@ date: 2022-12-12 59:59:59
 //                     2. vscode插件 ImageToText
 
 ```
+未完成的事项：
+![](http://t-blog-images.aijs.top/img/20220610103503.webp)
+
+[ppt](https://github.com/pipipi-pikachu/PPTist)
 ## 好的博客
 ```js
 // 1.JerryWang_汪子熙  https://www.jianshu.com/u/99b8712e8850
