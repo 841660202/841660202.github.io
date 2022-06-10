@@ -846,3 +846,4 @@ To help with string manipulation around template string literals, TypeScript inc
 [Typescript 中的 extends 关键字](https://blog.csdn.net/qq_34998786/article/details/120300361)Exclude 与 Extract 前置学习项
 [Typescript Classes extends-clauses](https://www.typescriptlang.org/docs/handbook/2/classes.html#extends-clauses)
 [彻底搞懂 typescript 工具类型及其原理](https://blog.csdn.net/qq_32438227/article/details/125058423) 该文有错误内容，要注意哦
+[TypeScript 的 extends 条件类型](https://juejin.cn/post/6844904066485583885)
