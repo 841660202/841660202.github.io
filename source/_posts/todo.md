@@ -22,6 +22,7 @@ date: 2022-12-12 59:59:59
 // 13. ocr桌面端工具 可以借鉴：想使用 tauri 搞，没遇到好的截屏
 //                     1. https://github.com/wulkano/Kap  react + Electron开发
 //                     2. vscode插件 ImageToText
+// 14.react源码 debugger https://blog.csdn.net/lin_fightin/article/details/125136985?spm=1001.2014.3001.5502
 
 ```
 未完成的事项：
