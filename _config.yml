@@ -114,5 +114,5 @@ search:
   content: true
 
 codemirror:
-  modes: ['typescript','javascript', 'css', 'xml', 'htmlmixed', 'clike', 'php', 'shell', 'python', 'groovy', 'diff','nginx','properties']
+  modes: ['vue','typescript','javascript', 'css', 'xml', 'htmlmixed', 'clike', 'php', 'shell', 'python', 'groovy', 'diff','nginx','properties']
 
