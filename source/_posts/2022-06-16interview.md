@@ -48,12 +48,32 @@ cover: https://img1.baidu.com/it/u=2500395055,2979935817&fm=253&fmt=auto&app=138
 
 <a href="https://www.jianshu.com/p/844e293d90a7" target="_blank" >箭头函数和普通函数的区别</a>
 
-<a href="https://www.jianshu.com/p/5f718f4a9441#:~:text=jack%27))-,Object.create(),-Object.create%E6%98%AF" target="_blank" >Object.create()的实现原理</a>
-
 <a href="https://blog.csdn.net/z591102/article/details/110634593#:~:text=%E6%9C%BA%E7%A7%91%E5%AD%A6%E9%87%8C%EF%BC%8C-,%E5%B0%BE%E8%B0%83%E7%94%A8,-%E6%98%AF%E6%8C%87%E4%B8%80%E4%B8%AA" target="_blank" >tail 调用:尾调用优化（Tail Call Optimization，TCO）</a>
 
-
 <a href="https://segmentfault.com/a/1190000013396601" target="_blank" >Promise 实现原理</a>
+
+<a href="https://www.jianshu.com/p/5f718f4a9441#:~:text=jack%27))-,Object.create(),-Object.create%E6%98%AF" target="_blank" >new / Object.create()的实现原理</a>
+
+```ts
+function myNew() {
+  let obj = new Object();
+
+  let func = [].shift.call(arguments); //出列，获取第一个参数
+  obj.__proto__ = func.prototype; //proto指向原型
+
+  func.apply(obj, arguments); //让obj执行func函数
+
+  return obj;
+}
+function myCreate(obj) {
+  let F = function () {};
+  F.prototype = obj;
+  return new F();
+}
+```
+
+**对着图看**
+![](http://t-blog-images.aijs.top/img/20220617151244.webp)
 
 ## 浏览器
 
@@ -66,9 +86,25 @@ cover: https://img1.baidu.com/it/u=2500395055,2979935817&fm=253&fmt=auto&app=138
 
 <a href="https://blog.csdn.net/NCZB007/article/details/108440570" target="_blank" >.clearfix::after(清除浮动)中各个属性及值详细解说</a>
 
+<a href="https://blog.csdn.net/qq_39221436/article/details/124450355" target="_blank" > css-modules 来深入理解它的原理</a>
+
+<a href="https://blog.csdn.net/xun__xing/article/details/108253723" target="_blank" >css module</a>
+
 ## 算法
 
 <a href="https://www.nowcoder.com/exam/oj?tab=%E7%AE%97%E6%B3%95%E7%AF%87&topicId=295" target="_blank" >刷算法</a>
+
+## vue
+
+<a href="https://blog.csdn.net/weixin_45743636/article/details/118100951" target="_blank" >computed 与 watch 的区别</a>
+
+1、**功能上**：computed 是计算属性，watch 是监听一个值的变化，然后执行对应的回调。
+2、**是否调用 缓存**：computed 中的函数所依赖的属性没有发生变化，那么调用当前的函数的时候会从缓存中读取，而 watch 在每次监听的值发生变化的时候都会执行回调。
+3、**是否调用 return**：computed 中的函数必须要用 return 返回，watch 中的函数不是必须要用 return。
+4、**computed** 默认第一次加载的时候就开始监听；watch 默认第一次加载不做监听，如果需要第一次加载做监听，添加 immediate 属性，设置为 true（immediate:true）
+5、**使用场景**：computed----当一个属性受多个属性影响的时候，使用 computed-----购物车商品结算。watch–当一条数据影响多条数据的时候，使用 watch-----搜索框.
+
+## react
 
 ## 稳操胜券
 

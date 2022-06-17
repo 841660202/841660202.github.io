@@ -25,6 +25,7 @@ date: 2022-12-12 59:59:59
 // 14.react源码 debugger https://blog.csdn.net/lin_fightin/article/details/125136985?spm=1001.2014.3001.5502
 // 15. 如何让一个知识点分析图动起来？
 // 16. paste code to snippets 可以进一步优化
+// 17. 进程的stdout信息 反应到pod上 然后被k8s的日志收集系统收集和处理后 存储在日志平台的 https://www.jianshu.com/p/92a4c11e77ba
 
 ```
 未完成的事项：
