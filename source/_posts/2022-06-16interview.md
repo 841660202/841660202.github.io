@@ -48,14 +48,21 @@ cover: https://img1.baidu.com/it/u=2500395055,2979935817&fm=253&fmt=auto&app=138
 
 <a href="https://www.jianshu.com/p/844e293d90a7" target="_blank" >箭头函数和普通函数的区别</a>
 
+<a href="https://www.jianshu.com/p/5f718f4a9441#:~:text=jack%27))-,Object.create(),-Object.create%E6%98%AF" target="_blank" >Object.create()的实现原理</a>
+
+<a href="https://blog.csdn.net/z591102/article/details/110634593#:~:text=%E6%9C%BA%E7%A7%91%E5%AD%A6%E9%87%8C%EF%BC%8C-,%E5%B0%BE%E8%B0%83%E7%94%A8,-%E6%98%AF%E6%8C%87%E4%B8%80%E4%B8%AA" target="_blank" >tail 调用:尾调用优化（Tail Call Optimization，TCO）</a>
+
+
+<a href="https://segmentfault.com/a/1190000013396601" target="_blank" >Promise 实现原理</a>
+
 ## 浏览器
 
-<a href="http://t.zoukankan.com/Zzbj-p-13923489.html" target="_blank" > 强缓存、协商缓存发生在8中的哪些阶段</a>
+<a href="http://t.zoukankan.com/Zzbj-p-13923489.html" target="_blank" > 强缓存、协商缓存发生在 8 中的哪些阶段</a>
 
 ## CSS3
 
-<a href="https://www.jianshu.com/p/274a9b3200b4" target="_blank" >BFC与清除浮动</a>
-根节点、浮动、定位[]、display[相关]、表格、网格、多列，总之是把一些子元素圈起来形成封闭的盒子，践行BFC的原则[独立、对外不影响（不重叠）]
+<a href="https://www.jianshu.com/p/274a9b3200b4" target="_blank" >BFC 与清除浮动</a>
+根节点、浮动、定位[]、display[相关]、表格、网格、多列，总之是把一些子元素圈起来形成封闭的盒子，践行 BFC 的原则[独立、对外不影响（不重叠）]
 
 <a href="https://blog.csdn.net/NCZB007/article/details/108440570" target="_blank" >.clearfix::after(清除浮动)中各个属性及值详细解说</a>
 
@@ -74,6 +81,6 @@ cover: https://img1.baidu.com/it/u=2500395055,2979935817&fm=253&fmt=auto&app=138
 <a href="https://copyfuture.com/blogs-details/20211118131747765L" target="_blank" >读完这篇保你面试稳操胜券——前端面试题“骨灰级”总结
 </a>
 
-## 好博客
+## 博客推荐
 
 <a href="https://blog.csdn.net/JHXL_?type=blog" target="_blank" >几何心凉</a>
