@@ -33,6 +33,7 @@ menu:
   About: true
   Tags: true
   Archives: true
+  Categories: true
   Aurora:
     name: 'Aurora'
     path: 'https://aurora.tridiamond.tech/guide/menu.html'
