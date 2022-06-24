@@ -38,14 +38,14 @@
       
       <categories>
           
-          <category> Npm </category>
+          <category> npm </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> Npm </tag>
+            <tag> npm </tag>
             
         </tags>
       
@@ -1339,14 +1339,14 @@
       
       <categories>
           
-          <category> Npm </category>
+          <category> npm </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> Npm </tag>
+            <tag> npm </tag>
             
             <tag> wiki </tag>
             
@@ -1366,7 +1366,7 @@
       
       <categories>
           
-          <category> Npm </category>
+          <category> npm </category>
           
       </categories>
       
@@ -1375,7 +1375,7 @@
             
             <tag> 工具 </tag>
             
-            <tag> Npm </tag>
+            <tag> npm </tag>
             
         </tags>
       
@@ -2153,31 +2153,6 @@
     
     
     <entry>
-      <title>node-dev</title>
-      <link href="//post/2021-11-02node.html"/>
-      <url>//post/2021-11-02node.html</url>
-      
-        <content type="html"><![CDATA[<h2 id="在幕后用ts-node调整node-dev"><a href="#在幕后用ts-node调整node-dev" class="headerlink" title="在幕后用ts-node调整node-dev"></a>在幕后用ts-node调整node-dev</h2><ul><li>作用：在幕后用ts-node调整node-dev</li><li>优点：<ul><li>任意依赖的文件改变时候，重启node process，但是共享ts编译线程。</li><li>因为不需要每次ts-node编译的实例化，而提升性能</li></ul></li><li>配置项：</li><li>注意事项：</li><li>截图：<br><img src="http://t-blog-images.aijs.top/img/11460713-10cfe41335cfeb5d.png"></li></ul>]]></content>
-      
-      
-      <categories>
-          
-          <category> Node </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Node </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Web office预览</title>
       <link href="//post/2021-09-07web.html"/>
       <url>//post/2021-09-07web.html</url>
@@ -2195,6 +2170,31 @@
         <tags>
             
             <tag> Web </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>node-dev</title>
+      <link href="//post/2021-11-02node.html"/>
+      <url>//post/2021-11-02node.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="在幕后用ts-node调整node-dev"><a href="#在幕后用ts-node调整node-dev" class="headerlink" title="在幕后用ts-node调整node-dev"></a>在幕后用ts-node调整node-dev</h2><ul><li>作用：在幕后用ts-node调整node-dev</li><li>优点：<ul><li>任意依赖的文件改变时候，重启node process，但是共享ts编译线程。</li><li>因为不需要每次ts-node编译的实例化，而提升性能</li></ul></li><li>配置项：</li><li>注意事项：</li><li>截图：<br><img src="http://t-blog-images.aijs.top/img/11460713-10cfe41335cfeb5d.png"></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Node </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Node </tag>
             
         </tags>
       
