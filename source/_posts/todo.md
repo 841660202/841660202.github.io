@@ -28,16 +28,18 @@ date: 2022-12-12 59:59:59
 // 17. 进程的stdout信息 反应到pod上 然后被k8s的日志收集系统收集和处理后 存储在日志平台的 https://www.jianshu.com/p/92a4c11e77ba
 // 18. 文件抓取缓存在指定文件夹下【优先级高】 fileName =》download disk
 // 19. node-kafka(以前我总听成 ‘卡不卡’， 我回‘不卡不卡’)
+// 20. 封装公用预览组件，支持各种形式,pc、mobile
 ```
-未完成的事项：
-![](http://t-blog-images.aijs.top/img/20220610103503.webp)
+事项：
 
-[ppt](https://github.com/pipipi-pikachu/PPTist)
+<img src="http://t-blog-images.aijs.top/img/20220610103503.webp" width=300 height=/>
+
+<a href="https://github.com/pipipi-pikachu/PPTist" target="_blank" >ppt</a>
+
 ## 好的博客
-```js
-// 1.JerryWang_汪子熙  https://www.jianshu.com/u/99b8712e8850
 
-```
+<a href="https://www.jianshu.com/u/99b8712e8850" target="_blank" >JerryWang_汪子熙 </a>
 
 ## 其他记录 未整理
-[ahooks 中那些控制“时机”的hook都是怎么实现的？](https://juejin.cn/post/7107189225509879838)
+
+<a href="https://juejin.cn/post/7107189225509879838" target="_blank" >ahooks 中那些控制“时机”的hook都是怎么实现的？</a>
