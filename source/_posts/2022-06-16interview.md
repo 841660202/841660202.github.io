@@ -62,7 +62,17 @@ cover: https://img1.baidu.com/it/u=2500395055,2979935817&fm=253&fmt=auto&app=138
 
 <a href="https://segmentfault.com/a/1190000013396601" target="_blank" >Promise 实现原理</a>
 
+<hr />
+
+**new 和 Object.create 都是创造一个对象的意思，二者有啥区别呢？**
+
 <a href="https://www.jianshu.com/p/5f718f4a9441#:~:text=jack%27))-,Object.create(),-Object.create%E6%98%AF" target="_blank" >new / Object.create()的实现原理</a>
+
+- 用 Object.create()方法创建新对象,并使用现有对象提供新对象的 proto。
+- Object.create() 是 es5 组合继承的 es6 api
+- Object.create 克隆的对象也只能实现一级对象的深拷贝
+- <a href="https://blog.csdn.net/qq_48648782/article/details/118498146" target="_blank" >使用：创建子对象，让子对象继承父对象的同时，为子对象添加自有属性</a>
+
 
 ```ts
 function myNew() {
@@ -82,6 +92,8 @@ function myCreate(obj) {
 }
 ```
 
+  <hr />
+  
 **对着图看**
 ![](http://t-blog-images.aijs.top/img/20220617151244.webp)
 
@@ -105,6 +117,8 @@ function myCreate(obj) {
 
 <a href="https://blog.csdn.net/xun__xing/article/details/108253723" target="_blank" >css module</a>
 
+<a href="http://v.aijs.top/post/2022-05-23width0" target="_blank" >flex布局</a>
+
 ## 算法
 
 <a href="https://www.nowcoder.com/exam/oj?tab=%E7%AE%97%E6%B3%95%E7%AF%87&topicId=295" target="_blank" >刷算法</a>
@@ -127,9 +141,9 @@ function myCreate(obj) {
 ## react
 
 <a href="https://blog.csdn.net/weixin_39907713/article/details/111237885" target="_blank" >React Router 原理</a>
-<a href="https://blog.csdn.net/qingfeng2020/article/details/121136648" target="_blank" >浅谈前端路由原理，VueRouter原理和ReactRouter原理</a>
+<a href="https://blog.csdn.net/qingfeng2020/article/details/121136648" target="_blank" >浅谈前端路由原理，VueRouter 原理和 ReactRouter 原理</a>
 
-<a href="https://blog.csdn.net/Android_boom/article/details/125200222" target="_blank" >React Router源码解析</a>
+<a href="https://blog.csdn.net/Android_boom/article/details/125200222" target="_blank" >React Router 源码解析</a>
 
 ## 稳操胜券
 
@@ -139,8 +153,7 @@ function myCreate(obj) {
 
 <a href="https://www.wangt.cc/2021/11/%E7%9C%8B%E5%AE%8C%E8%BF%99%E7%AF%87%E6%96%87%E7%AB%A0%E4%BF%9D%E4%BD%A0%E9%9D%A2%E8%AF%95%E7%A8%B3%E6%93%8D%E8%83%9C%E5%88%B8-vue%E7%AF%87/" target="_blank" >看完这篇文章保你面试稳操胜券-vue 篇</a>
 
-<a href="https://copyfuture.com/blogs-details/20211118131747765L" target="_blank" >读完这篇保你面试稳操胜券——前端面试题“骨灰级”总结
-</a>
+<a href="https://copyfuture.com/blogs-details/20211118131747765L" target="_blank" >读完这篇保你面试稳操胜券——前端面试题“骨灰级”总结</a>
 
 ## webpack
 
