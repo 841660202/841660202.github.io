@@ -1,7 +1,7 @@
 ---
 title: 浏览器首屏优化-首屏时间获取
 date: 2022-05-12 18:27:05
-categories: performance
+categories: 前端
 tags: [performance, 前端, 浏览器原理]
 ---
 

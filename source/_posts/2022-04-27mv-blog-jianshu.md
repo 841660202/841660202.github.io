@@ -1,6 +1,6 @@
 ---
 title: 简书迁移到OSS
-categories: Shell
+categories: 工具
 tags: [Shell]
 date: 2015-11-12 10:55:47
 ---

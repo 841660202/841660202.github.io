@@ -1,7 +1,7 @@
 ---
 title: react-redux  源码2
 date: 2022-05-24 21:15:31
-categories: react-redux
+categories: react
 tags: [react-redux, redux, 源码]
 cover: 
 ---

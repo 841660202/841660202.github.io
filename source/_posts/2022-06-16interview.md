@@ -12,6 +12,8 @@ cover: https://img1.baidu.com/it/u=2500395055,2979935817&fm=253&fmt=auto&app=138
 
 <a href="https://juejin.cn/post/7013953652578582558?share_token=ad9faad3-d177-4d34-9228-086d1d192112" target="_blank" >前端两年经验，历时一个月的面经和总结</a>
 
+<a href="https://cloud.tencent.com/developer/article/1663670" target="_blank" >【面试题】CSS知识点整理(附答案)</a>
+
 ## HTTP 与 TCP
 
 <a href="https://blog.csdn.net/SuNew_bee/article/details/117303320" target="_blank" >HTTP/1.1、HTTP/2、HTTP/3 对 HTTP 的改进</a>
@@ -62,7 +64,17 @@ cover: https://img1.baidu.com/it/u=2500395055,2979935817&fm=253&fmt=auto&app=138
 
 <a href="https://segmentfault.com/a/1190000013396601" target="_blank" >Promise 实现原理</a>
 
+<hr />
+
+**new 和 Object.create 都是创造一个对象的意思，二者有啥区别呢？**
+
 <a href="https://www.jianshu.com/p/5f718f4a9441#:~:text=jack%27))-,Object.create(),-Object.create%E6%98%AF" target="_blank" >new / Object.create()的实现原理</a>
+
+- 用 Object.create()方法创建新对象,并使用现有对象提供新对象的 proto。
+- Object.create() 是 es5 组合继承的 es6 api
+- Object.create 克隆的对象也只能实现一级对象的深拷贝
+- <a href="https://blog.csdn.net/qq_48648782/article/details/118498146" target="_blank" >使用：创建子对象，让子对象继承父对象的同时，为子对象添加自有属性</a>
+
 
 ```ts
 function myNew() {
@@ -82,6 +94,8 @@ function myCreate(obj) {
 }
 ```
 
+  <hr />
+  
 **对着图看**
 ![](http://t-blog-images.aijs.top/img/20220617151244.webp)
 
@@ -111,6 +125,9 @@ function myCreate(obj) {
 
 <img src="http://www.alloyteam.com/wp-content/uploads/2016/05/%E4%BC%AA%E5%85%83%E7%B4%A0.png"/>
 
+<a href="http://v.aijs.top/post/2022-05-23width0" target="_blank" >flex布局</a>
+
+<a href="https://juejin.cn/post/6844903582370643975" target="_blank" >怎么画一条0.5px的边（更新）</a>
 ## 算法
 
 <a href="https://www.nowcoder.com/exam/oj?tab=%E7%AE%97%E6%B3%95%E7%AF%87&topicId=295" target="_blank" >刷算法</a>
@@ -145,8 +162,7 @@ function myCreate(obj) {
 
 <a href="https://www.wangt.cc/2021/11/%E7%9C%8B%E5%AE%8C%E8%BF%99%E7%AF%87%E6%96%87%E7%AB%A0%E4%BF%9D%E4%BD%A0%E9%9D%A2%E8%AF%95%E7%A8%B3%E6%93%8D%E8%83%9C%E5%88%B8-vue%E7%AF%87/" target="_blank" >看完这篇文章保你面试稳操胜券-vue 篇</a>
 
-<a href="https://copyfuture.com/blogs-details/20211118131747765L" target="_blank" >读完这篇保你面试稳操胜券——前端面试题“骨灰级”总结
-</a>
+<a href="https://copyfuture.com/blogs-details/20211118131747765L" target="_blank" >读完这篇保你面试稳操胜券——前端面试题“骨灰级”总结</a>
 
 ## webpack
 
@@ -162,6 +178,8 @@ function myCreate(obj) {
 ## 性能
 
 <a href="https://juejin.cn/post/6844903655330562062" target="_blank" >网站性能优化实战——从 12.67s 到 1.06s 的故事</a>
+
+<a href="http://v.aijs.top/post/2022-05-12performance" target="_blank" >浏览器首屏优化-首屏时间获取</a>
 
 ## React
 
