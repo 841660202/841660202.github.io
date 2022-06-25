@@ -105,6 +105,12 @@ function myCreate(obj) {
 
 <a href="https://blog.csdn.net/xun__xing/article/details/108253723" target="_blank" >css module</a>
 
+<a href="http://www.alloyteam.com/2016/05/summary-of-pseudo-classes-and-pseudo-elements/" target="_blank" >总结伪类与伪元素</a>
+
+<img src="http://www.alloyteam.com/wp-content/uploads/2016/05/%E4%BC%AA%E7%B1%BB.png" />
+
+<img src="http://www.alloyteam.com/wp-content/uploads/2016/05/%E4%BC%AA%E5%85%83%E7%B4%A0.png"/>
+
 ## 算法
 
 <a href="https://www.nowcoder.com/exam/oj?tab=%E7%AE%97%E6%B3%95%E7%AF%87&topicId=295" target="_blank" >刷算法</a>
@@ -127,9 +133,9 @@ function myCreate(obj) {
 ## react
 
 <a href="https://blog.csdn.net/weixin_39907713/article/details/111237885" target="_blank" >React Router 原理</a>
-<a href="https://blog.csdn.net/qingfeng2020/article/details/121136648" target="_blank" >浅谈前端路由原理，VueRouter原理和ReactRouter原理</a>
+<a href="https://blog.csdn.net/qingfeng2020/article/details/121136648" target="_blank" >浅谈前端路由原理，VueRouter 原理和 ReactRouter 原理</a>
 
-<a href="https://blog.csdn.net/Android_boom/article/details/125200222" target="_blank" >React Router源码解析</a>
+<a href="https://blog.csdn.net/Android_boom/article/details/125200222" target="_blank" >React Router 源码解析</a>
 
 ## 稳操胜券
 
