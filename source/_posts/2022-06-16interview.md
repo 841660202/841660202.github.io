@@ -235,6 +235,14 @@ react 禁止事件冒泡
 
 <a href="https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/" target="_blank" >react ⽣命周期</a>
 
+
+<a href="https://blog.csdn.net/weixin_45654582/article/details/122740125#:~:text=dependencies%20%E5%BB%BA%E7%AB%8B%E8%B5%B7%E5%85%B3%E8%81%94%E3%80%82-,Context%20%E5%8E%9F%E7%90%86,-Provider%20%E4%BC%A0%E9%80%92%E6%B5%81%E7%A8%8B" target="_blank" >Context 原理</a>
+
+- Provider 传递流程：Provider 的更新，会 深度遍历子代 fiber，消费 context 的 fiber 和父级链都会 提升更新优先级。 对于类组件的 fiber ，会 forceUpdate 处理。接下来所有消费的 fiber，都会 beginWork 。
+- Context 订阅流程： contextType ， useContext， Consumer 会内部调用 readContext ，readContext 会把 fiber 上的 dependencies 属性 和 context 对象 建立起关联。
+
+
+
 ## 稳操胜券
 
 <a href="http://dljz.nicethemes.cn/news/show-13202.html" target="_blank" >看完这篇文章保你面试稳操胜券 ——（必考题）javaScript 篇</a>
