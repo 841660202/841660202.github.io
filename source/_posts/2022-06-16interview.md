@@ -229,19 +229,26 @@ react 禁止事件冒泡
 
 <a href="https://blog.csdn.net/leelxp/article/details/108218088#:~:text=%E6%88%91%E4%BB%AC%E6%9D%A5%E7%9C%8B%E7%9C%8BPureComponent%E5%92%8CComponent%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F%C2%A0" target="_blank" >我们来看看 PureComponent 和 Component 的区别是什么？ </a>
 
+**单节点 Diff**
+<a href="https://react.iamkasong.com/diff/one.html" target="_blank" >单节点 diff</a>
+
+**多节点 Diff**
 <a href="https://react.iamkasong.com/diff/multi.html#diff%E7%9A%84%E6%80%9D%E8%B7%AF:~:text=%23-,%E7%AC%AC%E4%B8%80%E8%BD%AE%E9%81%8D%E5%8E%86,-%E7%AC%AC%E4%B8%80%E8%BD%AE%E9%81%8D" target="_blank" >第一轮遍历</a>
 
 <a href="https://react.iamkasong.com/diff/multi.html#%E7%AC%AC%E4%B8%80%E8%BD%AE%E9%81%8D%E5%8E%86:~:text=%23-,%E7%AC%AC%E4%BA%8C%E8%BD%AE%E9%81%8D%E5%8E%86,-%E5%AF%B9%E4%BA%8E%E7%AC%AC%E4%B8%80%E8%BD%AE" target="_blank" >第二轮遍历</a>
 
 <a href="https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/" target="_blank" >react ⽣命周期</a>
 
+<!-- <div>
+
+<iframe src="https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/" height=600 width='100%'></iframe>
+
+</div> -->
 
 <a href="https://blog.csdn.net/weixin_45654582/article/details/122740125#:~:text=dependencies%20%E5%BB%BA%E7%AB%8B%E8%B5%B7%E5%85%B3%E8%81%94%E3%80%82-,Context%20%E5%8E%9F%E7%90%86,-Provider%20%E4%BC%A0%E9%80%92%E6%B5%81%E7%A8%8B" target="_blank" >Context 原理</a>
 
 - Provider 传递流程：Provider 的更新，会 深度遍历子代 fiber，消费 context 的 fiber 和父级链都会 提升更新优先级。 对于类组件的 fiber ，会 forceUpdate 处理。接下来所有消费的 fiber，都会 beginWork 。
 - Context 订阅流程： contextType ， useContext， Consumer 会内部调用 readContext ，readContext 会把 fiber 上的 dependencies 属性 和 context 对象 建立起关联。
-
-
 
 ## 稳操胜券
 
