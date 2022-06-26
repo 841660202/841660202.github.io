@@ -12,7 +12,7 @@ cover: https://img1.baidu.com/it/u=2500395055,2979935817&fm=253&fmt=auto&app=138
 
 <a href="https://juejin.cn/post/7013953652578582558?share_token=ad9faad3-d177-4d34-9228-086d1d192112" target="_blank" >前端两年经验，历时一个月的面经和总结</a>
 
-<a href="https://cloud.tencent.com/developer/article/1663670" target="_blank" >【面试题】CSS知识点整理(附答案)</a>
+<a href="https://cloud.tencent.com/developer/article/1663670" target="_blank" >【面试题】CSS 知识点整理(附答案)</a>
 
 ## HTTP 与 TCP
 
@@ -63,6 +63,7 @@ cover: https://img1.baidu.com/it/u=2500395055,2979935817&fm=253&fmt=auto&app=138
 <a href="https://blog.csdn.net/z591102/article/details/110634593#:~:text=%E6%9C%BA%E7%A7%91%E5%AD%A6%E9%87%8C%EF%BC%8C-,%E5%B0%BE%E8%B0%83%E7%94%A8,-%E6%98%AF%E6%8C%87%E4%B8%80%E4%B8%AA" target="_blank" >tail 调用:尾调用优化（Tail Call Optimization，TCO）</a>
 
 <a href="https://segmentfault.com/a/1190000013396601" target="_blank" >Promise 实现原理</a>
+<a href="" target="_blank" >数据劫持 ……^\_^</a>
 
 <hr />
 
@@ -74,7 +75,6 @@ cover: https://img1.baidu.com/it/u=2500395055,2979935817&fm=253&fmt=auto&app=138
 - Object.create() 是 es5 组合继承的 es6 api
 - Object.create 克隆的对象也只能实现一级对象的深拷贝
 - <a href="https://blog.csdn.net/qq_48648782/article/details/118498146" target="_blank" >使用：创建子对象，让子对象继承父对象的同时，为子对象添加自有属性</a>
-
 
 ```ts
 function myNew() {
@@ -119,18 +119,48 @@ function myCreate(obj) {
 
 <a href="https://blog.csdn.net/xun__xing/article/details/108253723" target="_blank" >css module</a>
 
+<a href="http://v.aijs.top/post/2022-05-23width0" target="_blank" >flex 布局</a>
+
+<a href="https://juejin.cn/post/6844903582370643975" target="_blank" >怎么画一条 0.5px 的边（更新）</a>
+
 <a href="http://www.alloyteam.com/2016/05/summary-of-pseudo-classes-and-pseudo-elements/" target="_blank" >总结伪类与伪元素</a>
 
-<img src="http://www.alloyteam.com/wp-content/uploads/2016/05/%E4%BC%AA%E7%B1%BB.png" />
+<div style="display: flex;flex-direction: row;flex-wrap: wrap">
 
-<img src="http://www.alloyteam.com/wp-content/uploads/2016/05/%E4%BC%AA%E5%85%83%E7%B4%A0.png"/>
+  <img src="http://t-blog-images.aijs.top/img/20220625174736.png" width=400 style="margin-right: 4px; margin-bottom: 4px"/>
 
-<a href="http://v.aijs.top/post/2022-05-23width0" target="_blank" >flex布局</a>
+  <img src="http://t-blog-images.aijs.top/img/20220625174712.png" style="boject-fix: none; height: 200px"/>
+</div>
 
-<a href="https://juejin.cn/post/6844903582370643975" target="_blank" >怎么画一条0.5px的边（更新）</a>
+`:first-child` `:first-of-type` `:nth-child` `:nth-of-type` 区别
+
+- <a href="http://www.alloyteam.com/2016/05/summary-of-pseudo-classes-and-pseudo-elements/#prettyPhoto:~:text=2-,%3Afirst%2Dchild,-%E5%8C%B9%E9%85%8D%E5%85%83%E7%B4%A0%E7%9A%84" target="_blank" >:first-child</a> 匹配元素的第一个子元素。
+- <a href="http://www.alloyteam.com/2016/05/summary-of-pseudo-classes-and-pseudo-elements/#prettyPhoto:~:text=%7D-,4%20first%2Dof%2Dtype,-%E5%8C%B9%E9%85%8D%E5%B1%9E%E4%BA%8E%E5%85%B6" target="_blank" >:first-of-type</a> 匹配属于其父元素的首个特定类型的子元素的每个元素。
+- <a href="http://www.alloyteam.com/2016/05/summary-of-pseudo-classes-and-pseudo-elements/#prettyPhoto:~:text=%7D-,6%20%3Anth%2Dchild,-%3Anth%2Dchild%20%E6%A0%B9%E6%8D%AE" target="_blank" >:nth-child </a> 根据元素的位置匹配一个或者多个元素，它接受一个 an+b 形式的参数，an+b 匹配到的元素示例如下：
+  1n+0，或 n，匹配每一个子元素。
+  2n+0，或 2n，匹配位置为 2、4、6、8… 的子元素，该表达式与关键字 even 等价。
+  2n+1 匹配位置为 1、3、5、7… 的子元素、该表达式与关键字 odd 等价。
+  3n+4 匹配位置为 4、7、10、13… 的子元素。
+  :nth-of-type
+- <a href="http://www.alloyteam.com/2016/05/summary-of-pseudo-classes-and-pseudo-elements/#prettyPhoto:~:text=%E5%BC%80%E5%A7%8B%E8%AE%A1%E6%95%B0%E7%9A%84%E3%80%82-,8%20%3Anth%2Dof%2Dtype,-%3Anth%2Dof%2Dtype" target="_blank" >:nth-of-type</a> 与 nth-child 相似，不同之处在于它是只匹配特定类型的元素。
+
+<a href="https://www.runoob.com/cssref/pr-class-position.html" target="_blank" >position 的几个属性和含义</a>
+
+<a href="" target="_blank" >说一下盒模型>\_<</a>
+
+## 响应式
+
+<a href="https://juejin.cn/post/6844903814332432397" target="_blank" >前端响应式布局原理与方案（详细版）</a>
+
+<a href="https://juejin.cn/post/6844903814332432397#:~:text=%E5%AF%B9%E4%BA%8E%E9%9C%80%E8%A6%81%E4%BF%9D%E6%8C%81%E5%AE%BD%E9%AB%98%E6%AF%94%E7%9A%84%E5%9B%BE%EF%BC%8C%E5%BA%94%E8%AF%A5%E7%94%A8padding%2Dtop%E5%AE%9E%E7%8E%B0" target="_blank" >对于需要保持宽高比的图，应该用 padding-top 实现(一种为了解决，图片未加载出来，高度为 0 加载完后，有了内容发生跳变的现象)</a>
+
+<a href="https://juejin.cn/post/6844903814332432397#:~:text=1%E7%89%A9%E7%90%86%E5%83%8F%E7%B4%A0%E7%BA%BF%EF%BC%88%E4%B9%9F%E5%B0%B1%E6%98%AF%E6%99%AE%E9%80%9A%E5%B1%8F%E5%B9%95%E4%B8%8B1px%2C%E9%AB%98%E6%B8%85%E5%B1%8F%E5%B9%95%E4%B8%8B0.5px%E7%9A%84%E6%83%85%E5%86%B5%EF%BC%89%E9%87%87%E7%94%A8transform%E5%B1%9E%E6%80%A7scale%E5%AE%9E%E7%8E%B0" target="_blank" >1 物理像素线</a>
+
 ## 算法
 
 <a href="https://www.nowcoder.com/exam/oj?tab=%E7%AE%97%E6%B3%95%E7%AF%87&topicId=295" target="_blank" >刷算法</a>
+
+<a href="https://juejin.cn/post/6844903846779551751" target="_blank" >前端面试之手写代码</a>
 
 ## 安全
 
@@ -153,6 +183,57 @@ function myCreate(obj) {
 <a href="https://blog.csdn.net/qingfeng2020/article/details/121136648" target="_blank" >浅谈前端路由原理，VueRouter 原理和 ReactRouter 原理</a>
 
 <a href="https://blog.csdn.net/Android_boom/article/details/125200222" target="_blank" >React Router 源码解析</a>
+<a href="https://wenku.baidu.com/view/dbc762dc740bf78a6529647d27284b73f342365b.html" target="_blank" >React 合成事件机制</a>
+<a href="https://baijiahao.baidu.com/s?id=1727882238371627418&wfr=spider&for=pc" target="_blank" >web 前端培训 React 合成事件原理解析</a>
+
+<a href="https://www.jianshu.com/p/a68219093f88" target="_blank" >React 事件机制 – 合成事件</a>
+
+- **原生事件**
+  当某个元素触发某个事件（如 onclick ），顶层对象 Document 就会发出一个事件流，随着 DOM 树的节点向目标元素节点流去，直到到达事件真正发生的目标元素。
+- **事件目标**
+  当到达目标元素之后，执行目标元素该事件相应的处理函数。如果没有绑定监听函数，那就不执行。
+- **事件冒泡**
+  从目标元素开始，往顶层元素传播。途中如果有节点绑定了相应的事件处理函数，这些函数都会被触发一次。
+- **事件委托/事件代理**
+  - 简单理解就是将一个响应事件委托到另一个元素。
+  - 当子节点被点击时，click 事件向上冒泡，父节点捕获到事件后，我们判断是否为所需的节点，然后进行处理。
+- **合成事件与原生事件区别**
+  - 事件名称命名方式不同
+  - 事件处理函数写法不同
+  - 阻止默认行为方式不同
+- **React 合成事件与原生事件执行顺序**
+  - 类似洋葱，
+    捕获：`document => react 父级 => react 子级 => 父级原生 => 子级原生`
+    冒泡：`document <= react 父级 <= react 子级 <= 父级原生 <= 子级原生`
+- **阻止冒泡**
+- **原生:** 使用 `e.stopPropagation()` 或者 `e.cancelBubble=true`（IE）来阻止
+- **react 中，**阻止冒泡的方式有三种：
+  1. 阻止合成事件与非合成事件（除了 document）之间的冒泡，以上两种方式都不适用，需要用到 e.target 判断。
+  2. 阻止合成事件与最外层 document 上的事件间的冒泡，用 `e.nativeEvent.stopImmediatePropagation()`;
+  3. 阻止合成事件间的冒泡，用 `e.stopPropagation()`;
+
+:::tip
+
+react 禁止事件冒泡
+
+- `e.stopPropagation`用来阻止 React 模拟的事件冒泡
+- `e.stopImmediatePropagation` 没这个函数
+- `e.nativeEvent.stopPropagation` 原生事件对象的用于阻止 DOM 事件的进一步捕获或者冒泡
+- `e.nativeEvent.stopImmediatePropagation` 原生事件对象用于阻止 dom 事件的进一步捕获或者冒泡，且该元素的后续绑定相同事件类型的事件，都会被阻止
+
+:::
+
+<a href="https://zhuanlan.zhihu.com/p/150993869#:~:text=memo%E5%87%BD%E6%95%B0-,2.4.4.%20%E4%B8%8D%E5%8F%AF%E5%8F%98%E6%95%B0%E6%8D%AE%E7%9A%84%E5%8A%9B%E9%87%8F,-%E6%88%91%E4%BB%AC%E9%80%9A%E8%BF%87%E4%B8%80%E4%B8%AA" target="_blank" >setState 返回一样的引用，render 会执行吗</a>
+
+<a href="" target="_blank" >useEffect 的使用方法？useEffect 的 return 会在什么时候执行？useEffect 原理是什么？</a>
+
+<a href="https://blog.csdn.net/leelxp/article/details/108218088#:~:text=%E6%88%91%E4%BB%AC%E6%9D%A5%E7%9C%8B%E7%9C%8BPureComponent%E5%92%8CComponent%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F%C2%A0" target="_blank" >我们来看看 PureComponent 和 Component 的区别是什么？ </a>
+
+<a href="https://react.iamkasong.com/diff/multi.html#diff%E7%9A%84%E6%80%9D%E8%B7%AF:~:text=%23-,%E7%AC%AC%E4%B8%80%E8%BD%AE%E9%81%8D%E5%8E%86,-%E7%AC%AC%E4%B8%80%E8%BD%AE%E9%81%8D" target="_blank" >第一轮遍历</a>
+
+<a href="https://react.iamkasong.com/diff/multi.html#%E7%AC%AC%E4%B8%80%E8%BD%AE%E9%81%8D%E5%8E%86:~:text=%23-,%E7%AC%AC%E4%BA%8C%E8%BD%AE%E9%81%8D%E5%8E%86,-%E5%AF%B9%E4%BA%8E%E7%AC%AC%E4%B8%80%E8%BD%AE" target="_blank" >第二轮遍历</a>
+
+<a href="https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/" target="_blank" >react ⽣命周期</a>
 
 ## 稳操胜券
 
