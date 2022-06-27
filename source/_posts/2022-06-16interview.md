@@ -250,6 +250,13 @@ react 禁止事件冒泡
 - Provider 传递流程：Provider 的更新，会 深度遍历子代 fiber，消费 context 的 fiber 和父级链都会 提升更新优先级。 对于类组件的 fiber ，会 forceUpdate 处理。接下来所有消费的 fiber，都会 beginWork 。
 - Context 订阅流程： contextType ， useContext， Consumer 会内部调用 readContext ，readContext 会把 fiber 上的 dependencies 属性 和 context 对象 建立起关联。
 
+<a href="https://blog.csdn.net/github_37759996/article/details/119187241" target="_blank" >Hooks 的实现原理</a>
+<a href="https://blog.csdn.net/XH_jing/article/details/124188256" target="_blank" >类组件和纯函数组件的区别</a>
+
+<a href="https://www.php.cn/website-design-ask-491123.html" target="_blank" >React dom 绑定事件和原生事件有什么区别</a>
+
+<a href="https://juejin.cn/post/7064444554727915556" target="_blank" >useState 的源码解析</a>
+
 ## 稳操胜券
 
 <a href="http://dljz.nicethemes.cn/news/show-13202.html" target="_blank" >看完这篇文章保你面试稳操胜券 ——（必考题）javaScript 篇</a>
@@ -271,18 +278,21 @@ react 禁止事件冒泡
 
 <a href="https://www.cnblogs.com/zhilili/p/14721434.html" target="_blank" >webpack（四）——webpack 里面的 plugin 和 loader 的区别</a>
 
+<a href="https://zhuanlan.zhihu.com/p/429072485" target="_blank" >跟着源码了解 Webpack 编译流程</a>
+
+<a href="https://blog.csdn.net/qq_39207948/article/details/102768659" target="_blank" >说一下对 tree-shaking 的了解，对 CommonJS 和 ESM 都可以用 tree-shaking 吗</a>
+
+<a href="https://www.webpackjs.com/contribute/writing-a-loader/" target="_blank" >编写一个 loader</a>
+
+<a href="https://www.webpackjs.com/contribute/writing-a-plugin/" target="_blank" >编写一个插件</a>
+
+<a href="https://juejin.cn/post/6918998088010956807" target="_blank" >Webpack5 的事件流和插件机制</a>
+
 ## 性能
 
 <a href="https://juejin.cn/post/6844903655330562062" target="_blank" >网站性能优化实战——从 12.67s 到 1.06s 的故事</a>
 
 <a href="http://v.aijs.top/post/2022-05-12performance" target="_blank" >浏览器首屏优化-首屏时间获取</a>
-
-## React
-
-<a href="https://blog.csdn.net/github_37759996/article/details/119187241" target="_blank" >Hooks 的实现原理</a>
-<a href="https://blog.csdn.net/XH_jing/article/details/124188256" target="_blank" >类组件和纯函数组件的区别</a>
-
-<a href="https://www.php.cn/website-design-ask-491123.html" target="_blank" >React dom 绑定事件和原生事件有什么区别</a>
 
 ## 博客推荐
 
