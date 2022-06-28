@@ -29,6 +29,7 @@ date: 2022-12-12 59:59:59
 // 18. 文件抓取缓存在指定文件夹下【优先级高】 fileName =》download disk
 // 19. node-kafka(以前我总听成 ‘卡不卡’， 我回‘不卡不卡’)
 // 20. 封装公用预览组件，支持各种形式,pc、mobile
+// 21. git https://blog.csdn.net/Q1761991696/article/details/123572766
 ```
 事项：
 
