@@ -14,8 +14,6 @@ cover: https://img1.baidu.com/it/u=2500395055,2979935817&fm=253&fmt=auto&app=138
 
 <a href="https://cloud.tencent.com/developer/article/1663670" target="_blank" >【面试题】CSS 知识点整理(附答案)</a>
 
-<a href="https://juejin.cn/post/6844904093434019853" target="_blank" >基建（不属于面试范畴，比较感兴趣）</a>
-
 ## HTTP 与 TCP
 
 <a href="https://blog.csdn.net/SuNew_bee/article/details/117303320" target="_blank" >HTTP/1.1、HTTP/2、HTTP/3 对 HTTP 的改进</a>
@@ -149,6 +147,8 @@ function myCreate(obj) {
 <a href="https://www.runoob.com/cssref/pr-class-position.html" target="_blank" >position 的几个属性和含义</a>
 
 <a href="" target="_blank" >说一下盒模型>\_<</a>
+
+<a href="https://www.jianshu.com/p/ce7e4a997a2c" target="_blank" >vertical-align到底怎么用</a>
 
 ## 响应式
 
