@@ -102,11 +102,12 @@ function myCreate(obj) {
 ## 浏览器
 
 <a href="http://t.zoukankan.com/Zzbj-p-13923489.html" target="_blank" > 强缓存、协商缓存发生在 8 中的哪些阶段</a>
-
+<a href="https://mp.weixin.qq.com/s/0w6aWwpR3MAJnmyLwDnAzA" target="_blank" >JavaScript 内存泄漏防范之道</a>
 ## html
 
 <a href="https://blog.csdn.net/oscar999/article/details/121044091" target="_blank" >HTML 如何禁用缓存</a>
 
+<a href="https://www.jianshu.com/p/50c37351f873" target="_blank" >onload、DOMContentLoaded区别</a>
 ## CSS3
 
 <a href="https://www.jianshu.com/p/274a9b3200b4" target="_blank" >BFC 与清除浮动</a>
