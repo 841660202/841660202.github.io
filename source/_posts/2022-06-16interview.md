@@ -14,8 +14,6 @@ cover: https://img1.baidu.com/it/u=2500395055,2979935817&fm=253&fmt=auto&app=138
 
 <a href="https://cloud.tencent.com/developer/article/1663670" target="_blank" >【面试题】CSS 知识点整理(附答案)</a>
 
-<a href="https://juejin.cn/post/6844904093434019853" target="_blank" >基建（不属于面试范畴，比较感兴趣）</a>
-
 ## HTTP 与 TCP
 
 <a href="https://blog.csdn.net/SuNew_bee/article/details/117303320" target="_blank" >HTTP/1.1、HTTP/2、HTTP/3 对 HTTP 的改进</a>
@@ -150,7 +148,9 @@ function myCreate(obj) {
 
 <a href="" target="_blank" >说一下盒模型>\_<</a>
 
+<a href="https://www.jianshu.com/p/ce7e4a997a2c" target="_blank" >vertical-align到底怎么用</a>
 
+<a href="https://blog.csdn.net/qq_52340302/article/details/119238781" target="_blank" >六种常用的css三栏布局方法</a>
 ## 响应式
 
 <a href="https://juejin.cn/post/6844903814332432397" target="_blank" >前端响应式布局原理与方案（详细版）</a>
