@@ -40,6 +40,14 @@ cover: https://img1.baidu.com/it/u=2500395055,2979935817&fm=253&fmt=auto&app=138
 
 <a href="https://blog.csdn.net/weixin_42674490/article/details/120647995" target="_blank" >websocket 使用</a>
 
+
+**状态码的含义**
+
+<a href="" target="_blank" >101 SwitchingProtocols，表示切换协议。服务器根据客户端的请求切换协议。只能切换到更高级的协议</a>
+
+<a href="https://www.bbsmax.com/A/gGdX3AWm54/" target="_blank" >204 状态码的含义</a>
+
+<a href="" target="_blank" >206 partial Content, 进行范围请求，打开B站的视频可以看到206请求</a>
 ## 身份信息
 
 <!-- <a href="https://zhuanlan.zhihu.com/p/482474619" target="_blank" >JWT 史上最全面试题(大厂常问)</a> -->
