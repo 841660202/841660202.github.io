@@ -25,8 +25,9 @@ tags: [performance, 前端, 浏览器原理]
 
 ![](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9sejV6LmNvbS9hc3NldHMvaW1nL3BlcmZvcm1hbmNlLnBuZw?x-oss-process=image/format,png)
 
+**缺失部分：secureConnectionStart**
 ## 输入 url 发生了什么
-  
+
 - 1、当浏览器地址中输入 url 后，`navigationStart`如果之前有前一个网页（与当前页面不一定同域）unload 的时间戳,如果无前一个网页 unload ，则与 fetchStart 值相等,
 - 2、接着，是否有重定向（`redirect` ）
 - 3、接着，准备用 HTTP 抓取文档的内容（`fetchStart`）查看`APP Cache`
@@ -286,7 +287,8 @@ function getPerformanceTiming() {
 ## 两个事例
 
 **飞书雪碧图**
-- 为什么拿飞书桌端数据来说（之前开发桌面端Electron，扒拉过飞书应用包的数据)
+
+- 为什么拿飞书桌端数据来说（之前开发桌面端 Electron，扒拉过飞书应用包的数据)
 
 <img src="http://t-blog-images.aijs.top/img/20220606170307.webp" width=200 style="object-fit:content"/>
 
@@ -460,7 +462,8 @@ let loaded = t.loadEventEnd - t.navigationStart;
 <a href="https://dayjs.fenxianglu.cn/category/display.html#%E6%A0%BC%E5%BC%8F%E5%8C%96" target="_blank" >dayjs 网站</a>
 
 ![](http://t-blog-images.aijs.top/img/20220606152413.webp)
-- 代码是为了对performance.timing按照时间值进行排序，排序结果大致是执行的顺序，稍微有出入，会手动做调整
+
+- 代码是为了对 performance.timing 按照时间值进行排序，排序结果大致是执行的顺序，稍微有出入，会手动做调整
 - 代码如下：
 
 ```js
@@ -905,6 +908,14 @@ Referrer Policy: strict-origin-when-cross-origin
 
 ![](http://t-blog-images.aijs.top/img/20220606143138.webp)
 
+## DNS 缓存
+
+在实际的解析过程中，并不是客户端的每一次访问都需要委托递归服务器进行迭代查询，
+
+1. 而是先搜索浏览器自身的 DNS 缓存，如果有，解析到此为止；
+2. 如果 DNS 缓存中没有结果就会读取操作系统中的 HOSTS 文件查找对应的映射关系，如果有到此完成；
+3. 如果没有，再请求递归服务器，进行全球递归查询。从中我们可以看出 DNS 缓存是获取域名解析记录的第一步骤。
+
 ## 参考资料
 
 <a href="https://blog.csdn.net/z9061/article/details/101454438" target="_blank" >Web 性能优化-首屏和白屏时间</a>
@@ -913,3 +924,4 @@ Referrer Policy: strict-origin-when-cross-origin
 
 <a href="https://blog.csdn.net/abuanden/article/details/114530985" target="_blank" >简述浏览器渲染机制</a>
 
+<a href="https://baijiahao.baidu.com/s?id=1722369549920506968&wfr=spider&for=pc" target="_blank" >浅谈 DNS 缓存的作用和影响</a>
