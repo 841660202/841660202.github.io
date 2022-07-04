@@ -26,10 +26,10 @@ tags: [performance, 前端, 浏览器原理]
 ![](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9sejV6LmNvbS9hc3NldHMvaW1nL3BlcmZvcm1hbmNlLnBuZw?x-oss-process=image/format,png)
 
 ## 输入 url 发生了什么
-
+  
 - 1、当浏览器地址中输入 url 后，`navigationStart`如果之前有前一个网页（与当前页面不一定同域）unload 的时间戳,如果无前一个网页 unload ，则与 fetchStart 值相等,
 - 2、接着，是否有重定向（`redirect` ）
-- 3、接着，准备用 HTTP 抓取文档的内容（`fetchStart`）
+- 3、接着，准备用 HTTP 抓取文档的内容（`fetchStart`）查看`APP Cache`
   - 域名查询（`domainLookupStart、domainLookupEnd`）
   - TCP 连接（`connectStart、connectEnd`）,如果是安全链接，在 connectEnd 之前，会有 SSL 连接(secureConnectionStart)
 - 4、接着，HTTP 请求（`requestStart、responseStart、responseEnd`）,如果有缓存，在 responseStart 之前，会有 cacheStart，如果之前有网页，还涉及到网页的 unload，在 cacheStart 之前，会有`unloadStart、unloadEnd`
@@ -39,9 +39,9 @@ tags: [performance, 前端, 浏览器原理]
   - `domContentLoadedEventStart、domContentLoadedEventEnd `DOM 解析完成后，
     - 网页内资源加载开始，并将抛出 readystatechange 相关事件
     - 网页内资源加载完成，并将抛出 readystatechange 相关事件
+  - `domComplete`Document.readyState 变为 complete，并将抛出 readystatechange 相关事件
   - `loadEventStart`load 事件发送给文档，也即 load 回调函数开始执行
   - `loadEventEnd`load 事件的回调函数执行完毕的时间
-  - `domComplete`Document.readyState 变为 complete，并将抛出 readystatechange 相关事件
   - 说明：dom 解析过程，HTML 生成 dom 树，解析 CSS 文件生成 CSSOM 树，DOM 树和 CSSOM 树生成 render 树，也就是渲染树， render 树中对每个节点进行布局，计算每个元素的大小，确定其在屏幕中的位置，绘制。根据 render 树和布局将显示页面
 
 ## 加载阶段
@@ -907,6 +907,9 @@ Referrer Policy: strict-origin-when-cross-origin
 
 ## 参考资料
 
-[Web 性能优化-首屏和白屏时间](https://blog.csdn.net/z9061/article/details/101454438)
-[初探 performance – 监控网页与程序性能](http://www.alloyteam.com/2015/09/explore-performance/)
-[简述浏览器渲染机制](https://blog.csdn.net/abuanden/article/details/114530985)
+<a href="https://blog.csdn.net/z9061/article/details/101454438" target="_blank" >Web 性能优化-首屏和白屏时间</a>
+
+<a href="http://www.alloyteam.com/2015/09/explore-performance/" target="_blank" >初探 performance – 监控网页与程序性能</a>
+
+<a href="https://blog.csdn.net/abuanden/article/details/114530985" target="_blank" >简述浏览器渲染机制</a>
+

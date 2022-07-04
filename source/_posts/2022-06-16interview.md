@@ -40,14 +40,14 @@ cover: https://img1.baidu.com/it/u=2500395055,2979935817&fm=253&fmt=auto&app=138
 
 <a href="https://blog.csdn.net/weixin_42674490/article/details/120647995" target="_blank" >websocket 使用</a>
 
-
 **状态码的含义**
 
 <a href="" target="_blank" >101 SwitchingProtocols，表示切换协议。服务器根据客户端的请求切换协议。只能切换到更高级的协议</a>
 
 <a href="https://www.bbsmax.com/A/gGdX3AWm54/" target="_blank" >204 状态码的含义</a>
 
-<a href="" target="_blank" >206 partial Content, 进行范围请求，打开B站的视频可以看到206请求</a>
+<a href="" target="_blank" >206 partial Content, 进行范围请求，打开 B 站的视频可以看到 206 请求</a>
+
 ## 身份信息
 
 <!-- <a href="https://zhuanlan.zhihu.com/p/482474619" target="_blank" >JWT 史上最全面试题(大厂常问)</a> -->
@@ -111,11 +111,13 @@ function myCreate(obj) {
 
 <a href="http://t.zoukankan.com/Zzbj-p-13923489.html" target="_blank" > 强缓存、协商缓存发生在 8 中的哪些阶段</a>
 <a href="https://mp.weixin.qq.com/s/0w6aWwpR3MAJnmyLwDnAzA" target="_blank" >JavaScript 内存泄漏防范之道</a>
+
 ## html
 
 <a href="https://blog.csdn.net/oscar999/article/details/121044091" target="_blank" >HTML 如何禁用缓存</a>
 
-<a href="https://www.jianshu.com/p/50c37351f873" target="_blank" >onload、DOMContentLoaded区别</a>
+<a href="https://www.jianshu.com/p/50c37351f873" target="_blank" >onload、DOMContentLoaded 区别</a>
+
 ## CSS3
 
 <a href="https://www.jianshu.com/p/274a9b3200b4" target="_blank" >BFC 与清除浮动</a>
@@ -157,9 +159,10 @@ function myCreate(obj) {
 
 <a href="" target="_blank" >说一下盒模型>\_<</a>
 
-<a href="https://www.jianshu.com/p/ce7e4a997a2c" target="_blank" >vertical-align到底怎么用</a>
+<a href="https://www.jianshu.com/p/ce7e4a997a2c" target="_blank" >vertical-align 到底怎么用</a>
 
-<a href="https://blog.csdn.net/qq_52340302/article/details/119238781" target="_blank" >六种常用的css三栏布局方法</a>
+<a href="https://blog.csdn.net/qq_52340302/article/details/119238781" target="_blank" >六种常用的 css 三栏布局方法</a>
+
 ## 响应式
 
 <a href="https://juejin.cn/post/6844903814332432397" target="_blank" >前端响应式布局原理与方案（详细版）</a>
@@ -300,8 +303,31 @@ react 禁止事件冒泡
 
 <a href="https://juejin.cn/post/6918998088010956807" target="_blank" >Webpack5 的事件流和插件机制</a>
 
+<a href="" target="_blank" >px2rem-loader[9], 或者 pxrem-loader[10]原理 ^\_^</a>
 
-<a href="" target="_blank" >px2rem-loader[9], 或者 pxrem-loader[10]原理 ^_^</a>
+<!-- <a href="https://cloud.tencent.com/developer/article/1432511" target="_blank" >Webpack 4 教程 - 第四部分，使用 SplitChunksPlugin 分离代码</a>
+<a href="https://cloud.tencent.com/developer/article/1432714" target="_blank" >Webpack 4 教程 - 第七部分 减少打包体积与 Tree Shaking</a>
+<a href="https://cloud.tencent.com/developer/article/1017015" target="_blank" >优化 Webpack 构建性能的几点建议</a>
+
+```js
+{
+  体积小： 合适的 source-map、减少代码体积、 webpack-bundle-analyzer进行分析
+  范围小：目录检索范围、检索路径
+  缓存：开启 loader、plugin 缓存
+  不重复打包：DLLPlugin + DLLRefrencePlugin 、 externals
+}
+``` -->
+
+<a href="https://javajgs.com/archives/36777" target="_blank" >常见loader使用 , 不好看，有乱七八糟图片，img 样式设置 display: none;</a>
+
+- 文件相关：
+- JSON相关：
+- JS/TS转译:
+- 模版：
+- 样式：
+- lint校验：
+- 测试：
+- 框架：
 
 ## 性能
 
