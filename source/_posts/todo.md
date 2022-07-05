@@ -30,6 +30,7 @@ date: 2022-12-12 59:59:59
 // 19. node-kafka(以前我总听成 ‘卡不卡’， 我回‘不卡不卡’)
 // 20. 封装公用预览组件，支持各种形式,pc、mobile
 // 21. git https://blog.csdn.net/Q1761991696/article/details/123572766
+// 22. gif 播放控制 https://www.cnblogs.com/volodya/p/15897439.html
 ```
 事项：
 
