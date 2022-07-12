@@ -63,9 +63,9 @@ _1. prompt for unload_
 - domainLookupStart/domainLookupEnd: DNS 域名查询开始/结束的时间，如果使用了本地缓存（即无 DNS 查询）或持久连接，则与 fetchStart 值相等
   _6. tcp 链接_
 - connectStart: HTTP（TCP）开始/重新 建立连接的时间，如果是持久连接，则与 fetchStart 值相等。
-- connectEnd: HTTP（TCP） 完成建立连接的时间（完成握手），如果是持久连接，则与 fetchStart 值相等。
   _7. ssl 建立_
 - secureConnectionStart: HTTPS 连接开始的时间，如果不是安全连接，则值为 0。
+- connectEnd: HTTP（TCP） 完成建立连接的时间（完成握手），如果是持久连接，则与 fetchStart 值相等。
   _8. 读取文档_
 - requestStart: HTTP 请求读取真实文档开始的时间（完成建立连接），包括从本地读取缓存。
   _9. 响应_
