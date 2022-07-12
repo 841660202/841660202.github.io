@@ -379,7 +379,7 @@ window.addEventListener("load", function () {
           value: t.connectEnd - t.connectStart,
         },
         {
-          key: "Waiting(TTFB)",
+          key: "Waiting(TTFB)", // TTFB：Time To First Byte
           desc: "\u4ece\u5ba2\u6237\u7aef\u53d1\u8d77\u8bf7\u6c42\u5230\u63a5\u6536\u5230\u54cd\u5e94\u7684\u65f6\u95f4 / Time To First Byte",
           value: t.responseStart - t.requestStart,
         },
@@ -925,3 +925,5 @@ Referrer Policy: strict-origin-when-cross-origin
 <a href="https://blog.csdn.net/abuanden/article/details/114530985" target="_blank" >简述浏览器渲染机制</a>
 
 <a href="https://baijiahao.baidu.com/s?id=1722369549920506968&wfr=spider&for=pc" target="_blank" >浅谈 DNS 缓存的作用和影响</a>
+
+<a href="https://www.jianshu.com/p/0f2158726daf" target="_blank" >TTFB</a>
