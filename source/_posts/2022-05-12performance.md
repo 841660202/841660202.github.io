@@ -278,7 +278,7 @@ function getPerformanceTiming() {
 - 减少重定向次数
 - DNS 查询时间：HTML5 Prefetch 预查询
 - TCP 连接: http1.1 开启 connect: keep-alive, http2.0， 如果可以的话 **http3.0 可以看本站另一篇文章**
-- 资源压缩：gzip、brotli、图片压缩、tree-shaking、console 移除
+- 资源压缩：gzip、brotli、图片压缩、tree-shaking、console、CDN 移除
 - 资源整合：减少请求次数、减少网络请求，雪碧图（虽然 http2 提供了**多路复用**[多路复用代替了 HTTP1.x 的序列和阻塞机制，所有的相同域名请求都通过同一个 TCP 连接并发完成。在 HTTP1.x 中，并发多个请求需要多个 TCP 连接，浏览器为了控制资源会有 6-8 个 TCP 连接都限制,单个连接上可以并行交错的请求和响应，之间互不干扰,但是数量猛增，服务器要处理，多多少少也耗性能]的能力，而且现在还有使用的常见，比聊天表情，飞书也在用）
 - 资源加载：CDN、强缓存和协商缓存、按需加载
 - DOM 解析：自上而下，script 标签放在底部，css 放在上面，无论是 html 还是 css 的层级，应尽量少的解析，解析消耗性能
@@ -927,3 +927,5 @@ Referrer Policy: strict-origin-when-cross-origin
 <a href="https://baijiahao.baidu.com/s?id=1722369549920506968&wfr=spider&for=pc" target="_blank" >浅谈 DNS 缓存的作用和影响</a>
 
 <a href="https://www.jianshu.com/p/0f2158726daf" target="_blank" >TTFB</a>
+
+<a href="https://cn.bluehost.com/blog/?p=14093" target="_blank" >什么是网站TTFB？以及6个优化TTFB的方法</a>
