@@ -1,8 +1,8 @@
 ---
-title: 面试题汇总
+title: 前端基础-面试题汇总
 date: 2022-06-16 10:00:46
-categories: 面试
-tags: [面试]
+categories: 前端基础
+tags: [前端基础, 面试]
 cover: https://img1.baidu.com/it/u=2500395055,2979935817&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=282
 ---
 

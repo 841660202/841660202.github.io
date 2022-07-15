@@ -1,8 +1,8 @@
 ---
-title: 浏览器首屏优化-首屏时间获取
+title: 前端基础-浏览器首屏优化
 date: 2022-05-12 18:27:05
-categories: 前端
-tags: [performance, 前端, 浏览器原理]
+categories: 前端基础
+tags: [performance, 前端基础, 浏览器原理]
 ---
 
 ## 优化的指标
