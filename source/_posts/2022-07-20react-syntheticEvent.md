@@ -6,6 +6,51 @@ tags: [React]
 cover:
 ---
 
+## 本文说明
+
+本文主要内容是 <a href="https://github.com/facebook/react/tree/v16.5.0" target="_blank" >React v16.5.0</a>, 部分内容会涉及到 React v17+
+
+## React 和事件系统概述
+
+<a href="https://github.com/facebook/react/blob/71c0e05ba79e2e12556980ffbab264b41fdc19cd/packages/react-dom/src/events/ReactBrowserEventEmitter.js#L52" target="_blank" >见</a>
+
+```js
+/**
+ *
+ * +------------+    .
+ * |    DOM     |    .
+ * +------------+    .
+ *       |           .
+ *       v           .
+ * +------------+    .
+ * | ReactEvent |    .
+ * |  Listener  |    .
+ * +------------+    .                         +-----------+
+ *       |           .               +--------+|SimpleEvent|
+ *       |           .               |         |Plugin     |
+ * +-----|------+    .               v         +-----------+
+ * |     |      |    .    +--------------+                    +------------+
+ * |     +-----------.--->|EventPluginHub|                    |    Event   |
+ * |            |    .    |              |     +-----------+  | Propagators|
+ * | ReactEvent |    .    |              |     |TapEvent   |  |------------|
+ * |  Emitter   |    .    |              |<---+|Plugin     |  |other plugin|
+ * |            |    .    |              |     +-----------+  |  utilities |
+ * |     +-----------.--->|              |                    +------------+
+ * |     |      |    .    +--------------+
+ * +-----|------+    .                ^        +-----------+
+ *       |           .                |        |Enter/Leave|
+ *       +           .                +-------+|Plugin     |
+ * +-------------+   .                         +-----------+
+ * | application |   .
+ * |-------------|   .
+ * |             |   .
+ * |             |   .
+ * +-------------+   .
+ *                   .
+ *    React Core     .  General Purpose Event Plugin System
+ */
+```
+
 ## 为什么 React 需要自己实现一套事件系统？
 
 <img src="http://t-blog-images.aijs.top/img/20220720095157.webp" style="max-width: 600px" />
@@ -29,9 +74,9 @@ ele.style.color = "red";
 
 ### 而对于复用来说
 
-React 看到在不同的浏览器和平台上，用户界面上的事件其实非常相似，例如普通的 click，change 等等。React 希望通过封装一层事件系统，将不同平台的原生事件都封装成 SyntheticEvent。
+React 看到在不同的浏览器和平台上，用户界面上的事件其实非常相似，例如普通的 click，change 等等。React 希望通过封装一层事件系统，将不同平台的原生事件都封装成 `SyntheticEvent`。
 
-- 使得`不同平台只需要通过加入EventEmitter以及对应的Renderer就能使用相同的一个事件系统`，WEB 平台上加入 ReactBrowserEventEmitter，Native 上加入 ReactNativeEventEmitter。如下图，对于不同平台，React 只需要替换掉左边部分，而右边 EventPluginHub 部分可以保持复用。
+- 使得`不同平台只需要通过加入EventEmitter以及对应的Renderer就能使用相同的一个事件系统`，WEB 平台上加入 `ReactBrowserEventEmitter`，Native 上加入 `ReactNativeEventEmitter`。如下图，对于不同平台，React 只需要替换掉左边部分，而右边 EventPluginHub 部分可以保持复用。
 
 - 而`对于不同的浏览器而言，React帮我们统一了事件，做了浏览器的兼容`，例如对于 transitionEnd,webkitTransitionEnd,MozTransitionEnd 和 oTransitionEnd, React 都会集合成 topAnimationEnd，所以我们只用处理这一个标准的事件即可。
 
@@ -45,13 +90,13 @@ React 看到在不同的浏览器和平台上，用户界面上的事件其实�
 
 <img src="http://t-blog-images.aijs.top/img/20220720100423.webp" />
 
-React 对于大部分事件的绑定都是使用`trapBubbledEvent`和`trapCapturedEvent`这两个函数来注册的。如上图所示，当我们执行了 render 或者 setState 之后，React 的 Fiber 调度系统会在最后 commit 到 DOM 树之前, 执行`trapBubbledEven`或`trapCapturedEvent`，在`document`节点上绑定回调（通过执行`addEventListener`在 document 结点上绑定对应的`dispatch`函数,作为回调负责监听类型为`topLevelType`的事件）。
+React 对于大部分事件的绑定都是使用`trapBubbledEvent`和`trapCapturedEvent`这两个函数来注册的。如上图所示，当我们执行了 render 或者 setState 之后，React 的 `Fiber` 调度系统，<span style="text-decoration: underline">会在最后 commit 到 DOM 树之前, 执行`trapBubbledEvent`或`trapCapturedEvent`，在`document`节点上绑定回调</span>（通过执行`addEventListener`在 document 结点上绑定对应的`dispatch`函数,作为回调负责监听类型为`topLevelType`的事件）。
 
-这里面的 `dispatchInteractiveEvent` 和 `dispatchEvent` 两个回调函数的区别为，React16 开始换掉了原本 `Stack Reconciliation` 成 Fiber 希望实现异步渲染（React16 仍未默认打开，仍需使用 unstable\_开头的 api，此特性与例子 2 有关，将在文章最后配图解释），所以异步渲染的情况下假如我点了两次按钮，那么第二次按钮响应的时候，可能第一次按钮的 handlerA 中调用的 `setState` 还未最终被 commit 到 DOM 树上，这时需要把第一次按钮的结果先给 flush 掉并 commit 到 DOM 树，才能够保持一致性。这个时候就会用到 `dispatchInteractiveEvent`。可以理解成 `dispatchInteractiveEvent` 在执行前都会确保之前所有操作都已最总 commit 到 DOM 树，再开始自己的流程，并最终触发 dispatchEvent。但由于 React16 仍是同步渲染的，所以这两个函数在目前的表现是一致的，React17 默认打开的异步渲染功能。
+这里面的 `dispatchInteractiveEvent` 和 `dispatchEvent` 两个回调函数的区别为，React16 开始换掉了原本 `Stack Reconciliation` 成 `Fiber` 希望实现异步渲染（React16 仍未默认打开，仍需使用 `unstable_`开头的 api，此特性与例子 2 有关，将在文章最后配图解释），所以异步渲染的情况下假如我点了两次按钮，那么第二次按钮响应的时候，可能第一次按钮的 handlerA 中调用的 `setState` 还未最终被 commit 到 DOM 树上，这时需要把第一次按钮的结果先给 flush 掉并 commit 到 DOM 树，才能够保持一致性。这个时候就会用到 `dispatchInteractiveEvent`。可以理解成 `dispatchInteractiveEvent` 在执行前都会确保之前所有操作都已最总 commit 到 DOM 树，再开始自己的流程，并最终触发 dispatchEvent。但由于 React16 仍是同步渲染的，所以这两个函数在目前的表现是一致的，React17 默认打开的异步渲染功能。
 
 到现在我们已经在 document 结点上监听了事件了，现在需要来看如何将我们在 jsx 中写的 handler 存起来对应到相应的结点上。
 
-在我们每次新建或者更新结点时，React 会调用 createInstance 或者 commitUpdate 这两个函数，而这两个函数都会最终调用 updateFiberProps 这个函数，将 props 也就是我们的 onClick，onChange 等 handler 给存到 DOM 结点上。
+在我们每次新建或者更新结点时，React 会调用 `createInstance` 或者 `commitUpdate` 这两个函数，而这两个函数都会最终调用 `updateFiberProps` 这个函数，将 props 也就是我们的 onClick，onChange 等 handler 给存到 DOM 结点上。
 
 至此，我们我们已经在 document 上监听了事件，并且将 handler 存在对应 DOM 结点。接下来需要看 React 怎么监听并处理浏览器的原生事件，最终触发对应的 handler 了。
 
@@ -61,15 +106,15 @@ React 对于大部分事件的绑定都是使用`trapBubbledEvent`和`trapCaptur
 
 动画应该是使用 <a href="https://www.hypeapp.cn/" target="_blank" >Hype 工具</a> 制作的
 
-以简单的 click 事件为例，通过事件绑定我们已经在 document 上监听了 click 事件，当我们真正点击了这个按钮的时候，原生的事件是如何进入 React 的管辖范围的？如何合成 SyntheticEvent 以及如何模拟捕获和冒泡的？以及最后我们在 jsx 中写的 onClickhandler 是如何被最终触发的？带着这些问题，我们一起来看一下事件触发阶段。
+以简单的 `click` 事件为例，通过事件绑定我们已经在 `document` 上监听了 `click` 事件，当我们真正点击了这个按钮的时候，原生的事件是如何进入 React 的管辖范围的？如何合成 `SyntheticEvent` 以及如何模拟捕获和冒泡的？以及最后我们在 jsx 中写的 `onClickhandler` 是如何被最终触发的？带着这些问题，我们一起来看一下事件触发阶段。
 
-大概用下图这种方式来解析代码，左边是我点击一个绑定了 handleClick 的按钮后的 js 调用栈，右边是每一步的代码，均已删除部分不影响理解的代码。希望通过这种方式能使大家更易理解 React 的事件触发机制。
+大概用下图这种方式来解析代码，左边是我点击一个绑定了 `handleClick` 的按钮后的 js 调用栈，右边是每一步的代码，均已删除部分不影响理解的代码。希望通过这种方式能使大家更易理解 React 的事件触发机制。
 
 <img src="http://t-blog-images.aijs.top/img/20220720101536.webp" />
 
 当我们点击一个按钮是，click 事件将会最终冒泡至 document，并触发我们监听在 document 上的 `handler dispatchEvent`，接着触发 `batchedUpdates`。`batchedUpdates` 这个格式的代码在 React 的源码里面会频繁的出现，基本上 React 将所有能够批量处理的事情都会先收集起来，再一次性处理。
 
-可以看到默认的 `isBatching` 是 false 的，当调用了一次 `batchedUpdates`，`isBatching` 的值将会变成 true，此时如果在接下来的调用中有执行 `batchedUpdates` 的话，就会直接执行 handleTopLevel,此时的 setState 等不会被更新到 DOM 上。直到调用栈重新回到第一次调用 `batchedUpdates` 的时候，才会将所有结果一起 flush 掉（更新到 DOM 上）。
+可以看到默认的 `isBatching` 是 false 的，当调用了一次 `batchedUpdates`，`isBatching` 的值将会变成 true，此时如果在接下来的调用中有执行 `batchedUpdates` 的话，就会直接执行 `handleTopLevel`,此时的 `setState` 等不会被更新到 DOM 上。直到调用栈重新回到第一次调用 `batchedUpdates` 的时候，才会将所有结果一起 `flush` 掉（更新到 DOM 上）。
 
 <img src="http://t-blog-images.aijs.top/img/20220720101657.webp" />
 
@@ -110,17 +155,17 @@ React 对于大部分事件的绑定都是使用`trapBubbledEvent`和`trapCaptur
 
 **原生事件**
 
-<img src="http://t-blog-images.aijs.top/img/20220720105851.webp" style="max-width: 500px" />
+<img src="http://t-blog-images.aijs.top/img/20220720105851.webp" style="max-width: 600px" />
 
 **原生+合成事件**
 
-- 在 V17 版本前，原生事件的执行时机是恒早于合成事件的执行时机的。
+- 在 V17 版本前，`原生事件的执行时机是恒早于合成事件的执行时机的`。
 
-- V17 版本后，合成事件和原生事件的执行顺序与冒泡/捕获模式相关，
-  - 冒泡模式，原生事件早于合成事件，
-  - 捕获模式，合成事件早于原生事件。
+- V17 版本后，`合成事件和原生事件的执行顺序与冒泡/捕获模式相关`，
+  - `捕获模式，合成事件早于原生事件`，
+  - `冒泡模式，原生事件早于合成事件`。
 
-<img src="http://t-blog-images.aijs.top/img/20220720105608.webp" style="max-width: 500px"/>
+<img src="http://t-blog-images.aijs.top/img/20220720105608.webp" style="max-width: 600px"/>
 <a href="https://www.jianshu.com/p/a68219093f88?u_atoken=96c66af6-4b4a-4701-a859-9a64483aaf89&u_asession=01viVXNjWZraXNpt12w6P6wnowBQUY7pona1ulf4v0L73wrchou90FiDGe5jR2qHfDX0KNBwm7Lovlpxjd_P_q4JsKWYrT3W_NKPr8w6oU7K8qavJ7EhmnVdJXQEmE6OtSPpcarp92QKzyJKyYjREPlmBkFo3NEHBv0PZUm6pbxQU&u_asig=05CjAbRIhQ-YGOcSOjfs7WtQu4QiGw5txoYvhryOA5fFYlLiTzNiJXY_hpLV7WJGud4m5iROx4wQ0h3ZgRAXTxp-H_GUJK2jgttmFqvD-hHIPJWVv2NwOqKBXAP-u08vsfCUr3lwfKUBWx5D2_14AeRY0il1Ll8VBsxPq6mesMKSv9JS7q8ZD7Xtz2Ly-b0kmuyAKRFSVJkkdwVUnyHAIJzbzCM-4012j1JNGnXBVIbaIllXASt-Dgl7eSMGAtA78aWPRPQyB_SKrj-61LB_f61u3h9VXwMyh6PgyDIVSG1W8MY0PcDXuTpF4MGYSjFBSfODK7bhW2M-c7MIitG1svzaDy9TZTqvO1bRJoi-cZx4Wss1heq_Xsfq5Pn8i8a2-MmWspDxyAEEo4kbsryBKb9Q&u_aref=0RPjny1vlRI4nr3ZC63TqSOZUa0%3D#:~:text=%E5%9B%9B%E3%80%81-,React%E5%90%88%E6%88%90%E4%BA%8B%E4%BB%B6%E4%B8%8E%E5%8E%9F%E7%94%9F%E4%BA%8B%E4%BB%B6%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F,-%E5%9C%A8%20React%20%E4%B8%AD" target="_blank" >React 合成事件与原生事件执行顺序</a>
 
 <a href="https://juejin.cn/post/7005129812981317668#:~:text=%E9%87%8C%E9%9D%A2%E7%9A%84%E6%96%B9%E6%B3%95%E3%80%82-,%E5%90%88%E6%88%90%E4%BA%8B%E4%BB%B6%E5%92%8C%E5%8E%9F%E7%94%9F%E4%BA%8B%E4%BB%B6%E7%9A%84%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F,-%E8%BF%99%E9%87%8C%E6%9C%89%E4%B8%AA" target="_blank" >合成事件和原生事件的执行顺序</a>
@@ -235,11 +280,11 @@ ReactDOM.render(<App />, rootElement);
 
 **React16 例子 2 一定触发 `submit`, 原因：同步更新**
 
-<img src="http://t-blog-images.aijs.top/img/20220720104906.webp" style="max-width: 500px"/>
+<img src="http://t-blog-images.aijs.top/img/20220720104906.webp" style="max-width: 600px"/>
 
 **React17+ 例子 2 不一定触发 `submit` 原因：异步更新**
 
-<img src="http://t-blog-images.aijs.top/img/20220720104951.webp" style="max-width: 500px"/>
+<img src="http://t-blog-images.aijs.top/img/20220720104951.webp" style="max-width: 600px"/>
 
 ## React 提示 event.persist() ，为什么会提示？
 
@@ -251,11 +296,11 @@ React 在`executeDispatchesAndRelease`遍历所有合成事件，会调用 `even
 
 且在 JS 调用栈被弹空时候，必定是已经将结果更新到 DOM 上面了（同步渲染）。这也就是 setState 相对于浏览器是同步的含义。如下图所示
 
-<img src="http://t-blog-images.aijs.top/img/20220720104906.webp" style="max-width: 500px"/>
+<img src="http://t-blog-images.aijs.top/img/20220720104906.webp" style="max-width: 600px"/>
 
 异步渲染的流程图大概如下图所示，最近一次思考这个问题的时候，发现如果现在是异步渲染的话，那我们的例子二将变成偶现的坑 😂，因为如果 setState 的结果还没被更新到 DOM 上，浏览器就不会触发 submit 事件。
 
-<img src="http://t-blog-images.aijs.top/img/20220720104951.webp" style="max-width: 500px"/>
+<img src="http://t-blog-images.aijs.top/img/20220720104951.webp" style="max-width: 600px"/>
 
 ## 异步渲染使用不安全的生命周期会有怎样的现象？
 
@@ -342,6 +387,10 @@ document.getElementById("main").addEventListener(
 ## 合成事件的冒泡捕获机制如何实现？
 
 `traverseTwoPhase` 模拟了捕获和冒泡的两个阶段，这里实现很巧妙，简单而言就是`正向和反向遍历了一下数组`
+
+## 合成事件源码函数调用关系图
+
+<img src="http://t-blog-images.aijs.top/img/SyntheticEvent-第 2 页.drawio.webp" />
 
 ## 参考链接
 
