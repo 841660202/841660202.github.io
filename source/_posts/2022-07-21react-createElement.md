@@ -76,9 +76,18 @@ ReactDom.render(React.createElement(App), document.getElementById("root"));
 ```
 
 ## 我艹，有点懵～
-
+  
 待补，先写个其他的压压惊
 
 ## 参考链接
 
 <a href="https://blog.csdn.net/weixin_34221276/article/details/88770678" target="_blank" >React 源码阅读：虚拟 DOM 的初始化</a>
+
+<a href="https://www.cnblogs.com/JhoneLee/p/9481321.html" target="_blank" >React 16 源码瞎几把解读 【一】 从jsx到一个react 虚拟dom对象</a>
+
+<a href="https://www.cnblogs.com/JhoneLee/p/9482911.html" target="_blank" >React 16 源码瞎几把解读 【二】 react组件的解析过程</a>
+
+<a href="https://www.cnblogs.com/JhoneLee/p/9481618.html" target="_blank" >React 16 源码瞎几把解读 【三 点 一】 把react组件对象弄到dom中去(矛头指向fiber，fiber不解读这个过程也不知道) </a>
+
+<a href="https://www.cnblogs.com/JhoneLee/p/9493776.html" target="_blank" >React 16 源码瞎几把解读 【三 点 二】 react中的fiberRoot</a>
+
