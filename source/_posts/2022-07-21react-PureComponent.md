@@ -1,8 +1,8 @@
 ---
-title: React PureComponent
+title: React@16.5.0 PureComponent
 date: 2022-07-21 16:28:39
-categories: React
-tags: [React]
+categories: React@16.5.0
+tags: [React@16.5.0]
 cover:
 ---
 

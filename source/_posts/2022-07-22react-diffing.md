@@ -1,8 +1,8 @@
 ---
-title: React diffing algorithm
+title: React@16.5.0 diffing algorithm
 date: 2022-07-22 09:16:00
-categories: React
-tags: [React]
+categories: React@16.5.0
+tags: [React@16.5.0]
 cover:
 ---
 
@@ -206,8 +206,18 @@ React 可以在每个 action 之后对整个应用进行重新渲染，得到的
 
 ## reconcileChildFibers
 
+<img src="http://t-blog-images.aijs.top/img/diff调用过程.png" />
+<img src="http://t-blog-images.aijs.top/img/begin-diff.png" />
+
 读源码中...
+
+
 
 ## 参考链接
 
 <a href="https://zh-hans.reactjs.org/docs/reconciliation.html#the-diffing-algorithm" target="_blank" >reconciliation</a>
+
+
+<a href="https://blog.csdn.net/weixin_47431743/article/details/121589419" target="_blank" >代码调试</a>
+
+<a href="https://www.jianshu.com/p/c87cc324756f" target="_blank" >探索React源码：Reconciler</a>

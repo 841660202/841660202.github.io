@@ -1,8 +1,8 @@
 ---
-title: React syntheticEvent
+title: React@16.5.0 syntheticEvent
 date: 2022-07-20 09:18:53
-categories: React
-tags: [React]
+categories: React@16.5.0
+tags: [React@16.5.0]
 cover:
 ---
 
