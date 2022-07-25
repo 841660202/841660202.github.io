@@ -8,7 +8,7 @@ cover:
 
 ## 本文说明
 
-本文主要内容是 <a href="https://github.com/facebook/react/tree/v16.5.0" target="_blank" >React v16.5.0</a>, 部分内容会涉及到 React v17+
+本文主要内容是 <a href="https://github.com/facebook/react/tree/v16.5.0" target="_blank" >React v16.5.0</a>, 部分内容会涉及到 React v17+, React v17+合成事件与 React16 有很大差异
 
 ## React 和事件系统概述
 
@@ -392,6 +392,36 @@ document.getElementById("main").addEventListener(
 
 <img src="http://t-blog-images.aijs.top/img/SyntheticEvent-第 2 页.drawio.webp" />
 
+## v17.0.1
+
+React 中事件分为`委托事件（DelegatedEvent）`和`不需要委托事件（NonDelegatedEvent）`，
+
+- 委托事件在 fiberRoot 创建的时候，`就会在 root 节点的 DOM 元素上绑定几乎所有事件的处理函数`，
+- 而不需要委托事件只`会将处理函数绑定在 DOM 元素本身`。
+
+同时，React 将事件分为 3 种类型——discreteEvent(离散事件，对应`discreteEventPairsForSimpleEventPlugin`)、userBlockingEvent(用户阻止事件，对应`userBlockingPairsForSimpleEventPlugin`)、continuousEvent(连续事件，对应`continuousPairsForSimpleEventPlugin`)，它们拥有不同的优先级，在绑定事件处理函数时会使用不同的回调函数。
+
+React 事件建立在原生基础上，模拟了一套冒泡和捕获的事件机制，当某一个 DOM 元素触发事件后，会冒泡到 React 绑定在 root 节点的处理函数，通过 target 获取触发事件的 DOM 对象和对应的 Fiber 节点，由该 Fiber 节点向上层父级遍历，收集一条事件队列，再遍历该队列触发队列中每个 Fiber 对象对应的事件处理函数，正向遍历模拟冒泡，反向遍历模拟捕获，所以合成事件的触发时机是在原生事件之后的。
+
+Fiber 对象对应的事件处理函数依旧是储存在 props 里的，收集只是从 props 里取出来，它并没有绑定到任何元素上。
+
+```js
+createRootImpl(委托事件绑定)->
+listenToAllSupportedEvents(监听所有支持的事件)->
+listenToNativeEvent(冒泡,捕获)->
+getEventListenerSet,getListenerSetKey,addTrappedEventListener（函数会通过事件名取得对应优先级的listener函数，再交由下层函数处理事件绑定）->
+createEventListenerWrapperWithPriority(根据优先级取得对应listener)->
+dispatchDiscreteEvent,dispatchUserBlockingUpdate,dispatchEvent(触发事件)->
+attemptToDispatchEvent(触发事件)->
+.....略.....->
+dispatchEventsForPlugins(函数里会收集触发事件开始各层级的节点对应的处理函数，也就是我们实际传入JSX中的函数，并且执行它们)->
+extractEvents(针对不同类型的事件创建对应的合成事件，并且将各层级节点的listener收集起来，用来模拟冒泡或者捕获)->
+accumulateSinglePhaseListeners(函数里就是在向上层遍历来收集一个列表后面会用来模拟冒泡)->
+processDispatchQueue(遍历dispatchQueue,在processDispatchQueueItemsInOrder函数里遍历执行)->
+processDispatchQueueItemsInOrder(根据判断来正向、反向的遍历来模拟冒泡和捕获)->
+executeDispatch(会执行listener)->
+```
+
 ## 参考链接
 
 <a href="https://www.lzane.com/tech/react-event-system-and-source-code/" target="_blank" >动画浅析 REACT 事件系统和源码</a>
@@ -407,3 +437,9 @@ document.getElementById("main").addEventListener(
 <a href="https://juejin.cn/post/7005129812981317668" target="_blank" >React 合成事件详解</a>
 
 <a href="https://www.bigbinary.com/blog/react-17-delegates-events-to-root-instead-of-document" target="_blank" >React 17 delegates events to root instead of document</a>
+
+<a href="http://www.zzvips.com/article/227118.html" target="_blank" >React 事件机制源码解析 17.0.1</a>
+
+<a href="https://zhuanlan.zhihu.com/p/166625150" target="_blank" >React 事件 | 4. React 事件监听</a>
+
+<a href="https://juejin.cn/post/6863266370411298823#heading-0" target="_blank" >React源码解析-事件系统</a>

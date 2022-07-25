@@ -176,11 +176,11 @@ React 并不会意识到应该保留 `<li>Duke</li>` 和 `<li>Villanova</li>`，
 
 **修复前**
 
-<!-- <img src="http://t-blog-images.aijs.top/img/Kapture 2022-07-22 at 09.23.57.gif" style="max-width: 400px" /> -->
+<img src="http://t-blog-images.aijs.top/img/Kapture 2022-07-22 at 09.23.57.gif" style="max-width: 400px" />
 
 **修复后**
 
-<!-- <img src="http://t-blog-images.aijs.top/img/Kapture 2022-07-22 at 09.29.46.gif" style="max-width: 400px" /> -->
+<img src="http://t-blog-images.aijs.top/img/Kapture 2022-07-22 at 09.29.46.gif" style="max-width: 400px" />
 
 ## 权衡
 
@@ -193,7 +193,8 @@ React 可以在每个 action 之后对整个应用进行重新渲染，得到的
 由于 React 依赖启发式算法，因此当以下假设没有得到满足，性能会有所损耗。
 
 - 该算法不会尝试匹配不同组件类型的子树。**如果你发现你在两种不同类型的组件中切换，但输出非常相似的内容，建议把它们改成同一类型**。在实践中，我们没有遇到这类问题。
-
+  <br/>
+  <br/>
 - Key 应该具有稳定，可预测，以及列表内唯一的特质。不稳定的 key（比如通过 Math.random() 生成的）会导致许多组件实例和 DOM 节点被不必要地重新创建，**这可能导致性能下降和子组件中的状态丢失。**
 
 ## diffing algorithm
@@ -206,18 +207,14 @@ React 可以在每个 action 之后对整个应用进行重新渲染，得到的
 
 ## reconcileChildFibers
 
-<img src="http://t-blog-images.aijs.top/img/diff调用过程.png" />
 <img src="http://t-blog-images.aijs.top/img/begin-diff.png" />
 
 读源码中...
-
-
 
 ## 参考链接
 
 <a href="https://zh-hans.reactjs.org/docs/reconciliation.html#the-diffing-algorithm" target="_blank" >reconciliation</a>
 
-
 <a href="https://blog.csdn.net/weixin_47431743/article/details/121589419" target="_blank" >代码调试</a>
 
-<a href="https://www.jianshu.com/p/c87cc324756f" target="_blank" >探索React源码：Reconciler</a>
+<a href="https://www.jianshu.com/p/c87cc324756f" target="_blank" >探索 React 源码：Reconciler</a>
